@@ -80,7 +80,7 @@ class Configuration
      *
      * @var string
      */
-    protected $host = 'https://198ae2a7.ngrok.io/api';
+    protected $host = 'https://app.intima.ai/api';
 
     /**
      * User agent of the HTTP request, set to "PHP-Swagger" by default

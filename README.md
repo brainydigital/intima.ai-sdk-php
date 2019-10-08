@@ -57,7 +57,7 @@ try {
 
 ## Documentação para os Endpoints da API
 
-All URIs are relative to *https://198ae2a7.ngrok.io/api*
+All URIs are relative to *https://app.intima.ai/api*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
