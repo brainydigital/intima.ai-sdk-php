@@ -170,7 +170,7 @@ class AcoesApi
         return $this->getActionStatusAsyncWithHttpInfo($pje_action_id)
             ->then(
                 function ($response) {
-                    return $response[0];
+                    return $response;
                 }
             );
     }
@@ -194,7 +194,7 @@ class AcoesApi
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                    return ['status_code' => $response->getStatusCode(), 'data' => $response->getBody()->getContents()];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();

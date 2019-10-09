@@ -5,7 +5,7 @@ Bem vindo a documentação da API do [Intima.ai](https://app.intima.ai). Está d
 
 ## Requerimentos
 
-PHP 5.5 and later
+PHP >= 5.5
 
 ## Instalação & Utilização
 ### Composer
@@ -28,7 +28,7 @@ Baixe os arquivos e dê o include do `autoload.php`:
 
 ## Começando
 
-Por favor siga os passos da [instalação](#installation--usage) e execute o seguinte comando:
+Após seguir os passos da [instalação](#installation--usage):
 
 ```php
 <?php
@@ -57,7 +57,7 @@ try {
 
 Todas as URIs são relativas a *https://app.intima.ai/api*
 
-Class | Method | HTTP request | Description
+Classe | Metodo | Requisição HTTP | Descrição
 ------------ | ------------- | ------------- | -------------
 *AcoesApi* | [**getActionStatus**](docs/Api/AcoesApi.md#getactionstatus) | **GET** /actions/status/{pje_action_id} | Checa o resultado de uma ação
 *CopiasApi* | [**createProcessCopy**](docs/Api/CopiasApi.md#createprocesscopy) | **POST** /actions/processos/copy/{pje_auth_id} | Realiza uma nova cópia processual
@@ -74,8 +74,8 @@ Class | Method | HTTP request | Description
 
 ## ApiKeyAuth
 
-- **Tipo**: API key
-- **PARAMETRO_API_KEY**: api_token
+- **Tipo**: API Key
+- **Parametro da API**: api_token
 - **Localização**: URL query string
 
 

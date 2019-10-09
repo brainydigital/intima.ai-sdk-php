@@ -1,8 +1,8 @@
 # Swagger\Client\EscutasApi
 
-All URIs are relative to *https://198ae2a7.ngrok.io/api*
+Todas as URIs são relativas a *https://app.intima.ai/api*
 
-Method | HTTP request | Description
+Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
 [**createProcessEscuta**](EscutasApi.md#createprocessescuta) | **POST** /actions/process-docs/{pje_auth_id} | Realiza uma nova escuta processual
 
@@ -11,14 +11,12 @@ Method | HTTP request | Description
 
 Realiza uma nova escuta processual
 
-### Example
+### Exemplo
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-// Configure API key authorization: ApiKeyAuth
+// Configure API key authorization: ApiKeyAuth (api_token)
 $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api_token', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api_token', 'Bearer');
 
 $apiInstance = new Swagger\Client\Api\EscutasApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -26,7 +24,7 @@ $apiInstance = new Swagger\Client\Api\EscutasApi(
     new GuzzleHttp\Client(),
     $config
 );
-$processo = "processo_example"; // string | 
+$processo = "0000000-00.0000.0.00.0000"; // string | 
 $pje_auth_id = 56; // int | é o id referente ao tribunal cadastrado em \"Tribunais ativos\" no Intima.ai
 
 try {
@@ -37,25 +35,25 @@ try {
 ?>
 ```
 
-### Parameters
+### Parametros
 
-Name | Type | Description  | Notes
+Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
- **processo** | **string**|  |
- **pje_auth_id** | **int**| é o id referente ao tribunal cadastrado em \&quot;Tribunais ativos\&quot; no Intima.ai |
+ **processo** | **string**| é o numero do processo no qual se deseja realizar a cópia processual | [obrigatório]
+ **pje_auth_id** | **int**| é o id referente ao tribunal cadastrado em \&quot;Tribunais ativos\&quot; no Intima.ai | [obrigatório]
 
-### Return type
+### Tipo de retorno
 
-void (empty response body)
+array ['status_code' => 200, 'data' => []]
 
-### Authorization
+### Autorização
 
 [ApiKeyAuth](../../README.md#ApiKeyAuth)
 
-### HTTP request headers
+### HTTP headers
 
  - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Voltar ao topo]](#) [[Voltar a lista da API]](../../README.md#documentation-for-api-endpoints) [[Voltar para a lista de Models]](../../README.md#documentation-for-models) [[Voltar para o README]](../../README.md)
 

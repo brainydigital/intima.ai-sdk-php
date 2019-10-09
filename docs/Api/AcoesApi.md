@@ -1,8 +1,8 @@
 # Swagger\Client\AcoesApi
 
-All URIs are relative to *https://198ae2a7.ngrok.io/api*
+Todas as URIs são relativas a *https://app.intima.ai/api*
 
-Method | HTTP request | Description
+Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
 [**getActionStatus**](AcoesApi.md#getactionstatus) | **GET** /actions/status/{pje_action_id} | Checa o resultado de uma ação
 
@@ -11,14 +11,12 @@ Method | HTTP request | Description
 
 Checa o resultado de uma ação
 
-### Example
+### Exemplo
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-// Configure API key authorization: ApiKeyAuth
+// Configure API key authorization: ApiKeyAuth (api_token)
 $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api_token', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api_token', 'Bearer');
 
 $apiInstance = new Swagger\Client\Api\AcoesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -36,24 +34,24 @@ try {
 ?>
 ```
 
-### Parameters
+### Parametros
 
-Name | Type | Description  | Notes
+Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
- **pje_action_id** | **int**| é fornecido após se realizar a requisição de qualquer ação para o Intima.ai |
+ **pje_action_id** | **int**| é fornecido após se realizar a requisição de qualquer ação para o Intima.ai | [obrigatório]
 
-### Return type
+### Tipo de retorno
 
-void (empty response body)
+array ['status_code' => 200, 'data' => []]
 
-### Authorization
+### Autorização
 
 [ApiKeyAuth](../../README.md#ApiKeyAuth)
 
-### HTTP request headers
+### HTTP headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Voltar ao topo]](#) [[Voltar a lista da API]](../../README.md#documentation-for-api-endpoints) [[Voltar para a lista de Models]](../../README.md#documentation-for-models) [[Voltar para o README]](../../README.md)
 

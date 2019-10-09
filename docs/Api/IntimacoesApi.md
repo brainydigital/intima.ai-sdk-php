@@ -1,8 +1,8 @@
 # Swagger\Client\IntimacoesApi
 
-All URIs are relative to *https://198ae2a7.ngrok.io/api*
+Todas as URIs são relativas a *https://app.intima.ai/api*
 
-Method | HTTP request | Description
+Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
 [**getAllIntimacoes**](IntimacoesApi.md#getallintimacoes) | **GET** /intimacoes | Visualiza todas as intimações capturadas
 
@@ -11,14 +11,12 @@ Method | HTTP request | Description
 
 Visualiza todas as intimações capturadas
 
-### Example
+### Exemplo
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 // Configure API key authorization: ApiKeyAuth
 $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('api_token', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api_token', 'Bearer');
 
 $apiInstance = new Swagger\Client\Api\IntimacoesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -35,21 +33,21 @@ try {
 ?>
 ```
 
-### Parameters
-This endpoint does not need any parameter.
+### Parametros
+Esse endpoint não tem parametros.
 
-### Return type
+### Tipo de retorno
 
-void (empty response body)
+array ['status_code' => 200, 'data' => []]
 
-### Authorization
+### Autorização
 
 [ApiKeyAuth](../../README.md#ApiKeyAuth)
 
-### HTTP request headers
+### HTTP headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Voltar ao topo]](#) [[Voltar a lista da API]](../../README.md#documentation-for-api-endpoints) [[Voltar para a lista de Models]](../../README.md#documentation-for-models) [[Voltar para o README]](../../README.md)
 

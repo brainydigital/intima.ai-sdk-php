@@ -100,9 +100,9 @@ class ProtocolosApi
      * @throws \InvalidArgumentException
      * @return array
      */
-    public function createProcessProtocolo($numero_processo, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id)
+    public function createProcessProtocolo($numero_processo, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id, $mensagem_geral = null, $descricao = null)
     {
-        return $this->createProcessProtocoloWithHttpInfo($numero_processo, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id);
+        return $this->createProcessProtocoloWithHttpInfo($numero_processo, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id, $mensagem_geral, $descricao);
     }
 
     /**
@@ -119,10 +119,10 @@ class ProtocolosApi
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createProcessProtocoloWithHttpInfo($numero_processo, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id)
+    public function createProcessProtocoloWithHttpInfo($numero_processo, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id, $mensagem_geral, $descricao)
     {
         $returnType = '';
-        $request = $this->createProcessProtocoloRequest($numero_processo, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id);
+        $request = $this->createProcessProtocoloRequest($numero_processo, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id, $mensagem_geral, $descricao);
 
         try {
             $options = $this->createHttpClientOption();
@@ -174,12 +174,12 @@ class ProtocolosApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createProcessProtocoloAsync($numero_processo, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id)
+    public function createProcessProtocoloAsync($numero_processo, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id, $mensagem_geral, $descricao)
     {
-        return $this->createProcessProtocoloAsyncWithHttpInfo($numero_processo, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id)
+        return $this->createProcessProtocoloAsyncWithHttpInfo($numero_processo, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id, $mensagem_geral, $descricao)
             ->then(
                 function ($response) {
-                    return $response[0];
+                    return $response;
                 }
             );
     }
@@ -197,16 +197,16 @@ class ProtocolosApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createProcessProtocoloAsyncWithHttpInfo($numero_processo, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id)
+    public function createProcessProtocoloAsyncWithHttpInfo($numero_processo, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id, $mensagem_geral, $descricao)
     {
         $returnType = '';
-        $request = $this->createProcessProtocoloRequest($numero_processo, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id);
+        $request = $this->createProcessProtocoloRequest($numero_processo, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id, $mensagem_geral, $descricao);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                    return ['status_code' => $response->getStatusCode(), 'data' => $response->getBody()->getContents()];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
@@ -236,7 +236,7 @@ class ProtocolosApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function createProcessProtocoloRequest($numero_processo, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id)
+    protected function createProcessProtocoloRequest($numero_processo, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id, $mensagem_geral, $descricao)
     {
         // verify the required parameter 'numero_processo' is set
         if ($numero_processo === null || (is_array($numero_processo) && count($numero_processo) === 0)) {
@@ -285,6 +285,14 @@ class ProtocolosApi
         // form params
         if ($documentos !== null) {
             $formParams['documentos'] = ObjectSerializer::toFormValue($documentos);
+        }
+        // form params
+        if ($mensagem_geral !== null) {
+            $formParams['mensagem_geral'] = ObjectSerializer::toFormValue($mensagem_geral);
+        }
+        // form params
+        if ($descricao !== null) {
+            $formParams['descricao'] = ObjectSerializer::toFormValue($descricao);
         }
 
         // body params

@@ -1,12 +1,12 @@
 # Documento
 
-## Properties
-Name | Type | Description | Notes
+## Propriedades
+Nome | Tipo | Descrição | Notas
 ------------ | ------------- | ------------- | -------------
-**arquivo** | **string** |  | [optional] 
-**tipo_documento** | **int** |  | [optional] 
-**descricao_documento** | **string** |  | [optional] 
-**order** | **int** |  | [optional] 
+**arquivo** | **binário** | é o arquivo do documento anexado | [obrigatório] 
+**tipo_documento** | **int** | é o tipo do documento anexado | [obrigatório] 
+**descricao_documento** | **string** | é a descrição do documento anexado | [obrigatório] 
+**order** | **int** | é a ordem/posição do documento anexado | [obrigatório] 
 
-[[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
+[[Voltar para a lista de Models]](../../README.md#documentation-for-models) [[Voltar para lista da API]](../../README.md#documentation-for-api-endpoints) [[Voltar para o README]](../../README.md)
 

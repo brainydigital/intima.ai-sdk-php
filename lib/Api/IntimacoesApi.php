@@ -167,7 +167,7 @@ class IntimacoesApi
         return $this->getAllIntimacoesAsyncWithHttpInfo()
             ->then(
                 function ($response) {
-                    return $response[0];
+                    return $response;
                 }
             );
     }
@@ -190,7 +190,7 @@ class IntimacoesApi
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                    return ['status_code' => $response->getStatusCode(), 'data' => $response->getBody()->getContents()];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
