@@ -50,7 +50,7 @@ Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
  **numero_processo** | **string**| é o numero do processo no qual se deseja realizar o protocolo | [obrigatório]
  **tipo_documento_mensagem_geral** | **int**| é o id referente ao tipo de documento da mensagem geral | [obrigatório]
- **documentos** | [**\Swagger\Client\Model\Documento[]**](../Model/\Swagger\Client\Model\Documento.md)| são os anexos relacionados ao protocolo | [opcional]
+ **documentos** | [**Documento[]**](../Model/Documento.md)| são os anexos relacionados ao protocolo | [opcional]
  **pje_auth_id** | **int**| é o id referente ao tribunal cadastrado em \&quot;Tribunais ativos\&quot; no Intima.ai | [obrigatório]
  **mensagem_geral** | **string**| é o texto do conteúdo do protocolo (texto padrão: SEGUE EM ANEXO) | [opcional]
  **descricao** | **string**| é a descrição da mensagem geral (caso não se informe este campo, ele assumira o valor do campo tipo_documento_mensagem_geral) | [opcional]

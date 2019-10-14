@@ -231,13 +231,13 @@ class EscutasApi
         // verify the required parameter 'processo' is set
         if ($processo === null || (is_array($processo) && count($processo) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $processo when calling createProcessEscuta'
+                "O parametro 'processo' é obrigatório!"
             );
         }
         // verify the required parameter 'pje_auth_id' is set
         if ($pje_auth_id === null || (is_array($pje_auth_id) && count($pje_auth_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $pje_auth_id when calling createProcessEscuta'
+                "O parametro 'pje_auth_id' é obrigatório!"
             );
         }
 

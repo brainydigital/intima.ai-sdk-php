@@ -39,7 +39,7 @@ try {
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
- **processo** | **string**| é o numero do processo no qual se deseja realizar a cópia processual | [obrigatório]
+ **processo** | **string**| é o numero do processo no qual se deseja realizar a escuta processual | [obrigatório]
  **pje_auth_id** | **int**| é o id referente ao tribunal cadastrado em \&quot;Tribunais ativos\&quot; no Intima.ai | [obrigatório]
 
 ### Tipo de retorno

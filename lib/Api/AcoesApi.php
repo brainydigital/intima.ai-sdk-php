@@ -226,7 +226,7 @@ class AcoesApi
         // verify the required parameter 'pje_action_id' is set
         if ($pje_action_id === null || (is_array($pje_action_id) && count($pje_action_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $pje_action_id when calling getActionStatus'
+                "O parametro 'pje_action_id' é obrigatório!"
             );
         }
 

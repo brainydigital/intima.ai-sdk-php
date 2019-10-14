@@ -241,19 +241,19 @@ class ProtocolosApi
         // verify the required parameter 'numero_processo' is set
         if ($numero_processo === null || (is_array($numero_processo) && count($numero_processo) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $numero_processo when calling createProcessProtocolo'
+                "O parametro 'numero_processo' é obrigatório!"
             );
         }
         // verify the required parameter 'tipo_documento_mensagem_geral' is set
         if ($tipo_documento_mensagem_geral === null || (is_array($tipo_documento_mensagem_geral) && count($tipo_documento_mensagem_geral) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $tipo_documento_mensagem_geral when calling createProcessProtocolo'
+                "O parametro 'tipo_documento_mensagem_geral' é obrigatório!"
             );
         }
         // verify the required parameter 'pje_auth_id' is set
         if ($pje_auth_id === null || (is_array($pje_auth_id) && count($pje_auth_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $pje_auth_id when calling createProcessProtocolo'
+                "O parametro 'pje_auth_id' é obrigatório!"
             );
         }
 
@@ -383,7 +383,7 @@ class ProtocolosApi
                 ($doc['descricao_documento'] === null || empty($doc['descricao_documento'])) ||
                 ($doc['order'] === null || empty($doc['order']))) {
                 throw new \InvalidArgumentException(
-                    'Missing the required parameter $documentos when calling createProcessProtocolo'
+                    "O parametro 'documentos' é obrigatório!"
                 );
             }
 
