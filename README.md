@@ -1,5 +1,6 @@
 # Intima.ai - SDK PHP
-Bem vindo a documentação da API do [Intima.ai](https://app.intima.ai). Está documentação cobre todas as ações disponíveis dentro do Intima.ai e as disponibilizam como `ENDPOINTS` que podem ser integrados e utilizados por outros serviços ou aplicações, bastando somente possuir o `Token de acesso da API`.
+
+Este repositório é a implementação da API do [Intima.ai](https://app.intima.ai) em forma de SDK Client para PHP. Este SDK cobre todas as ações disponíveis dentro da plataforma do `Intima.ai` e as disponibilizam como métodos, que podem ser integrados e utilizados por outros serviços ou aplicações, bastando somente possuir o `Token de acesso da API (api_token)`.
 
 - Versão da API: 1.0.0
 
