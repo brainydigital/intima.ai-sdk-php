@@ -4,7 +4,10 @@
     <img src="docs/images/logo.png" alt="Logo" width="120" height="120">
   </a>
   
-  [![Contributors][contributors-shield]][contributors-url]
+  [![Packagist - Downloads](https://img.shields.io/packagist/dt/brainydigital/intimai-sdk-php.svg?style=flat&color=97ca00)](https://packagist.org/packages/brainydigital/intimai-sdk-php "View this project on packagist")
+  [![Packagist - Version](https://img.shields.io/packagist/v/brainydigital/intimai-sdk-php.svg?style=flat&color=blue)](https://packagist.org/packages/brainydigital/intimai-sdk-php "View this project on packagist")
+  [![Contributors](https://img.shields.io/badge/contributors-1-yellow.svg)](https://github.com/brainydigital/intimai-sdk-php/graphs/contributors)
+  [![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 </div>
 
 # Intima.ai - SDK PHP
@@ -87,7 +90,3 @@ Classe | Metodo | Requisição HTTP | Descrição
 - **Tipo**: API Key
 - **Parametro da API**: api_token
 - **Localização**: URL query string
-
-<!-- MARKDOWN LINKS & IMAGES -->
-[contributors-shield]: ./docs/images/contributors-count.svg
-[contributors-url]: https://github.com/brainydigital/intimai-sdk-php/graphs/contributors
