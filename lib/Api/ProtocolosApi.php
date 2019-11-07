@@ -379,7 +379,7 @@ class ProtocolosApi
         foreach ($formParam as $doc) {
 
             if (($doc['arquivo'] === null || empty($doc['arquivo'])) ||
-                ($doc['tipo_documento'] === null || empty($doc['tipo_documento'])) ||
+//                ($doc['tipo_documento'] === null || empty($doc['tipo_documento'])) ||
                 ($doc['descricao_documento'] === null || empty($doc['descricao_documento'])) ||
                 ($doc['order'] === null || empty($doc['order']))) {
                 throw new \InvalidArgumentException(
