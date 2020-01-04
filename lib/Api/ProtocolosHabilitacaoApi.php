@@ -94,11 +94,11 @@ class ProtocolosHabilitacaoApi
      * @param  string $numero_processo numero_processo (required)
      * @param  int $tipo_documento_mensagem_geral tipo_documento_mensagem_geral (required)
      * @param  \Swagger\Client\Model\Documento[] $documentos documentos (required)
-     * @param  int $pje_auth_id é o id referente ao tribunal cadastrado em \&quot;Tribunais ativos\&quot; no Intima.ai (required)
+     * @param  int $protocolo_habilitacao_id é o id referente ao protocolo de habilitacao no Intima.ai (required)
      * @param  int $tipo_solicitacao é o id referente ao tipo da solitação no Intima.ai (required)
      * @param  int $tipo_declaracao é o id referente ao tipo de declaração no Intima.ai (required)
      * @param  int $polo é o id referente ao polo no Intima.ai (required)
-     * @param  [string] $partes_vinculadas é um array que reseprenta as partes vinculadas (required)
+     * @param  array $partes_vinculadas é um array que reseprenta as partes vinculadas (required)
      * @param  string $mensagem_geral é o texto do conteúdo do protocolo (texto padrão: SEGUE EM ANEXO) (optional)
      * @param  string $descricao é a descrição da mensagem geral (caso não se informe este campo, ele assumira o valor do campo tipo_documento_mensagem_geral) (optional)
      *
@@ -106,9 +106,9 @@ class ProtocolosHabilitacaoApi
      * @throws \InvalidArgumentException
      * @return array
      */
-    public function createProcessProtocoloHabilitacao($numero_processo, $tipo_solicitacao, $tipo_declaracao, $polo, $partes_vinculadas, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id, $mensagem_geral = null, $descricao = null)
+    public function createProcessProtocoloHabilitacao($numero_processo, $tipo_solicitacao, $tipo_declaracao, $polo, $partes_vinculadas, $tipo_documento_mensagem_geral, $documentos, $protocolo_habilitacao_id, $mensagem_geral = null, $descricao = null)
     {
-        return $this->createProcessProtocoloHabilitacaoWithHttpInfo($numero_processo, $tipo_solicitacao, $tipo_declaracao, $polo, $partes_vinculadas, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id, $mensagem_geral, $descricao);
+        return $this->createProcessProtocoloHabilitacaoWithHttpInfo($numero_processo, $tipo_solicitacao, $tipo_declaracao, $polo, $partes_vinculadas, $tipo_documento_mensagem_geral, $documentos, $protocolo_habilitacao_id, $mensagem_geral, $descricao);
     }
 
     /**
@@ -119,11 +119,11 @@ class ProtocolosHabilitacaoApi
      * @param  string $numero_processo (required)
      * @param  int $tipo_documento_mensagem_geral (required)
      * @param  \Swagger\Client\Model\Documento[] $documentos (required)
-     * @param  int $pje_auth_id é o id referente ao tribunal cadastrado em \&quot;Tribunais ativos\&quot; no Intima.ai (required)
+     * @param  int $protocolo_habilitacao_id é o id referente ao protocolo de habilitacao no Intima.ai (required)
      * @param  int $tipo_solicitacao é o id referente ao tipo da solitação no Intima.ai (required)
      * @param  int $tipo_declaracao é o id referente ao tipo de declaração no Intima.ai (required)
      * @param  int $polo é o id referente ao polo no Intima.ai (required)
-     * @param  [string] $partes_vinculadas é um array que reseprenta as partes vinculadas (required)
+     * @param  array $partes_vinculadas é um array que reseprenta as partes vinculadas (required)
      * @param  string $mensagem_geral é o texto do conteúdo do protocolo (texto padrão: SEGUE EM ANEXO) (optional)
      * @param  string $descricao é a descrição da mensagem geral (caso não se informe este campo, ele assumira o valor do campo tipo_documento_mensagem_geral) (optional)
      *
@@ -131,10 +131,10 @@ class ProtocolosHabilitacaoApi
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createProcessProtocoloHabilitacaoWithHttpInfo($numero_processo, $tipo_solicitacao, $tipo_declaracao, $polo, $partes_vinculadas, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id, $mensagem_geral, $descricao)
+    public function createProcessProtocoloHabilitacaoWithHttpInfo($numero_processo, $tipo_solicitacao, $tipo_declaracao, $polo, $partes_vinculadas, $tipo_documento_mensagem_geral, $documentos, $protocolo_habilitacao_id, $mensagem_geral, $descricao)
     {
         $returnType = '';
-        $request = $this->createProcessProtocoloHabilitacaoRequest($numero_processo, $tipo_solicitacao, $tipo_declaracao, $polo, $partes_vinculadas, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id, $mensagem_geral, $descricao);
+        $request = $this->createProcessProtocoloHabilitacaoRequest($numero_processo, $tipo_solicitacao, $tipo_declaracao, $polo, $partes_vinculadas, $tipo_documento_mensagem_geral, $documentos, $protocolo_habilitacao_id, $mensagem_geral, $descricao);
 
         try {
             $options = $this->createHttpClientOption();
@@ -181,7 +181,7 @@ class ProtocolosHabilitacaoApi
      * @param  string $numero_processo (required)
      * @param  int $tipo_documento_mensagem_geral (required)
      * @param  \Swagger\Client\Model\Documento[] $documentos (required)
-     * @param  int $pje_auth_id é o id referente ao tribunal cadastrado em \&quot;Tribunais ativos\&quot; no Intima.ai (required)
+     * @param  int $protocolo_habilitacao_id é o id referente ao protocolo de habilitacao no Intima.ai (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -204,15 +204,15 @@ class ProtocolosHabilitacaoApi
      * @param  string $numero_processo (required)
      * @param  int $tipo_documento_mensagem_geral (required)
      * @param  \Swagger\Client\Model\Documento[] $documentos (required)
-     * @param  int $pje_auth_id é o id referente ao tribunal cadastrado em \&quot;Tribunais ativos\&quot; no Intima.ai (required)
+     * @param  int $protocolo_habilitacao_id é o id referente ao protocolo de habilitacao no Intima.ai (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createProcessProtocoloHabilitacaoAsyncWithHttpInfo($numero_processo, $tipo_solicitacao, $tipo_declaracao, $polo, $partes_vinculadas, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id, $mensagem_geral, $descricao)
+    public function createProcessProtocoloHabilitacaoAsyncWithHttpInfo($numero_processo, $tipo_solicitacao, $tipo_declaracao, $polo, $partes_vinculadas, $tipo_documento_mensagem_geral, $documentos, $protocolo_habilitacao_id, $mensagem_geral, $descricao)
     {
         $returnType = '';
-        $request = $this->createProcessProtocoloHabilitacaoRequest($numero_processo, $tipo_solicitacao, $tipo_declaracao, $polo, $partes_vinculadas, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id, $mensagem_geral, $descricao);
+        $request = $this->createProcessProtocoloHabilitacaoRequest($numero_processo, $tipo_solicitacao, $tipo_declaracao, $polo, $partes_vinculadas, $tipo_documento_mensagem_geral, $documentos, $protocolo_habilitacao_id, $mensagem_geral, $descricao);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -243,16 +243,16 @@ class ProtocolosHabilitacaoApi
      * @param  string $numero_processo (required)
      * @param  int $tipo_documento_mensagem_geral (required)
      * @param  \Swagger\Client\Model\Documento[] $documentos (required)
-     * @param  int $pje_auth_id é o id referente ao tribunal cadastrado em \&quot;Tribunais ativos\&quot; no Intima.ai (required)
+     * @param  int $protocolo_habilitacao_id é o id referente ao protocolo de habilitacao no Intima.ai (required)
      * @param  int $tipo_solicitacao é o id referente ao tipo da solitação no Intima.ai (required)
      * @param  int $tipo_declaracao é o id referente ao tipo de declaração no Intima.ai (required)
      * @param  int $polo é o id referente ao polo no Intima.ai (required)
-     * @param  [string] $partes_vinculadas é um array que reseprenta as partes vinculadas (required)
+     * @param  array $partes_vinculadas é um array que reseprenta as partes vinculadas (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function createProcessProtocoloHabilitacaoRequest($numero_processo, $tipo_solicitacao, $tipo_declaracao, $polo, $partes_vinculadas, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id, $mensagem_geral, $descricao)
+    protected function createProcessProtocoloHabilitacaoRequest($numero_processo, $tipo_solicitacao, $tipo_declaracao, $polo, $partes_vinculadas, $tipo_documento_mensagem_geral, $documentos, $protocolo_habilitacao_id, $mensagem_geral, $descricao)
     {
         // verify the required parameter 'numero_processo' is set
         if ($numero_processo === null || (is_array($numero_processo) && count($numero_processo) === 0)) {
@@ -267,9 +267,9 @@ class ProtocolosHabilitacaoApi
             );
         }
         // verify the required parameter 'pje_auth_id' is set
-        if ($pje_auth_id === null || (is_array($pje_auth_id) && count($pje_auth_id) === 0)) {
+        if ($protocolo_habilitacao_id === null || (is_array($protocolo_habilitacao_id) && count($protocolo_habilitacao_id) === 0)) {
             throw new \InvalidArgumentException(
-                "O parametro 'pje_auth_id' é obrigatório!"
+                "O parametro 'protocolo_habilitacao_id' é obrigatório!"
             );
         }
         // verify the required parameter 'tipo_solicitacao' is set
@@ -297,7 +297,7 @@ class ProtocolosHabilitacaoApi
             );
         }
 
-        $resourcePath = '/actions/process-protocol-habilitacao/{pje_auth_id}';
+        $resourcePath = '/actions/process-protocol-habilitacao/{protocolo_habilitacao_id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -306,10 +306,10 @@ class ProtocolosHabilitacaoApi
 
 
         // path params
-        if ($pje_auth_id !== null) {
+        if ($protocolo_habilitacao_id !== null) {
             $resourcePath = str_replace(
-                '{' . 'pje_auth_id' . '}',
-                ObjectSerializer::toPathValue($pje_auth_id),
+                '{' . 'protocolo_habilitacao_id' . '}',
+                ObjectSerializer::toPathValue($protocolo_habilitacao_id),
                 $resourcePath
             );
         }

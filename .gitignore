@@ -3,3 +3,4 @@ git_push.sh
 vendor
 .DS_Store
 docs/.DS_Store
+test.php
