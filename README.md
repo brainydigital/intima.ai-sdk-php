@@ -78,7 +78,7 @@ Classe | Metodo | Requisição HTTP | Descrição
 *IntimacoesApi* | [**getAllIntimacoes**](docs/Api/IntimacoesApi.md#getallintimacoes) | **GET** /intimacoes | Visualiza todas as intimações capturadas
 *ProtocolosApi* | [**createProcessProtocolo**](docs/Api/ProtocolosApi.md#createprocessprotocolo) | **POST** /actions/process-protoco/{pje_auth_id} | Realiza um novo protocolo
 *ProtocolosHabilitacaoGetInfoApi* | [**getInfoProcessProtocoloHabilitacao**](docs/Api/ProtocolosHabilitacaoGetInfoApi.md#getInfoProcessProtocoloHabilitacao) | **POST** /actions/process-protoco/{pje_auth_id} | Captura as informações de um processo para realizar um novo protocolo de habilitação
-*ProtocolosHabilitacaoApi* | [**getInfoProcessProtocoloHabilitacao**](docs/Api/ProtocolosHabilitacaoGetInfoApi.md#getInfoProcessProtocoloHabilitacao) | **POST** /actions/process-protoco/{pje_auth_id} | Realiza um novo protocolo de habilitação
+*ProtocolosHabilitacaoApi* | [**createProcessProtocoloHabilitacao**](docs/Api/ProtocolosHabilitacaoApi.md#createProcessProtocoloHabilitacao) | **POST** /actions/process-protocol-habilitacao/{protocolo_habilitacao_id} | Realiza um novo protocolo de habilitação
 
 ## Documentação para os Models
 
