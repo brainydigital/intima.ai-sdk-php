@@ -1,6 +1,6 @@
 <?php
 /**
- * Documento
+ * Peticao
  *
  * PHP version 5
  *
@@ -32,14 +32,14 @@ use \ArrayAccess;
 use \Swagger\Client\ObjectSerializer;
 
 /**
- * Documento Class Doc Comment
+ * Peticao Class Doc Comment
  *
  * @category Class
  * @package  Swagger\Client
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class Documento implements ModelInterface, ArrayAccess
+class Peticao implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,7 +48,7 @@ class Documento implements ModelInterface, ArrayAccess
      *
      * @var string
      */
-    protected static $swaggerModelName = 'Documento';
+    protected static $swaggerModelName = 'Peticao';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +58,7 @@ class Documento implements ModelInterface, ArrayAccess
     protected static $swaggerTypes = [
         'arquivo' => 'string',
         'tipo_documento' => 'int',
-        'descricao_documento' => 'string',
-        'order' => 'int'
+        'descricao_documento' => 'string'
     ];
 
     /**
@@ -69,9 +68,8 @@ class Documento implements ModelInterface, ArrayAccess
      */
     protected static $swaggerFormats = [
         'arquivo' => 'binary',
-        'tipo_documento' => 'int32',
-        'descricao_documento' => null,
-        'order' => 'int32'
+        'tipo_documento' => 'int',
+        'descricao_documento' => 'string'
     ];
 
     /**
@@ -103,8 +101,7 @@ class Documento implements ModelInterface, ArrayAccess
     protected static $attributeMap = [
         'arquivo' => 'arquivo',
         'tipo_documento' => 'tipo_documento',
-        'descricao_documento' => 'descricao_documento',
-        'order' => 'order'
+        'descricao_documento' => 'descricao_documento'
     ];
 
     /**
@@ -115,8 +112,7 @@ class Documento implements ModelInterface, ArrayAccess
     protected static $setters = [
         'arquivo' => 'setArquivo',
         'tipo_documento' => 'setTipoDocumento',
-        'descricao_documento' => 'setDescricaoDocumento',
-        'order' => 'setOrder'
+        'descricao_documento' => 'setDescricaoDocumento'
     ];
 
     /**
@@ -127,8 +123,7 @@ class Documento implements ModelInterface, ArrayAccess
     protected static $getters = [
         'arquivo' => 'getArquivo',
         'tipo_documento' => 'getTipoDocumento',
-        'descricao_documento' => 'getDescricaoDocumento',
-        'order' => 'getOrder'
+        'descricao_documento' => 'getDescricaoDocumento'
     ];
 
     /**
@@ -192,7 +187,6 @@ class Documento implements ModelInterface, ArrayAccess
         $this->container['arquivo'] = isset($data['arquivo']) ? $data['arquivo'] : null;
         $this->container['tipo_documento'] = isset($data['tipo_documento']) ? $data['tipo_documento'] : null;
         $this->container['descricao_documento'] = isset($data['descricao_documento']) ? $data['descricao_documento'] : null;
-        $this->container['order'] = isset($data['order']) ? $data['order'] : null;
     }
 
     /**
@@ -217,7 +211,6 @@ class Documento implements ModelInterface, ArrayAccess
     {
         return count($this->listInvalidProperties()) === 0;
     }
-
 
     /**
      * Gets arquivo
@@ -291,29 +284,6 @@ class Documento implements ModelInterface, ArrayAccess
         return $this;
     }
 
-    /**
-     * Gets order
-     *
-     * @return int
-     */
-    public function getOrder()
-    {
-        return $this->container['order'];
-    }
-
-    /**
-     * Sets order
-     *
-     * @param int $order order
-     *
-     * @return $this
-     */
-    public function setOrder($order)
-    {
-        $this->container['order'] = $order;
-
-        return $this;
-    }
     /**
      * Returns true if offset exists. False otherwise.
      *

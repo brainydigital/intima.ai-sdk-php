@@ -36,6 +36,7 @@ use GuzzleHttp\RequestOptions;
 use Swagger\Client\ApiException;
 use Swagger\Client\Configuration;
 use Swagger\Client\HeaderSelector;
+use Swagger\Client\Model\Protocolo;
 use Swagger\Client\ObjectSerializer;
 
 /**
@@ -91,20 +92,17 @@ class ProtocolosApi
      *
      * Realiza um novo protocolo
      *
-     * @param  string $numero_processo numero_processo (required)
-     * @param  int $tipo_documento_mensagem_geral tipo_documento_mensagem_geral (required)
-     * @param  \Swagger\Client\Model\Documento[] $documentos documentos (required)
+     * @param Protocolo $protocolo protocolo (required)
      * @param  int $pje_auth_id é o id referente ao tribunal cadastrado em \&quot;Tribunais ativos\&quot; no Intima.ai (required)
-     * @param  string $mensagem_geral é o texto do conteúdo do protocolo (texto padrão: SEGUE EM ANEXO) (optional)
-     * @param  string $descricao é a descrição da mensagem geral (caso não se informe este campo, ele assumira o valor do campo tipo_documento_mensagem_geral) (optional)
      *
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
      * @return array
+     * @throws \InvalidArgumentException*
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function createProcessProtocolo($numero_processo, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id, $mensagem_geral = null, $descricao = null)
+    public function createProcessProtocolo(Protocolo $protocolo, $pje_auth_id)
     {
-        return $this->createProcessProtocoloWithHttpInfo($numero_processo, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id, $mensagem_geral, $descricao);
+        return $this->createProcessProtocoloWithHttpInfo($protocolo, $pje_auth_id);
     }
 
     /**
@@ -112,21 +110,18 @@ class ProtocolosApi
      *
      * Realiza um novo protocolo
      *
-     * @param  string $numero_processo (required)
-     * @param  int $tipo_documento_mensagem_geral (required)
-     * @param  \Swagger\Client\Model\Documento[] $documentos (required)
+     * @param Protocolo $protocolo (required)
      * @param  int $pje_auth_id é o id referente ao tribunal cadastrado em \&quot;Tribunais ativos\&quot; no Intima.ai (required)
-     * @param  string $mensagem_geral é o texto do conteúdo do protocolo (texto padrão: SEGUE EM ANEXO) (optional)
-     * @param  string $descricao é a descrição da mensagem geral (caso não se informe este campo, ele assumira o valor do campo tipo_documento_mensagem_geral) (optional)
      *
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws \InvalidArgumentException*
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function createProcessProtocoloWithHttpInfo($numero_processo, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id, $mensagem_geral, $descricao)
+    public function createProcessProtocoloWithHttpInfo(Protocolo $protocolo, $pje_auth_id)
     {
         $returnType = '';
-        $request = $this->createProcessProtocoloRequest($numero_processo, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id, $mensagem_geral, $descricao);
+        $request = $this->createProcessProtocoloRequest($protocolo, $pje_auth_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -170,17 +165,15 @@ class ProtocolosApi
      *
      * Realiza um novo protocolo
      *
-     * @param  string $numero_processo (required)
-     * @param  int $tipo_documento_mensagem_geral (required)
-     * @param  \Swagger\Client\Model\Documento[] $documentos (required)
+     * @param  Protocolo $protocolo (required)
      * @param  int $pje_auth_id é o id referente ao tribunal cadastrado em \&quot;Tribunais ativos\&quot; no Intima.ai (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createProcessProtocoloAsync($numero_processo, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id, $mensagem_geral, $descricao)
+    public function createProcessProtocoloAsync(Protocolo $protocolo, $pje_auth_id)
     {
-        return $this->createProcessProtocoloAsyncWithHttpInfo($numero_processo, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id, $mensagem_geral, $descricao)
+        return $this->createProcessProtocoloAsyncWithHttpInfo($protocolo, $pje_auth_id)
             ->then(
                 function ($response) {
                     return $response;
@@ -193,18 +186,16 @@ class ProtocolosApi
      *
      * Realiza um novo protocolo
      *
-     * @param  string $numero_processo (required)
-     * @param  int $tipo_documento_mensagem_geral (required)
-     * @param  \Swagger\Client\Model\Documento[] $documentos (required)
+     * @param  Protocolo $protocolo (required)
      * @param  int $pje_auth_id é o id referente ao tribunal cadastrado em \&quot;Tribunais ativos\&quot; no Intima.ai (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createProcessProtocoloAsyncWithHttpInfo($numero_processo, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id, $mensagem_geral, $descricao)
+    public function createProcessProtocoloAsyncWithHttpInfo(Protocolo $protocolo, $pje_auth_id)
     {
         $returnType = '';
-        $request = $this->createProcessProtocoloRequest($numero_processo, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id, $mensagem_geral, $descricao);
+        $request = $this->createProcessProtocoloRequest($protocolo, $pje_auth_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -232,28 +223,38 @@ class ProtocolosApi
     /**
      * Create request for operation 'createProcessProtocolo'
      *
-     * @param  string $numero_processo (required)
-     * @param  int $tipo_documento_mensagem_geral (required)
-     * @param  \Swagger\Client\Model\Documento[] $documentos (required)
+     * @param  Protocolo $protocolo (required)
      * @param  int $pje_auth_id é o id referente ao tribunal cadastrado em \&quot;Tribunais ativos\&quot; no Intima.ai (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function createProcessProtocoloRequest($numero_processo, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id, $mensagem_geral, $descricao)
+    protected function createProcessProtocoloRequest(Protocolo $protocolo, $pje_auth_id)
     {
         // verify the required parameter 'numero_processo' is set
-        if ($numero_processo === null || (is_array($numero_processo) && count($numero_processo) === 0)) {
+        if ($protocolo->getNumeroProcesso() === null || (is_array($protocolo->getNumeroProcesso()) && count($protocolo->getNumeroProcesso()) === 0)) {
             throw new \InvalidArgumentException(
                 "O parametro 'numero_processo' é obrigatório!"
             );
         }
         // verify the required parameter 'tipo_documento_mensagem_geral' is set
-        if ($tipo_documento_mensagem_geral === null || (is_array($tipo_documento_mensagem_geral) && count($tipo_documento_mensagem_geral) === 0)) {
-            throw new \InvalidArgumentException(
-                "O parametro 'tipo_documento_mensagem_geral' é obrigatório!"
-            );
+        if ($protocolo->getPeticao() === null) {
+            if ($protocolo->getTipoDocumentoMensagemGeral() === null || (is_array($protocolo->getTipoDocumentoMensagemGeral()) && count($protocolo->getTipoDocumentoMensagemGeral()) === 0)) {
+                throw new \InvalidArgumentException(
+                    "O parametro 'tipo_documento_mensagem_geral' é obrigatório!"
+                );
+            }
+        } else {
+
+            //TODO: validar!!!
+            if ($protocolo->getPeticao()->getArquivo() === null || (is_array($protocolo->getTipoDocumentoMensagemGeral()) && count($protocolo->getTipoDocumentoMensagemGeral()) === 0)) {
+                throw new \InvalidArgumentException(
+                    "O parametro 'tipo_documento_mensagem_geral' é obrigatório!"
+                );
+            }
+
         }
+
         // verify the required parameter 'pje_auth_id' is set
         if ($pje_auth_id === null || (is_array($pje_auth_id) && count($pje_auth_id) === 0)) {
             throw new \InvalidArgumentException(
@@ -279,24 +280,24 @@ class ProtocolosApi
         }
 
         // form params
-        if ($numero_processo !== null) {
-            $formParams['numero_processo'] = ObjectSerializer::toFormValue($numero_processo);
+        if ($protocolo->getNumeroProcesso() !== null) {
+            $formParams['numero_processo'] = ObjectSerializer::toFormValue($protocolo->getNumeroProcesso());
         }
         // form params
-        if ($tipo_documento_mensagem_geral !== null) {
-            $formParams['tipo_documento_mensagem_geral'] = ObjectSerializer::toFormValue($tipo_documento_mensagem_geral);
+        if ($protocolo->getTipoDocumentoMensagemGeral() !== null) {
+            $formParams['tipo_documento_mensagem_geral'] = ObjectSerializer::toFormValue($protocolo->getTipoDocumentoMensagemGeral());
         }
         // form params
-        if ($documentos !== null) {
-            $formParams['documentos'] = ObjectSerializer::toFormValue($documentos);
+        if ($protocolo->getDocumentos() !== null) {
+            $formParams['documentos'] = ObjectSerializer::toFormValue($protocolo->getDocumentos());
         }
         // form params
-        if ($mensagem_geral !== null) {
-            $formParams['mensagem_geral'] = ObjectSerializer::toFormValue($mensagem_geral);
+        if ($protocolo->getMensagemGeral() !== null) {
+            $formParams['mensagem_geral'] = ObjectSerializer::toFormValue($protocolo->getMensagemGeral());
         }
         // form params
-        if ($descricao !== null) {
-            $formParams['descricao'] = ObjectSerializer::toFormValue($descricao);
+        if ($protocolo->getDescricao() !== null) {
+            $formParams['descricao'] = ObjectSerializer::toFormValue($protocolo->getDescricao());
         }
 
         // body params

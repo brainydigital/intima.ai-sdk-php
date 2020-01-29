@@ -1,6 +1,6 @@
 <?php
 /**
- * Documento
+ * Protocolo
  *
  * PHP version 5
  *
@@ -32,14 +32,14 @@ use \ArrayAccess;
 use \Swagger\Client\ObjectSerializer;
 
 /**
- * Documento Class Doc Comment
+ * Protocolo Class Doc Comment
  *
  * @category Class
  * @package  Swagger\Client
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class Documento implements ModelInterface, ArrayAccess
+class Protocolo implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -48,7 +48,7 @@ class Documento implements ModelInterface, ArrayAccess
      *
      * @var string
      */
-    protected static $swaggerModelName = 'Documento';
+    protected static $swaggerModelName = 'Protocolo';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -56,10 +56,12 @@ class Documento implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $swaggerTypes = [
-        'arquivo' => 'string',
-        'tipo_documento' => 'int',
-        'descricao_documento' => 'string',
-        'order' => 'int'
+        'numero_processo' => 'string',
+        'tipo_documento_mensagem_geral' => 'int',
+        'peticao' => 'array',
+        'documentos' => 'array',
+        'mensagem_geral' => 'string',
+        'descricao' => 'string'
     ];
 
     /**
@@ -68,10 +70,12 @@ class Documento implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $swaggerFormats = [
-        'arquivo' => 'binary',
-        'tipo_documento' => 'int32',
-        'descricao_documento' => null,
-        'order' => 'int32'
+        'numero_processo' => 'string',
+        'tipo_documento_mensagem_geral' => null,
+        'peticao' => null,
+        'documentos' => null,
+        'mensagem_geral' => null,
+        'descricao' => null
     ];
 
     /**
@@ -101,10 +105,12 @@ class Documento implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'arquivo' => 'arquivo',
-        'tipo_documento' => 'tipo_documento',
-        'descricao_documento' => 'descricao_documento',
-        'order' => 'order'
+        'numero_processo' => 'numero_processo',
+        'tipo_documento_mensagem_geral' => 'tipo_documento_mensagem_geral',
+        'peticao' => 'peticao',
+        'documentos' => 'documentos',
+        'mensagem_geral' => 'mensagem_geral',
+        'descricao' => 'descricao'
     ];
 
     /**
@@ -113,10 +119,12 @@ class Documento implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'arquivo' => 'setArquivo',
-        'tipo_documento' => 'setTipoDocumento',
-        'descricao_documento' => 'setDescricaoDocumento',
-        'order' => 'setOrder'
+        'numero_processo' => 'setNumeroProcesso',
+        'tipo_documento_mensagem_geral' => 'setTipoDocumentoMensagemGeral',
+        'peticao' => 'setPeticao',
+        'documentos' => 'setDocumentos',
+        'mensagem_geral' => 'setMensagemGeral',
+        'descricao' => 'setDescricao'
     ];
 
     /**
@@ -125,10 +133,12 @@ class Documento implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'arquivo' => 'getArquivo',
-        'tipo_documento' => 'getTipoDocumento',
-        'descricao_documento' => 'getDescricaoDocumento',
-        'order' => 'getOrder'
+        'numero_processo' => 'getNumeroProcesso',
+        'tipo_documento_mensagem_geral' => 'getTipoDocumentoMensagemGeral',
+        'peticao' => 'getPeticao',
+        'documentos' => 'getDocumentos',
+        'mensagem_geral' => 'getMensagemGeral',
+        'descricao' => 'setDescricao'
     ];
 
     /**
@@ -189,10 +199,12 @@ class Documento implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['arquivo'] = isset($data['arquivo']) ? $data['arquivo'] : null;
-        $this->container['tipo_documento'] = isset($data['tipo_documento']) ? $data['tipo_documento'] : null;
-        $this->container['descricao_documento'] = isset($data['descricao_documento']) ? $data['descricao_documento'] : null;
-        $this->container['order'] = isset($data['order']) ? $data['order'] : null;
+        $this->container['numero_processo'] = isset($data['numero_processo']) ? $data['numero_processo'] : null;
+        $this->container['tipo_documento_mensagem_geral'] = isset($data['tipo_documento_mensagem_geral']) ? $data['tipo_documento_mensagem_geral'] : null;
+        $this->container['documentos'] = isset($data['documentos']) ? $data['documentos'] : null;
+        $this->container['mensagem_geral'] = isset($data['mensagem_geral']) ? $data['mensagem_geral'] : null;
+        $this->container['descricao'] = isset($data['descricao']) ? $data['descricao'] : null;
+        $this->container['peticao'] = isset($data['peticao']) ? $data['peticao'] : null;
     }
 
     /**
@@ -220,97 +232,144 @@ class Documento implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets arquivo
+     * Gets peticao
+     *
+     * @return Peticao
+     */
+    public function getPeticao()
+    {
+        return $this->container['peticao'];
+    }
+
+    /**
+     * Sets peticao
+     *
+     * @param Peticao $peticao peticao
+     *
+     * @return $this
+     */
+    public function setPeticao($peticao)
+    {
+        $this->container['peticao'] = $peticao;
+
+        return $this;
+    }
+    /**
+     * Gets numero_processo
      *
      * @return string
      */
-    public function getArquivo()
+    public function getNumeroProcesso()
     {
-        return $this->container['arquivo'];
+        return $this->container['numero_processo'];
     }
 
     /**
-     * Sets arquivo
+     * Sets numero_processo
      *
-     * @param string $arquivo arquivo
+     * @param string $numero_processo numero_processo
      *
      * @return $this
      */
-    public function setArquivo($arquivo)
+    public function setNumeroProcesso($numero_processo)
     {
-        $this->container['arquivo'] = $arquivo;
+        $this->container['numero_processo'] = $numero_processo;
 
         return $this;
     }
 
     /**
-     * Gets tipo_documento
+     * Gets tipo_documento_mensagem_geral
      *
      * @return int
      */
-    public function getTipoDocumento()
+    public function getTipoDocumentoMensagemGeral()
     {
-        return $this->container['tipo_documento'];
+        return $this->container['tipo_documento_mensagem_geral'];
     }
 
     /**
-     * Sets tipo_documento
+     * Sets tipo_documento_mensagem_geral
      *
-     * @param int $tipo_documento tipo_documento
+     * @param int $tipo_documento_mensagem_geral tipo_documento_mensagem_geral
      *
      * @return $this
      */
-    public function setTipoDocumento($tipo_documento)
+    public function setTipoDocumentoMensagemGeral($tipo_documento_mensagem_geral)
     {
-        $this->container['tipo_documento'] = $tipo_documento;
+        $this->container['tipo_documento_mensagem_geral'] = $tipo_documento_mensagem_geral;
 
         return $this;
     }
 
     /**
-     * Gets descricao_documento
+     * Gets documentos
+     *
+     * @return array
+     */
+    public function getDocumentos()
+    {
+        return $this->container['documentos'];
+    }
+
+    /**
+     * Sets documentos
+     *
+     * @param array $documentos
+     *
+     * @return $this
+     */
+    public function setDocumentos($documentos)
+    {
+        $this->container['documentos'] = $documentos;
+
+        return $this;
+    }
+
+    /**
+     * Gets mensagem_geral
      *
      * @return string
      */
-    public function getDescricaoDocumento()
+    public function getMensagemGeral()
     {
-        return $this->container['descricao_documento'];
+        return $this->container['mensagem_geral'];
     }
 
     /**
-     * Sets descricao_documento
+     * Sets mensagem_geral
      *
-     * @param string $descricao_documento descricao_documento
+     * @param string $mensagem_geral mensagem_geral
      *
      * @return $this
      */
-    public function setDescricaoDocumento($descricao_documento)
+    public function setMensagemGeral($mensagem_geral)
     {
-        $this->container['descricao_documento'] = $descricao_documento;
+        $this->container['mensagem_geral'] = $mensagem_geral;
 
         return $this;
     }
 
     /**
-     * Gets order
+     * Gets descricao
      *
-     * @return int
+     * @return string
      */
-    public function getOrder()
+    public function getDescricao()
     {
-        return $this->container['order'];
+        return $this->container['descricao'];
     }
 
     /**
-     * Sets order
+     * Sets descricao
      *
-     * @param int $order order
+     * @param string $descricao descricao
      *
      * @return $this
      */
-    public function setOrder($order)
+    public function setDescricao($descricao)
     {
-        $this->container['order'] = $order;
+        $this->container['descricao'] = $descricao;
 
         return $this;
     }
