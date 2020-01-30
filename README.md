@@ -83,6 +83,9 @@ Classe | Metodo | Requisição HTTP | Descrição
 ## Documentação para os Models
 
  - [Documento](docs/Model/Documento.md)
+ - [Peticao](docs/Model/Peticao.md)
+ - [Protocolo](docs/Model/Protocolo.md)
+ - [ProtocoloHabilitacao](docs/Model/ProtocoloHabilitacao.md)
 
 ## Documentação para Autenticação
 
