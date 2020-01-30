@@ -1,6 +1,6 @@
 <?php
 /**
- * Protocolo
+ * ProtocoloHabilitacao
  *
  * PHP version 5
  *
@@ -32,23 +32,34 @@ use \ArrayAccess;
 use \Swagger\Client\ObjectSerializer;
 
 /**
- * Protocolo Class Doc Comment
+ * ProtocoloHabilitacao Class Doc Comment
  *
  * @category Class
  * @package  Swagger\Client
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class Protocolo implements ModelInterface, ArrayAccess
+class ProtocoloHabilitacao implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
+
+    const
+        POLO_ATIVO = 0,
+        POLO_PASSIVO = 1;
+
+    const
+        TIPO_SOLICITACAO_SIMPLES = 0;
+
+    const
+        TIPO_DECLARACAO_SOB_PENA_DE_LEI = 0,
+        TIPO_DECLARACAO_INSTRUMENTO_DE_MANDATO = 1;
 
     /**
      * The original name of the model.
      *
      * @var string
      */
-    protected static $swaggerModelName = 'Protocolo';
+    protected static $swaggerModelName = 'ProtocoloHabilitacao';
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -58,10 +69,13 @@ class Protocolo implements ModelInterface, ArrayAccess
     protected static $swaggerTypes = [
         'numero_processo' => 'string',
         'tipo_documento_mensagem_geral' => 'int',
-        'peticao' => 'array',
         'documentos' => 'array',
         'mensagem_geral' => 'string',
-        'descricao' => 'string'
+        'descricao' => 'string',
+        'tipo_solicitacao' => 'int',
+        'tipo_declaracao' => 'int',
+        'polo' => 'int',
+        'partes_vinculadas' => 'array'
     ];
 
     /**
@@ -72,10 +86,13 @@ class Protocolo implements ModelInterface, ArrayAccess
     protected static $swaggerFormats = [
         'numero_processo' => 'string',
         'tipo_documento_mensagem_geral' => null,
-        'peticao' => null,
         'documentos' => null,
         'mensagem_geral' => null,
-        'descricao' => null
+        'descricao' => null,
+        'tipo_solicitacao' => 'int',
+        'tipo_declaracao' => 'int',
+        'polo' => 'int',
+        'partes_vinculadas' => 'array'
     ];
 
     /**
@@ -107,10 +124,13 @@ class Protocolo implements ModelInterface, ArrayAccess
     protected static $attributeMap = [
         'numero_processo' => 'numero_processo',
         'tipo_documento_mensagem_geral' => 'tipo_documento_mensagem_geral',
-        'peticao' => 'peticao',
         'documentos' => 'documentos',
         'mensagem_geral' => 'mensagem_geral',
-        'descricao' => 'descricao'
+        'descricao' => 'descricao',
+        'tipo_solicitacao' => 'tipo_solicitacao',
+        'tipo_declaracao' => 'tipo_declaracao',
+        'polo' => 'polo',
+        'partes_vinculadas' => 'partes_vinculadas'
     ];
 
     /**
@@ -121,10 +141,13 @@ class Protocolo implements ModelInterface, ArrayAccess
     protected static $setters = [
         'numero_processo' => 'setNumeroProcesso',
         'tipo_documento_mensagem_geral' => 'setTipoDocumentoMensagemGeral',
-        'peticao' => 'setPeticao',
         'documentos' => 'setDocumentos',
         'mensagem_geral' => 'setMensagemGeral',
-        'descricao' => 'setDescricao'
+        'descricao' => 'setDescricao',
+        'tipo_solicitacao' => 'setTipoSolicitacao',
+        'tipo_declaracao' => 'setTipoDeclaracao',
+        'polo' => 'setPolo',
+        'partes_vinculadas' => 'setPartesVinculadas'
     ];
 
     /**
@@ -135,10 +158,13 @@ class Protocolo implements ModelInterface, ArrayAccess
     protected static $getters = [
         'numero_processo' => 'getNumeroProcesso',
         'tipo_documento_mensagem_geral' => 'getTipoDocumentoMensagemGeral',
-        'peticao' => 'getPeticao',
         'documentos' => 'getDocumentos',
         'mensagem_geral' => 'getMensagemGeral',
-        'descricao' => 'getDescricao'
+        'descricao' => 'getDescricao',
+        'tipo_solicitacao' => 'getTipoSolicitacao',
+        'tipo_declaracao' => 'getTipoDeclaracao',
+        'polo' => 'getPolo',
+        'partes_vinculadas' => 'getPartesVinculadas'
     ];
 
     /**
@@ -204,7 +230,10 @@ class Protocolo implements ModelInterface, ArrayAccess
         $this->container['documentos'] = isset($data['documentos']) ? $data['documentos'] : null;
         $this->container['mensagem_geral'] = isset($data['mensagem_geral']) ? $data['mensagem_geral'] : null;
         $this->container['descricao'] = isset($data['descricao']) ? $data['descricao'] : null;
-        $this->container['peticao'] = isset($data['peticao']) ? $data['peticao'] : null;
+        $this->container['tipo_solicitacao'] = isset($data['tipo_solicitacao']) ? $data['tipo_solicitacao'] : null;
+        $this->container['tipo_declaracao'] = isset($data['tipo_declaracao']) ? $data['tipo_declaracao'] : null;
+        $this->container['polo'] = isset($data['polo']) ? $data['polo'] : null;
+        $this->container['partes_vinculadas'] = isset($data['partes_vinculadas']) ? $data['partes_vinculadas'] : null;
     }
 
     /**
@@ -231,29 +260,6 @@ class Protocolo implements ModelInterface, ArrayAccess
     }
 
 
-    /**
-     * Gets peticao
-     *
-     * @return Peticao
-     */
-    public function getPeticao()
-    {
-        return $this->container['peticao'];
-    }
-
-    /**
-     * Sets peticao
-     *
-     * @param Peticao $peticao peticao
-     *
-     * @return $this
-     */
-    public function setPeticao($peticao)
-    {
-        $this->container['peticao'] = $peticao;
-
-        return $this;
-    }
     /**
      * Gets numero_processo
      *
@@ -370,6 +376,102 @@ class Protocolo implements ModelInterface, ArrayAccess
     public function setDescricao($descricao)
     {
         $this->container['descricao'] = $descricao;
+
+        return $this;
+    }
+
+    /**
+     * Gets tipo_solicitacao
+     *
+     * @return int
+     */
+    public function getTipoSolicitacao()
+    {
+        return $this->container['tipo_solicitacao'];
+    }
+
+    /**
+     * Sets tipo_solicitacao
+     *
+     * @param int $tipo_solicitacao tipo_solicitacao
+     *
+     * @return $this
+     */
+    public function setTipoSolicitacao($tipo_solicitacao)
+    {
+        $this->container['tipo_solicitacao'] = $tipo_solicitacao;
+
+        return $this;
+    }
+
+    /**
+     * Gets tipo_declaracao
+     *
+     * @return int
+     */
+    public function getTipoDeclaracao()
+    {
+        return $this->container['tipo_declaracao'];
+    }
+
+    /**
+     * Sets tipo_declaracao
+     *
+     * @param int $tipo_declaracao tipo_declaracao
+     *
+     * @return $this
+     */
+    public function setTipoDeclaracao($tipo_declaracao)
+    {
+        $this->container['tipo_declaracao'] = $tipo_declaracao;
+
+        return $this;
+    }
+
+    /**
+     * Gets polo
+     *
+     * @return int
+     */
+    public function getPolo()
+    {
+        return $this->container['polo'];
+    }
+
+    /**
+     * Sets polo
+     *
+     * @param int $polo polo
+     *
+     * @return $this
+     */
+    public function setPolo($polo)
+    {
+        $this->container['polo'] = $polo;
+
+        return $this;
+    }
+
+    /**
+     * Gets partes_vinculadas
+     *
+     * @return array
+     */
+    public function getPartesVinculadas()
+    {
+        return $this->container['partes_vinculadas'];
+    }
+
+    /**
+     * Sets partes_vinculadas
+     *
+     * @param array $partes_vinculadas partes_vinculadas
+     *
+     * @return $this
+     */
+    public function setPartesVinculadas($partes_vinculadas)
+    {
+        $this->container['partes_vinculadas'] = $partes_vinculadas;
 
         return $this;
     }

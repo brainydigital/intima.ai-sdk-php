@@ -7,7 +7,7 @@ Metodo | Requisição HTTP | Descrição
 [**createProcessProtocoloHabilitacao**](ProtocolosHabilitacaoApi.md#createProcessProtocoloHabilitacao) | **POST** /actions/process-protocol-habilitacao/{protocolo_habilitacao_id} | Realiza um novo protocolo de habilitação
 
 # **createProcessProtocoloHabilitacao**
-> createProcessProtocoloHabilitacao($numero_processo, $tipo_solicitacao, $tipo_declaracao, $polo, $partes_vinculadas, $tipo_documento_mensagem_geral, $documentos, $protocolo_habilitacao_id, $mensagem_geral, $descricao)
+> createProcessProtocoloHabilitacao($protocoloHabilitacao, $protocolo_habilitacao_id)
 
 Realiza um novo protocolo de habilitação
 
@@ -25,29 +25,34 @@ $apiInstance = new Swagger\Client\Api\ProtocolosHabilitacaoApi(
     $config
 );
 
-$numero_processo = "0000000-00.0000.0.00.0000"; // string | obrigatório
-$tipo_documento_mensagem_geral = 0; // int | obrigatório
-$documentos = array(
-    new \Swagger\Client\Model\Documento([
-        'arquivo' => fopen('habilitacao_1.pdf', 'r'),
-        'tipo_documento' => 31,
-        'descricao_documento' => 'habilitacao_1',
-        'order' => 1
-    ])
-); // \Swagger\Client\Model\Documento[] | opcional
-$mensagem_geral = "SEGUE EM ANEXO";// string | opcional
-$descricao = "Protocolo de habilitação";// string | opcional
-$protocolo_habilitacao_id = 3; // int | é o id referente ao protocolo de habilitação no Intima.ai
+$documento_1 = new \Swagger\Client\Model\Documento();
+$documento_1
+    ->setArquivo(fopen('habilitacao_1.pdf', 'r'))
+    ->setTipoDocumento(6)
+    ->setDescricaoDocumento('habilitacao_1')
+    ->setOrder(1);
 
-$tipo_solicitacao = 0; // int | é o id referente ao tipo de solicitação no Intima.ai
-$tipo_declaracao = 0; // int | é o id referente ao tipo de declaração no Intima.ai
-$polo = 1; // int | é o id referente ao polo no Intima.ai
-$partes_vinculadas = [
-    'BANCO BRADESCO S/A - CNPJ: 60.746.948/0001-12 (DEMANDADO)'
-]; // int | são as partes vinculadas, de com o polo selecionado no Intima.ai
+$documentos = array($documento_1);
+
+$protocoloHabilitacao = new \Swagger\Client\Model\ProtocoloHabilitacao();
+
+$protocoloHabilitacao
+    ->setNumeroProcesso('0000000-00.0000.0.00.0000')
+    ->setTipoDocumentoMensagemGeral(0)
+    ->setMensagemGeral('SEGUE EM ANEXO')
+    ->setDescricao('Protocolo de habilitação')
+    ->setTipoSolicitacao($protocoloHabilitacao::TIPO_SOLICITACAO_SIMPLES)
+    ->setTipoDeclaracao($protocoloHabilitacao::TIPO_DECLARACAO_SOB_PENA_DE_LEI)
+    ->setPolo($protocoloHabilitacao::POLO_PASSIVO)
+    ->setPartesVinculadas([
+        'BANCO FULANO - CNPJ: 00.000.000/0000-00 (RECLAMADO)'
+    ])
+    ->setDocumentos($documentos);
+
+$protocolo_habilitacao_id = 22;
 
 try {
-    $apiInstance->createProcessProtocoloHabilitacao($numero_processo, $tipo_solicitacao, $tipo_declaracao, $polo, $partes_vinculadas, $tipo_documento_mensagem_geral, $documentos, $protocolo_habilitacao_id, $mensagem_geral, $descricao);
+    $apiInstance->createProcessProtocoloHabilitacao($protocoloHabilitacao, $protocolo_habilitacao_id);
 } catch (Exception $e) {
     echo 'Exception when calling ProtocolosHabilitacaoApi->createProcessProtocoloHabilitacao: ', $e->getMessage(), PHP_EOL;
 }

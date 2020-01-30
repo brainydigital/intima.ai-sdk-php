@@ -36,6 +36,7 @@ use GuzzleHttp\RequestOptions;
 use Swagger\Client\ApiException;
 use Swagger\Client\Configuration;
 use Swagger\Client\HeaderSelector;
+use Swagger\Client\Model\ProtocoloHabilitacao;
 use Swagger\Client\ObjectSerializer;
 
 /**
@@ -91,24 +92,17 @@ class ProtocolosHabilitacaoApi
      *
      * Realiza um novo protocolo de habilitação
      *
-     * @param  string $numero_processo numero_processo (required)
-     * @param  int $tipo_documento_mensagem_geral tipo_documento_mensagem_geral (required)
-     * @param  \Swagger\Client\Model\Documento[] $documentos documentos (required)
-     * @param  int $protocolo_habilitacao_id é o id referente ao protocolo de habilitacao no Intima.ai (required)
-     * @param  int $tipo_solicitacao é o id referente ao tipo da solitação no Intima.ai (required)
-     * @param  int $tipo_declaracao é o id referente ao tipo de declaração no Intima.ai (required)
-     * @param  int $polo é o id referente ao polo no Intima.ai (required)
-     * @param  array $partes_vinculadas é um array que reseprenta as partes vinculadas (required)
-     * @param  string $mensagem_geral é o texto do conteúdo do protocolo (texto padrão: SEGUE EM ANEXO) (optional)
-     * @param  string $descricao é a descrição da mensagem geral (caso não se informe este campo, ele assumira o valor do campo tipo_documento_mensagem_geral) (optional)
+     * @param ProtocoloHabilitacao $protocoloHabilitacao protocoloHabilitacao (required)
+     * @param int $protocolo_habilitacao_id protocolo_habilitacao_id (required)
      *
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
      * @return array
+     * @throws \InvalidArgumentException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function createProcessProtocoloHabilitacao($numero_processo, $tipo_solicitacao, $tipo_declaracao, $polo, $partes_vinculadas, $tipo_documento_mensagem_geral, $documentos, $protocolo_habilitacao_id, $mensagem_geral = null, $descricao = null)
+    public function createProcessProtocoloHabilitacao(ProtocoloHabilitacao $protocoloHabilitacao, $protocolo_habilitacao_id)
     {
-        return $this->createProcessProtocoloHabilitacaoWithHttpInfo($numero_processo, $tipo_solicitacao, $tipo_declaracao, $polo, $partes_vinculadas, $tipo_documento_mensagem_geral, $documentos, $protocolo_habilitacao_id, $mensagem_geral, $descricao);
+        return $this->createProcessProtocoloHabilitacaoWithHttpInfo($protocoloHabilitacao, $protocolo_habilitacao_id);
     }
 
     /**
@@ -116,25 +110,18 @@ class ProtocolosHabilitacaoApi
      *
      * Realiza um novo protocolo de habilitação
      *
-     * @param  string $numero_processo (required)
-     * @param  int $tipo_documento_mensagem_geral (required)
-     * @param  \Swagger\Client\Model\Documento[] $documentos (required)
-     * @param  int $protocolo_habilitacao_id é o id referente ao protocolo de habilitacao no Intima.ai (required)
-     * @param  int $tipo_solicitacao é o id referente ao tipo da solitação no Intima.ai (required)
-     * @param  int $tipo_declaracao é o id referente ao tipo de declaração no Intima.ai (required)
-     * @param  int $polo é o id referente ao polo no Intima.ai (required)
-     * @param  array $partes_vinculadas é um array que reseprenta as partes vinculadas (required)
-     * @param  string $mensagem_geral é o texto do conteúdo do protocolo (texto padrão: SEGUE EM ANEXO) (optional)
-     * @param  string $descricao é a descrição da mensagem geral (caso não se informe este campo, ele assumira o valor do campo tipo_documento_mensagem_geral) (optional)
+     * @param ProtocoloHabilitacao $protocoloHabilitacao protocoloHabilitacao (required)
+     * @param int $protocolo_habilitacao_id protocolo_habilitacao_id (required)
      *
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws \InvalidArgumentException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Swagger\Client\ApiException on non-2xx response
      */
-    public function createProcessProtocoloHabilitacaoWithHttpInfo($numero_processo, $tipo_solicitacao, $tipo_declaracao, $polo, $partes_vinculadas, $tipo_documento_mensagem_geral, $documentos, $protocolo_habilitacao_id, $mensagem_geral, $descricao)
+    public function createProcessProtocoloHabilitacaoWithHttpInfo(ProtocoloHabilitacao $protocoloHabilitacao, $protocolo_habilitacao_id)
     {
         $returnType = '';
-        $request = $this->createProcessProtocoloHabilitacaoRequest($numero_processo, $tipo_solicitacao, $tipo_declaracao, $polo, $partes_vinculadas, $tipo_documento_mensagem_geral, $documentos, $protocolo_habilitacao_id, $mensagem_geral, $descricao);
+        $request = $this->createProcessProtocoloHabilitacaoRequest($protocoloHabilitacao, $protocolo_habilitacao_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -178,17 +165,15 @@ class ProtocolosHabilitacaoApi
      *
      * Realiza um novo protocolo de habilitação
      *
-     * @param  string $numero_processo (required)
-     * @param  int $tipo_documento_mensagem_geral (required)
-     * @param  \Swagger\Client\Model\Documento[] $documentos (required)
-     * @param  int $protocolo_habilitacao_id é o id referente ao protocolo de habilitacao no Intima.ai (required)
+     * @param ProtocoloHabilitacao $protocoloHabilitacao protocoloHabilitacao (required)
+     * @param int $protocolo_habilitacao_id protocolo_habilitacao_id (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createProcessProtocoloHabilitacaoAsync($numero_processo, $tipo_solicitacao, $tipo_declaracao, $polo, $partes_vinculadas, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id, $mensagem_geral, $descricao)
+    public function createProcessProtocoloHabilitacaoAsync(ProtocoloHabilitacao $protocoloHabilitacao, $protocolo_habilitacao_id)
     {
-        return $this->createProcessProtocoloHabilitacaoAsyncWithHttpInfo($numero_processo, $tipo_solicitacao, $tipo_declaracao, $polo, $partes_vinculadas, $tipo_documento_mensagem_geral, $documentos, $pje_auth_id, $mensagem_geral, $descricao)
+        return $this->createProcessProtocoloHabilitacaoAsyncWithHttpInfo($protocoloHabilitacao, $protocolo_habilitacao_id)
             ->then(
                 function ($response) {
                     return $response;
@@ -201,18 +186,16 @@ class ProtocolosHabilitacaoApi
      *
      * Realiza um novo protocolo de habilitação
      *
-     * @param  string $numero_processo (required)
-     * @param  int $tipo_documento_mensagem_geral (required)
-     * @param  \Swagger\Client\Model\Documento[] $documentos (required)
-     * @param  int $protocolo_habilitacao_id é o id referente ao protocolo de habilitacao no Intima.ai (required)
+     * @param ProtocoloHabilitacao $protocoloHabilitacao protocoloHabilitacao (required)
+     * @param int $protocolo_habilitacao_id protocolo_habilitacao_id (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createProcessProtocoloHabilitacaoAsyncWithHttpInfo($numero_processo, $tipo_solicitacao, $tipo_declaracao, $polo, $partes_vinculadas, $tipo_documento_mensagem_geral, $documentos, $protocolo_habilitacao_id, $mensagem_geral, $descricao)
+    public function createProcessProtocoloHabilitacaoAsyncWithHttpInfo(ProtocoloHabilitacao $protocoloHabilitacao, $protocolo_habilitacao_id)
     {
         $returnType = '';
-        $request = $this->createProcessProtocoloHabilitacaoRequest($numero_processo, $tipo_solicitacao, $tipo_declaracao, $polo, $partes_vinculadas, $tipo_documento_mensagem_geral, $documentos, $protocolo_habilitacao_id, $mensagem_geral, $descricao);
+        $request = $this->createProcessProtocoloHabilitacaoRequest($protocoloHabilitacao, $protocolo_habilitacao_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -238,62 +221,56 @@ class ProtocolosHabilitacaoApi
     }
 
     /**
-     * Create request for operation 'createProcessProtocolo'
+     * Create request for operation 'createProcessProtocoloHabilitacao'
      *
-     * @param  string $numero_processo (required)
-     * @param  int $tipo_documento_mensagem_geral (required)
-     * @param  \Swagger\Client\Model\Documento[] $documentos (required)
-     * @param  int $protocolo_habilitacao_id é o id referente ao protocolo de habilitacao no Intima.ai (required)
-     * @param  int $tipo_solicitacao é o id referente ao tipo da solitação no Intima.ai (required)
-     * @param  int $tipo_declaracao é o id referente ao tipo de declaração no Intima.ai (required)
-     * @param  int $polo é o id referente ao polo no Intima.ai (required)
-     * @param  array $partes_vinculadas é um array que reseprenta as partes vinculadas (required)
+     * @param ProtocoloHabilitacao $protocoloHabilitacao protocoloHabilitacao (required)
+     * @param int $protocolo_habilitacao_id protocolo_habilitacao_id (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function createProcessProtocoloHabilitacaoRequest($numero_processo, $tipo_solicitacao, $tipo_declaracao, $polo, $partes_vinculadas, $tipo_documento_mensagem_geral, $documentos, $protocolo_habilitacao_id, $mensagem_geral, $descricao)
+    protected function createProcessProtocoloHabilitacaoRequest(ProtocoloHabilitacao $protocoloHabilitacao, $protocolo_habilitacao_id)
     {
         // verify the required parameter 'numero_processo' is set
-        if ($numero_processo === null || (is_array($numero_processo) && count($numero_processo) === 0)) {
+        if ($protocoloHabilitacao->getNumeroProcesso() === null || (is_array($protocoloHabilitacao->getNumeroProcesso()) && count($protocoloHabilitacao->getNumeroProcesso()) === 0)) {
             throw new \InvalidArgumentException(
                 "O parametro 'numero_processo' é obrigatório!"
             );
         }
         // verify the required parameter 'tipo_documento_mensagem_geral' is set
-        if ($tipo_documento_mensagem_geral === null || (is_array($tipo_documento_mensagem_geral) && count($tipo_documento_mensagem_geral) === 0)) {
+        if ($protocoloHabilitacao->getTipoDocumentoMensagemGeral() === null || (is_array($protocoloHabilitacao->getTipoDocumentoMensagemGeral()) && count($protocoloHabilitacao->getTipoDocumentoMensagemGeral()) === 0)) {
             throw new \InvalidArgumentException(
                 "O parametro 'tipo_documento_mensagem_geral' é obrigatório!"
+            );
+        }
+        // verify the required parameter 'tipo_solicitacao' is set
+        if ($protocoloHabilitacao->getTipoSolicitacao() === null || (is_array($protocoloHabilitacao->getTipoSolicitacao()) && count($protocoloHabilitacao->getTipoSolicitacao()) === 0)) {
+            throw new \InvalidArgumentException(
+                "O parametro 'tipo_solicitacao' é obrigatório!"
+            );
+        }
+        // verify the required parameter 'tipo_declaracao' is set
+        if ($protocoloHabilitacao->getTipoDeclaracao() === null || (is_array($protocoloHabilitacao->getTipoDeclaracao()) && count($protocoloHabilitacao->getTipoDeclaracao()) === 0)) {
+            throw new \InvalidArgumentException(
+                "O parametro 'tipo_declaracao' é obrigatório!"
+            );
+        }
+        // verify the required parameter 'polo' is set
+        if ($protocoloHabilitacao->getPolo() === null || (is_array($protocoloHabilitacao->getPolo()) && count($protocoloHabilitacao->getPolo()) === 0)) {
+            throw new \InvalidArgumentException(
+                "O parametro 'polo' é obrigatório!"
+            );
+        }
+        // verify the required parameter 'partes_vinculadas' is set
+        if ($protocoloHabilitacao->getPartesVinculadas() === null || (is_array($protocoloHabilitacao->getPartesVinculadas()) && count($protocoloHabilitacao->getPartesVinculadas()) === 0)) {
+            throw new \InvalidArgumentException(
+                "O parametro 'partes_vinculadas' é obrigatório!"
             );
         }
         // verify the required parameter 'pje_auth_id' is set
         if ($protocolo_habilitacao_id === null || (is_array($protocolo_habilitacao_id) && count($protocolo_habilitacao_id) === 0)) {
             throw new \InvalidArgumentException(
                 "O parametro 'protocolo_habilitacao_id' é obrigatório!"
-            );
-        }
-        // verify the required parameter 'tipo_solicitacao' is set
-        if ($tipo_solicitacao === null || (is_array($tipo_solicitacao) && count($tipo_solicitacao) === 0)) {
-            throw new \InvalidArgumentException(
-                "O parametro 'tipo_solicitacao' é obrigatório!"
-            );
-        }
-        // verify the required parameter 'tipo_declaracao' is set
-        if ($tipo_declaracao === null || (is_array($tipo_declaracao) && count($tipo_declaracao) === 0)) {
-            throw new \InvalidArgumentException(
-                "O parametro 'tipo_declaracao' é obrigatório!"
-            );
-        }
-        // verify the required parameter 'polo' is set
-        if ($polo === null || (is_array($polo) && count($polo) === 0)) {
-            throw new \InvalidArgumentException(
-                "O parametro 'polo' é obrigatório!"
-            );
-        }
-        // verify the required parameter 'partes_vinculadas' is set
-        if ($partes_vinculadas === null || (is_array($partes_vinculadas) && count($partes_vinculadas) === 0)) {
-            throw new \InvalidArgumentException(
-                "O parametro 'partes_vinculadas' é obrigatório!"
             );
         }
 
@@ -315,41 +292,41 @@ class ProtocolosHabilitacaoApi
         }
 
         // form params
-        if ($numero_processo !== null) {
-            $formParams['numero_processo'] = ObjectSerializer::toFormValue($numero_processo);
+        if ($protocoloHabilitacao->getNumeroProcesso() !== null) {
+            $formParams['numero_processo'] = ObjectSerializer::toFormValue($protocoloHabilitacao->getNumeroProcesso());
         }
         // form params
-        if ($tipo_documento_mensagem_geral !== null) {
-            $formParams['tipo_documento_mensagem_geral'] = ObjectSerializer::toFormValue($tipo_documento_mensagem_geral);
+        if ($protocoloHabilitacao->getTipoDocumentoMensagemGeral() !== null) {
+            $formParams['tipo_documento_mensagem_geral'] = ObjectSerializer::toFormValue($protocoloHabilitacao->getTipoDocumentoMensagemGeral());
         }
         // form params
-        if ($documentos !== null) {
-            $formParams['documentos'] = ObjectSerializer::toFormValue($documentos);
+        if ($protocoloHabilitacao->getDocumentos() !== null) {
+            $formParams['documentos'] = ObjectSerializer::toFormValue($protocoloHabilitacao->getDocumentos());
         }
         // form params
-        if ($mensagem_geral !== null) {
-            $formParams['mensagem_geral'] = ObjectSerializer::toFormValue($mensagem_geral);
+        if ($protocoloHabilitacao->getMensagemGeral() !== null) {
+            $formParams['mensagem_geral'] = ObjectSerializer::toFormValue($protocoloHabilitacao->getMensagemGeral());
         }
         // form params
-        if ($descricao !== null) {
-            $formParams['descricao'] = ObjectSerializer::toFormValue($descricao);
+        if ($protocoloHabilitacao->getDescricao() !== null) {
+            $formParams['descricao'] = ObjectSerializer::toFormValue($protocoloHabilitacao->getDescricao());
         }
         // form params
-        if ($tipo_solicitacao !== null) {
-            $formParams['tipo_solicitacao'] = ObjectSerializer::toFormValue($tipo_solicitacao);
+        if ($protocoloHabilitacao->getTipoSolicitacao() !== null) {
+            $formParams['tipo_solicitacao'] = ObjectSerializer::toFormValue($protocoloHabilitacao->getTipoSolicitacao());
         }
         // form params
-        if ($tipo_declaracao !== null) {
-            $formParams['tipo_declaracao'] = ObjectSerializer::toFormValue($tipo_declaracao);
+        if ($protocoloHabilitacao->getTipoDeclaracao() !== null) {
+            $formParams['tipo_declaracao'] = ObjectSerializer::toFormValue($protocoloHabilitacao->getTipoDeclaracao());
         }
         // form params
-        if ($polo !== null) {
-            $formParams['polo'] = ObjectSerializer::toFormValue($polo);
+        if ($protocoloHabilitacao->getPolo() !== null) {
+            $formParams['polo'] = ObjectSerializer::toFormValue($protocoloHabilitacao->getPolo());
         }
         // form params
-        if ($partes_vinculadas !== null) {
+        if ($protocoloHabilitacao->getPartesVinculadas() !== null) {
             $index = 0;
-            foreach ($partes_vinculadas as $parte) {
+            foreach ($protocoloHabilitacao->getPartesVinculadas() as $parte) {
                 $item = "partes_vinculadas[$index]";
                 $formParams[$item] = ObjectSerializer::toFormValue($parte);
                 $index++;
@@ -380,7 +357,9 @@ class ProtocolosHabilitacaoApi
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
+
                 $multipartContents = [];
+
                 foreach ($formParams as $formParamName => $formParamValue) {
                     if (!is_array($formParamValue))
                     {
