@@ -37,7 +37,6 @@ $documentos = array($documento_1);
 $protocoloHabilitacao = new \Swagger\Client\Model\ProtocoloHabilitacao();
 
 $protocoloHabilitacao
-    ->setNumeroProcesso('0000000-00.0000.0.00.0000')
     ->setTipoDocumentoMensagemGeral(0)
     ->setMensagemGeral('SEGUE EM ANEXO')
     ->setDescricao('Protocolo de habilitação')
@@ -63,7 +62,6 @@ try {
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
- **numero_processo** | **string**| é o numero do processo no qual se deseja realizar o protocolo de habilitação | [obrigatório]
  **protocolo_habilitacao_id** | **int**| é o id referente ao protocolo de habilitação no Intima.ai | [obrigatório]
  **tipo_documento_mensagem_geral** | **int**| é o id referente ao tipo de documento da mensagem geral | [obrigatório]
  **documentos** | [**Documento[]**](../Model/Documento.md)| são os anexos relacionados ao protocolo | [opcional]

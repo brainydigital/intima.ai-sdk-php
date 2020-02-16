@@ -431,20 +431,20 @@ class ProtocolosApi
             }
 
             $multipartContents[] = [
-                'name' => "documentos[arquivos][$index]",
+                'name' => "documentos[$index][arquivo]",
                 'contents' => $doc['arquivo']
             ];
 
             $multipartContents[] = [
-                'name' => "documentos[documentos_info][$index][tipo_documento]",
+                'name' => "documentos[$index][tipo_documento]",
                 'contents' => $doc['tipo_documento']
             ];
             $multipartContents[] = [
-                'name' => "documentos[documentos_info][$index][descricao_documento]",
+                'name' => "documentos[$index][descricao_documento]",
                 'contents' => $doc['descricao_documento']
             ];
             $multipartContents[] = [
-                'name' => "documentos[documentos_info][$index][order]",
+                'name' => "documentos[$index][order]",
                 'contents' => $doc['order']
             ];
 
