@@ -1,5 +1,5 @@
 {
-    "name": "brainydigital/intimai-sdk-php",
+    "name": "brainydigital/intima.ai-sdk-php",
     "description": "Implementação da API do Intima.ai em forma de SDK Client para PHP.",
     "keywords": [
         "intimai",
