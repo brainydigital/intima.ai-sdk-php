@@ -26,7 +26,7 @@ PHP >= 5.5
 Para instalar via [Composer](http://getcomposer.org/), faça o seguinte:
 
 ```
-composer require brainydigital/intimai-sdk-php
+composer require brainydigital/intima.ai-sdk-php
 ```
 
 E execute o comando `composer install`
