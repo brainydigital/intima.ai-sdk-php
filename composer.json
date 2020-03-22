@@ -1,20 +1,21 @@
 {
-    "name": "brainydigital/intimai-sdk-php",
+    "name": "brainydigital/intima.ai-sdk-php",
     "description": "Implementação da API do Intima.ai em forma de SDK Client para PHP.",
     "keywords": [
         "intimai",
+        "intimaai",
         "intima.ai",
         "php",
         "sdk",
         "api"
     ],
-    "homepage": "https://app.intima.ai",
+    "homepage": "https://intima.ai",
     "license": "MIT",
     "authors": [
         {
-            "name": "Rauny Henrique",
-            "email": "rauny22@gmail.com",
-            "role": "developer"
+            "name": "Pedro Galdino",
+            "email": "eu@pedrogaldino.com",
+            "role": "CTO"
         }
     ],
     "require": {
@@ -22,17 +23,16 @@
         "ext-curl": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
-        "guzzlehttp/guzzle": "^6.2"
+        "guzzlehttp/guzzle": "^6.2",
+        "tightenco/collect": "^7.2"
     },
     "require-dev": {
-        "phpunit/phpunit": "^4.8",
-        "squizlabs/php_codesniffer": "~2.6",
-        "friendsofphp/php-cs-fixer": "~2.12"
+        "phpunit/phpunit": "^4.8"
     },
     "autoload": {
-        "psr-4": { "Swagger\\Client\\" : "lib/" }
+        "psr-4": { "Intimaai\\" : "lib/" }
     },
     "autoload-dev": {
-        "psr-4": { "Swagger\\Client\\" : "test/" }
+        "psr-4": { "Intimaai\\" : "test/" }
     }
 }
