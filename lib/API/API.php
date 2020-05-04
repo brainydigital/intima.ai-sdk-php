@@ -1,49 +1,149 @@
 <?php
 
-
 namespace Intimaai\API;
-
 
 use GuzzleHttp\Client;
 
-abstract class API
+class API
 {
     private $client;
 
-    protected static $baseUri = 'https://use.intima.ai/api/v2/';
-
-    protected static $proxy = null;
+    protected static $baseUri = 'http://ea51a18b.ngrok.io/api/v2';
 
     protected static $apiKey;
 
-    public function __construct()
+    protected static $proxy = null;
+
+    protected static $timeout = null;
+
+    const GET = 'GET';
+    const POST = 'POST';
+    const PUT = 'PUT';
+    const DELETE = 'DELETE';
+
+    public function __construct($apiKey, $proxy = null, $timeout = null)
     {
         $this->client = new Client([
             'base_uri' => $this->getBaseUri()
         ]);
+
+        self::$apiKey = $apiKey;
+        self::$proxy = $proxy;
+        self::$timeout = $timeout;
     }
 
-    protected function getJson($path, $options = [])
+    /**
+     * Make a API request
+     * @param array $requestOptions Options
+     * @param bool $getDataOnly Get "data" param only
+     * @return mixed
+     * @throws \Exception
+     */
+    public function request($requestOptions, $getDataOnly = false)
     {
-        return json_decode($this->get($path, $options), true);
+        $data = [];
+
+        $path = (array_key_exists('path', $requestOptions)) ? $requestOptions['path'] : null;
+
+        if (empty($path))
+        {
+            throw new \Exception('A URL informada é inválida!');
+        }
+
+        $body = (array_key_exists('body', $requestOptions)) ? $requestOptions['body'] : null;
+
+        $method = (array_key_exists('method', $requestOptions)) ? $requestOptions['method'] : null;
+
+        $options = (array_key_exists('options', $requestOptions)) ? $requestOptions['options'] : null;
+
+        switch ($method)
+        {
+            case self::GET:
+                $data = json_decode($this->get($path, $options), true);
+                break;
+            case self::POST:
+                $data = json_decode($this->post($path, $body, $options), true);
+                break;
+            case self::PUT:
+                $data = json_decode($this->put($path, $body, $options), true);
+                break;
+            case self::DELETE:
+                $data = json_decode($this->delete($path, $options), true);
+                break;
+            default:
+                throw new \Exception('Método HTTP inválido!');
+        }
+
+        return ($getDataOnly && array_key_exists('data', $data)) ? $data['data'] : $data;
     }
 
-    protected function get($path, $options = [])
+    private function getRequestDefaultOptions()
     {
-        $options = array_merge([
-            'query' => [
-                'api_token' => self::$apiKey
-            ],
+        return [
             'headers' => [
                 'Accept' => 'application/json',
                 'User-Agent' => 'Intimaai_SDK/2.0.0'
             ],
-            'proxy' => self::$proxy
-        ], $options);
+            'proxy' => self::$proxy,
+            'timeout' => self::$timeout
+        ];
+    }
+
+    protected function get($path, $options = [])
+    {
+        $options = array_merge($this->getRequestDefaultOptions(), $options);
 
         return $this
             ->getClient()
-            ->get($path, $options)
+            ->get('/' . $path . '?api_token=' . self::$apiKey, $options)
+            ->getBody()
+            ->getContents();
+    }
+
+    protected function post($path, $body, $options = [])
+    {
+        $options = array_merge(
+            $this->getRequestDefaultOptions(),
+            [
+                'json' => $body
+            ],
+            $options
+        );
+
+        return $this
+            ->getClient()
+            ->post('/' . $path . '?api_token=' . self::$apiKey, $options)
+            ->getBody()
+            ->getContents();
+    }
+
+    protected function put($path, $body, $options = [])
+    {
+        $options = array_merge(
+            $this->getRequestDefaultOptions(),
+            [
+                'json' => $body
+            ],
+            $options
+        );
+
+        return $this
+            ->getClient()
+            ->put('/' . $path . '?api_token=' . self::$apiKey, $options)
+            ->getBody()
+            ->getContents();
+    }
+
+    protected function delete($path, $options = [])
+    {
+        $options = array_merge(
+            $this->getRequestDefaultOptions(),
+            $options
+        );
+
+        return $this
+            ->getClient()
+            ->delete('/' . $path . '?api_token=' . self::$apiKey, $options)
             ->getBody()
             ->getContents();
     }
@@ -83,32 +183,14 @@ abstract class API
         return self::$proxy;
     }
 
-    protected function parseUrl($url)
+    public static function getTimeout()
     {
-        $url = parse_url($this->firstPageLink);
-
-        if(!empty($url['query'])) {
-            parse_str($url['query'], $query);
-
-            $url['query'] = $query;
-        }
-
-        return $url;
+        return self::$timeout;
     }
 
-    protected function buildUrl(array $elements) {
-        $e = $elements;
-        return
-            (isset($e['host']) ? (
-                (isset($e['scheme']) ? "$e[scheme]://" : '//') .
-                (isset($e['user']) ? $e['user'] . (isset($e['pass']) ? ":$e[pass]" : '') . '@' : '') .
-                $e['host'] .
-                (isset($e['port']) ? ":$e[port]" : '')
-            ) : '') .
-            (isset($e['path']) ? $e['path'] : '/') .
-            (isset($e['query']) ? '?' . (is_array($e['query']) ? http_build_query($e['query'], '', '&') : $e['query']) : '') .
-            (isset($e['fragment']) ? "#$e[fragment]" : '')
-            ;
+    public static function setTimeout($timeout)
+    {
+        self::$timeout = $timeout;
     }
 
 }

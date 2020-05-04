@@ -5,9 +5,8 @@ namespace Intimaai\API;
 
 use Tightenco\Collect\Support\Collection;
 
-class Paginator extends API
+class Paginator
 {
-
     protected $currentPage = 0;
 
     protected $lastPage = 1;
@@ -24,14 +23,9 @@ class Paginator extends API
 
     protected $firstPageLink;
 
-    public function __construct($paginationData, $resourceClass)
+    public function __construct(Resource $resourceClass)
     {
-        $this->paginationData = $paginationData;
         $this->resourceClass = $resourceClass;
-
-        $this->prepare();
-
-        parent::__construct();
     }
 
     private function prepare()
@@ -41,12 +35,7 @@ class Paginator extends API
         $this->perPage = (int)$this->paginationData['meta']['per_page'];
         $this->total = (int)$this->paginationData['meta']['total'];
         $this->firstPageLink = $this->paginationData['links']['first'];
-
-        $this->data = Collection::make($this->paginationData['data'])->map(function ($resource) {
-            $resourceClass = $this->resourceClass;
-
-            return new $resourceClass($resource['id'], $resource);
-        });
+        $this->data = $this->paginationData['data'];
     }
 
     /**
@@ -58,27 +47,20 @@ class Paginator extends API
         return $this->data;
     }
 
-    private function getResourcesForPage($page)
-    {
-        $link = $this->parseUrl($this->firstPageLink);
-        $link['query']['page'] = $page;
-
-        return $this->getJson($this->buildUrl($link), [
-            'query' => $link['query']
-        ]);
-    }
-
     /**
      * Get an specific page
      * @param int $page Page number
      * @return Paginator
      */
-    public function getPage($page)
+    private function getPage($page)
     {
-        $this->paginationData = $this->getResourcesForPage($page);
-
+        $options = [
+            'path' => $this->resourceClass->getResourceEndpoint(),
+            'method' => API::GET,
+            'options' => ['query' => ['page' => $page]]
+        ];
+        $this->paginationData = $this->resourceClass->getAPI()->request($options);
         $this->prepare();
-
         return $this;
     }
 
@@ -88,9 +70,8 @@ class Paginator extends API
      */
     public function nextPage()
     {
-        if($this->currentPage < $this->lastPage) {
+        if(($this->currentPage < $this->lastPage) || (!$this->currentPage && !$this->paginationData)) {
             $this->currentPage++;
-
             return $this->getPage($this->currentPage);
         }
 
@@ -105,7 +86,6 @@ class Paginator extends API
     {
         if($this->currentPage > 1) {
             $this->currentPage--;
-
             return $this->getPage($this->currentPage);
         }
 
@@ -115,8 +95,6 @@ class Paginator extends API
     public function hasNextPage()
     {
         if($this->currentPage < $this->lastPage) {
-            $this->currentPage++;
-
             return true;
         }
 
@@ -132,23 +110,18 @@ class Paginator extends API
     public function loadAll()
     {
         if($this->currentPage === 1 && $this->lastPage === 1) {
-            if($this->lastPage === 1) {
-                return $this;
-            }
-
-            $this->currentPage = 1;
+            return $this->getPage($this->currentPage);
         }
 
         $resources = [];
-        $latestRequest = null;
 
         while($this->hasNextPage()) {
-            $latestRequest = $this->getResourcesForPage($this->currentPage);
+            $this->currentPage++;
+            $latestRequest = $this->getPage($this->currentPage);
 
-            $resources = array_merge($resources, $latestRequest['data']);
+            $resources = array_merge($resources, $latestRequest->getCollection());
         }
 
-        $this->paginationData = $latestRequest;
         $this->paginationData['data'] = $resources;
 
         $this->prepare();
