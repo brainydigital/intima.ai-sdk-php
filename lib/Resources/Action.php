@@ -9,6 +9,16 @@ use Intimaai\API\Resource;
 
 class Action extends Resource
 {
+    const PROCESS_INFO = 0,
+        PROCESS_COPY = 1,
+        PROCESS_INTIMACOES = 2,
+        PROCESS_ESCUTA = 3,
+        PROCESS_PROTOCOLO = 4,
+        PROCESS_PROTOCOLO_HABILITACAO = 5,
+        PROCESS_ANDAMENTOS = 6,
+        PROCESS_CONSULTA = 7,
+        PROCESS_CONSULTA_PRE_ANALISE = 8;
+
     function getResourceEndpoint()
     {
         return 'actions';
