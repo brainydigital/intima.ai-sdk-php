@@ -52,12 +52,16 @@ class Paginator
      * @param int $page Page number
      * @return Paginator
      */
-    private function getPage($page)
+    public function getPage($page)
     {
         $options = [
             'path' => $this->resourceClass->getResourceEndpoint(),
             'method' => API::GET,
-            'options' => ['query' => ['page' => $page]]
+            'options' => [
+                'query' => [
+                    'page' => $page
+                ]
+            ]
         ];
         $this->paginationData = $this->resourceClass->getAPI()->request($options);
         $this->prepare();

@@ -3,6 +3,7 @@
 namespace Intimaai\Resources\ProcessInfo;
 
 use Intimaai\API\API;
+use Intimaai\API\APIRequestException;
 use Intimaai\API\Resource;
 use Intimaai\Resources\Action;
 
@@ -21,6 +22,13 @@ class ProcessInfo extends Resource
         $this->action = $action;
     }
 
+    /**
+     * Get a process information by id
+     * @param int $id
+     * @return mixed
+     * @throws APIRequestException
+     * @throws \Exception
+     */
     public function getById($id)
     {
         $options = [
@@ -30,16 +38,21 @@ class ProcessInfo extends Resource
         return $this->getAPI()->request($options, true);
     }
 
+    /**
+     * Get a new process information
+     * @param Process $process
+     * @return mixed
+     * @throws APIRequestException
+     * @throws \Exception
+     */
     public function getNewProcessInfo(Process $process)
     {
         $options = [
             'path' => $this->action->getResourceEndpoint() . '/' . $this->getResourceEndpoint(),
             'method' => API::POST,
-            'options' => [
-                'query' => [
-                    'process_number' => $process->getProcessNumber(),
-                    'auth_id' => $process->getAuthId()
-                ]
+            'body' => [
+                'process_number' => $process->getProcessNumber(),
+                'auth_id' => $process->getAuthId()
             ]
         ];
         return $this->getAPI()->request($options, true);

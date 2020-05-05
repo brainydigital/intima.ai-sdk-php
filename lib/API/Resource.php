@@ -28,7 +28,7 @@ abstract class Resource
     /**
      * @return Paginator
      */
-    public function getPaginator()
+    public function paginate()
     {
         return $this->paginator;
     }

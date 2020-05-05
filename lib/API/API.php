@@ -3,12 +3,13 @@
 namespace Intimaai\API;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 
 class API
 {
     private $client;
 
-    protected static $baseUri = 'http://ea51a18b.ngrok.io/api/v2';
+    protected static $baseUri = 'http://d24cd24f.ngrok.io/api/v2/';
 
     protected static $apiKey;
 
@@ -24,7 +25,8 @@ class API
     public function __construct($apiKey, $proxy = null, $timeout = null)
     {
         $this->client = new Client([
-            'base_uri' => $this->getBaseUri()
+            'base_uri' => $this->getBaseUri(),
+            'debug' => true
         ]);
 
         self::$apiKey = $apiKey;
@@ -35,8 +37,9 @@ class API
     /**
      * Make a API request
      * @param array $requestOptions Options
-     * @param bool $getDataOnly Get "data" param only
+     * @param bool $getDataOnly Get response body "data" param only
      * @return mixed
+     * @throws APIRequestException
      * @throws \Exception
      */
     public function request($requestOptions, $getDataOnly = false)
@@ -54,29 +57,41 @@ class API
 
         $method = (array_key_exists('method', $requestOptions)) ? $requestOptions['method'] : null;
 
-        $options = (array_key_exists('options', $requestOptions)) ? $requestOptions['options'] : null;
+        $options = (array_key_exists('options', $requestOptions)) ? $requestOptions['options'] : [];
 
-        switch ($method)
+        try
         {
-            case self::GET:
-                $data = json_decode($this->get($path, $options), true);
-                break;
-            case self::POST:
-                $data = json_decode($this->post($path, $body, $options), true);
-                break;
-            case self::PUT:
-                $data = json_decode($this->put($path, $body, $options), true);
-                break;
-            case self::DELETE:
-                $data = json_decode($this->delete($path, $options), true);
-                break;
-            default:
-                throw new \Exception('Método HTTP inválido!');
+            switch ($method)
+            {
+                case self::GET:
+                    $data = json_decode($this->get($path, $options), true);
+                    break;
+                case self::POST:
+                    $data = json_decode($this->post($path, $body, $options), true);
+                    break;
+                case self::PUT:
+                    $data = json_decode($this->put($path, $body, $options), true);
+                    break;
+                case self::DELETE:
+                    $data = json_decode($this->delete($path, $options), true);
+                    break;
+                default:
+                    throw new \Exception('Método HTTP inválido!');
+            }
+        }
+        catch (ClientException $exception)
+        {
+            $msg = ($exception->hasResponse()) ? $exception->getResponse()->getBody()->getContents() : $exception->getMessage();
+            throw new APIRequestException($msg, $exception->getCode());
         }
 
         return ($getDataOnly && array_key_exists('data', $data)) ? $data['data'] : $data;
     }
 
+    /**
+     * Get default request options
+     * @return array
+     */
     private function getRequestDefaultOptions()
     {
         return [
@@ -89,61 +104,112 @@ class API
         ];
     }
 
+    /**
+     * Get request query
+     * @param array $options Options
+     * @return array
+     */
+    private function getRequestQuery(&$options)
+    {
+        $query = [
+            'query' => [
+                'api_token' => self::$apiKey
+            ]
+        ];
+
+        if (array_key_exists('query', $options))
+        {
+            $query['query'] = array_merge($query['query'], $options['query']);
+            unset($options['query']);
+        }
+
+        return $query;
+    }
+
+    private function getRequestBody($body, &$options)
+    {
+        $contentType = 'json';
+
+        if (array_key_exists('is_multipart', $options))
+        {
+            if ($options['is_multipart'])
+            {
+                $contentType = 'multipart';
+            }
+            unset($options['is_multipart']);
+        }
+
+        return [
+            $contentType => $body
+        ];
+    }
+
     protected function get($path, $options = [])
     {
-        $options = array_merge($this->getRequestDefaultOptions(), $options);
+        $query = $this->getRequestQuery($options);
+
+        $options = array_merge($this->getRequestDefaultOptions(), $query, $options);
 
         return $this
             ->getClient()
-            ->get('/' . $path . '?api_token=' . self::$apiKey, $options)
+            ->get($path, $options)
             ->getBody()
             ->getContents();
     }
 
     protected function post($path, $body, $options = [])
     {
+        $query = $this->getRequestQuery($options);
+
+        $body = $this->getRequestBody($body, $options);
+
         $options = array_merge(
             $this->getRequestDefaultOptions(),
-            [
-                'json' => $body
-            ],
+            $query,
+            $body,
             $options
         );
 
         return $this
             ->getClient()
-            ->post('/' . $path . '?api_token=' . self::$apiKey, $options)
+            ->post($path, $options)
             ->getBody()
             ->getContents();
     }
 
     protected function put($path, $body, $options = [])
     {
+        $query = $this->getRequestQuery($options);
+
+        $body = $this->getRequestBody($body, $options);
+
         $options = array_merge(
             $this->getRequestDefaultOptions(),
-            [
-                'json' => $body
-            ],
+            $query,
+            $body,
             $options
         );
 
         return $this
             ->getClient()
-            ->put('/' . $path . '?api_token=' . self::$apiKey, $options)
+            ->put($path, $options)
             ->getBody()
             ->getContents();
     }
 
     protected function delete($path, $options = [])
     {
+        $query = $this->getRequestQuery($options);
+
         $options = array_merge(
             $this->getRequestDefaultOptions(),
+            $query,
             $options
         );
 
         return $this
             ->getClient()
-            ->delete('/' . $path . '?api_token=' . self::$apiKey, $options)
+            ->delete($path, $options)
             ->getBody()
             ->getContents();
     }
