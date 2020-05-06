@@ -6,7 +6,7 @@ Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
 [**getById**](qualificationProtocolResource.md#getById) | **GET** /process-qualification-protocols/{id} | Visualiza um certificado
 [**getNewQualificationProtocolFirstStep**](qualificationProtocolResource.md#getNewQualificationProtocolFirstStep) | **POST** /actions/process-qualification-protocols | Cadastra um novo certificado
-[**getNewQualificationProtocolSecondStep**](qualificationProtocolResource.md#getNewQualificationProtocolSecondStep) | **PUT** /actions/process-qualification-protocols/{qualification_protocol_id} | Atualiza um certificado
+[**getNewQualificationProtocolSecondStep**](qualificationProtocolResource.md#getNewQualificationProtocolSecondStep) | **POST** /actions/process-qualification-protocols/{qualification_protocol_id} | Atualiza um certificado
 
 # **getById**
 

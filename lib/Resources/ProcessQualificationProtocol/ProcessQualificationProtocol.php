@@ -73,7 +73,7 @@ class ProcessQualificationProtocol extends Resource
 
         $options = [
             'path' => $this->action->getResourceEndpoint() . '/' . $this->getResourceEndpoint() . '/' . $qualificationProtocolId,
-            'method' => API::PUT,
+            'method' => API::POST,
             'options' => [
                 'is_multipart' => ($qualificationProtocol->getDocumentos()) ? true : false
             ],

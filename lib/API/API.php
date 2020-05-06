@@ -9,7 +9,7 @@ class API
 {
     private $client;
 
-    protected static $baseUri = 'http://d24cd24f.ngrok.io/api/v2/';
+    protected static $baseUri = 'http://7d4f7cd7.ngrok.io/api/v2/';
 
     protected static $apiKey;
 
@@ -143,7 +143,7 @@ class API
         return $query;
     }
 
-    private function getRequestBody($body, &$options)
+    private function getRequestBody($body, &$options, $isMethodPut = false)
     {
         $contentType = 'json';
 
@@ -154,6 +154,18 @@ class API
                 $contentType = 'multipart';
             }
             unset($options['is_multipart']);
+        }
+
+        if ($isMethodPut)
+        {
+            if (!empty($body))
+            {
+                $body = array_merge($body, ['_method' => 'PUT']);
+            }
+            else
+            {
+                $body = ['_method' => 'PUT'];
+            }
         }
 
         return [
@@ -198,7 +210,7 @@ class API
     {
         $query = $this->getRequestQuery($options);
 
-        $body = $this->getRequestBody($body, $options);
+        $body = $this->getRequestBody($body, $options, true);
 
         $options = array_merge(
             $this->getRequestDefaultOptions(),
@@ -209,7 +221,7 @@ class API
 
         return $this
             ->getClient()
-            ->put($path, $options)
+            ->post($path, $options)
             ->getBody()
             ->getContents();
     }
