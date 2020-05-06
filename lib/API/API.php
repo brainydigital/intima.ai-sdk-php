@@ -13,9 +13,11 @@ class API
 
     protected static $apiKey;
 
-    protected static $proxy = null;
+    protected static $proxy;
 
-    protected static $timeout = null;
+    protected static $timeout;
+
+    protected static $debug = false;
 
     const GET = 'GET';
     const POST = 'POST';
@@ -23,16 +25,30 @@ class API
     const PATCH = 'PATCH';
     const DELETE = 'DELETE';
 
-    public function __construct($apiKey, $proxy = null, $timeout = null)
+    /**
+     * API constructor.
+     * @param string $apiKey set api_token
+     * @param string|null $proxy set a proxy
+     * @param int|null $timeout in seconds
+     * @param bool $debug enable debug mode
+     */
+    public function __construct($apiKey, $proxy = null, $timeout = null, $debug = false)
     {
-        $this->client = new Client([
-            'base_uri' => $this->getBaseUri(),
-            'debug' => true
-        ]);
-
         self::$apiKey = $apiKey;
         self::$proxy = $proxy;
-        self::$timeout = $timeout;
+
+        if (!isset($timeout)) {
+            self::$timeout = 60;
+        } else {
+            self::$timeout = $timeout;
+        }
+
+        self::$debug = $debug;
+
+        $this->client = new Client([
+            'base_uri' => $this->getBaseUri(),
+            'debug' => $this->isDebug()
+        ]);
     }
 
     /**
@@ -191,8 +207,6 @@ class API
             $options
         );
 
-//        dump($options);
-
         return $this
             ->getClient()
             ->put($path, $options)
@@ -262,4 +276,19 @@ class API
         self::$timeout = $timeout;
     }
 
+    /**
+     * @return bool
+     */
+    public static function isDebug()
+    {
+        return self::$debug;
+    }
+
+    /**
+     * @param bool $debug
+     */
+    public static function setDebug($debug)
+    {
+        self::$debug = $debug;
+    }
 }

@@ -49,19 +49,20 @@ class Intimaai
 
     public $processCourseResource;
 
-    private $processProtocolResource;
+    public $processProtocolResource;
 
-    private $processSearchResource;
+    public $processSearchResource;
 
     /**
      * Intimaai constructor.
-     * @param $apiKey
-     * @param $proxy
-     * @param $timeout
+     * @param string $apiKey set api_token
+     * @param string|null $proxy set a proxy
+     * @param int|null $timeout in seconds
+     * @param bool $debug enable debug mode
      */
-    public function __construct($apiKey, $proxy = null, $timeout = null)
+    public function __construct($apiKey, $proxy = null, $timeout = null, $debug = false)
     {
-        $this->API = new API($apiKey, $proxy, $timeout);
+        $this->API = new API($apiKey, $proxy, $timeout, $debug);
         $this->authResource = new Auth($this->API);
         $this->tribunalResource = new Tribunal($this->API);
         $this->intimationResource = new Intimation($this->API);
