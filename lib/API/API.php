@@ -9,7 +9,7 @@ class API
 {
     private $client;
 
-    protected static $baseUri = 'http://7d4f7cd7.ngrok.io/api/v2/';
+    protected static $baseUri = 'https://app.intima.ai/api/v2/';
 
     protected static $apiKey;
 
