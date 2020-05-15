@@ -8,7 +8,6 @@ class PreAnaliseDeConsultaProcessual
     private $processNumber;
     private $nomeParte;
     private $nomeRepresentante;
-    private $token;
 
     /**
      * PreAnaliseDeConsultaProcessual constructor.
@@ -16,15 +15,13 @@ class PreAnaliseDeConsultaProcessual
      * @param string|null $processNumber
      * @param string|null $nomeParte
      * @param string|null $nomeRepresentante
-     * @param string|null $token
      */
-    public function __construct($authId, $processNumber = null, $nomeParte = null, $nomeRepresentante = null, $token = null)
+    public function __construct($authId, $processNumber = null, $nomeParte = null, $nomeRepresentante = null)
     {
         $this->authId = $authId;
         $this->processNumber = $processNumber;
         $this->nomeParte = $nomeParte;
         $this->nomeRepresentante = $nomeRepresentante;
-        $this->token = $token;
     }
 
     /**
