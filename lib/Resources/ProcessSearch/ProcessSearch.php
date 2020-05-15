@@ -6,6 +6,8 @@ use Intimaai\API\API;
 use Intimaai\API\APIRequestException;
 use Intimaai\API\Paginator;
 use Intimaai\API\Resource;
+use Intimaai\Models\ConsultaProcessual;
+use Intimaai\Models\PreAnaliseDeConsultaProcessual;
 use Intimaai\Resources\Action;
 use Intimaai\Resources\ProcessInfo\Process;
 use Intimaai\Resources\ProcessInfo\ProcessSearchAnalyse;
@@ -35,7 +37,7 @@ class ProcessSearch extends Resource
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function getById($id)
+    public function consultarPorId($id)
     {
         $options = [
             'path' => $this->getResourceEndpoint() . '/' . $id,
@@ -45,13 +47,13 @@ class ProcessSearch extends Resource
     }
 
     /**
-     * Get a new process search
-     * @param Search $search
+     * Make a new process search
+     * @param ConsultaProcessual $search
      * @return mixed
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function getNewSearch(Search $search)
+    public function cadastrarNovaConsulta(ConsultaProcessual $search)
     {
         if (empty($search->getProcessNumber()) && empty($search->getNomeParte()) && empty($search->getNomeRepresentante())) {
             throw new \Exception('Você precisa fornecer ao menos um parametro para a busca.');
@@ -76,7 +78,7 @@ class ProcessSearch extends Resource
      * @param int $searchId
      * @return Paginator
      */
-    public function getSearchResults($searchId)
+    public function consultarResultadosDaConsulta($searchId)
     {
         $resource = new ResourceResult($this->getAPI(), $this, $searchId);
         return $resource->paginate();
@@ -86,7 +88,7 @@ class ProcessSearch extends Resource
      * Get processes searchs analyses
      * @return Paginator
      */
-    public function getSearchAnalyses()
+    public function listarPreAnalisesDeConsultas()
     {
         return $this->searchAnalyse->paginate();
     }
@@ -98,7 +100,7 @@ class ProcessSearch extends Resource
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function getSearchAnalysesById($id)
+    public function consultarPorIdPreAnaliseDeConsulta($id)
     {
         $options = [
             'path' => $this->searchAnalyse->getResourceEndpoint() . '/' . $id,
@@ -108,13 +110,13 @@ class ProcessSearch extends Resource
     }
 
     /**
-     * Get a new process search analyse
-     * @param SearchAnalyse $searchAnalyse
+     * Make a new process search analyse
+     * @param PreAnaliseDeConsultaProcessual $searchAnalyse
      * @return mixed
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function getNewSearchAnalyses(SearchAnalyse $searchAnalyse)
+    public function cadastrarPreAnaliseDeConsulta(PreAnaliseDeConsultaProcessual $searchAnalyse)
     {
         if (empty($searchAnalyse->getProcessNumber()) && empty($searchAnalyse->getNomeParte()) && empty($searchAnalyse->getNomeRepresentante())) {
             throw new \Exception('Você precisa fornecer ao menos um parametro para a busca.');

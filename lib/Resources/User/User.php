@@ -24,7 +24,7 @@ class User extends Resource
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function getUser()
+    public function consultarUsuario()
     {
         $options = [
             'path' => $this->getResourceEndpoint(),

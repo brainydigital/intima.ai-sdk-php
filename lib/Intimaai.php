@@ -16,42 +16,42 @@ use Intimaai\Resources\ProcessQualificationProtocol\ProcessQualificationProtocol
 use Intimaai\Resources\ProcessSearch\ProcessSearch;
 use Intimaai\Resources\Tribunal;
 use Intimaai\Resources\User\User;
-use Intimaai\Resources\User\UserDependent;
+use Intimaai\Resources\User\UserNotification;
 use Intimaai\Resources\User\UserWebhook;
 
 class Intimaai
 {
     private $API;
 
-    public $authResource;
+    public $autenticacoesResources;
 
-    public $tribunalResource;
+    public $tribunaisResources;
 
-    public $intimationResource;
+    public $certificadosResources;
 
-    public $certificateResource;
+    public $intimacoesResources;
 
-    public $userResource;
+    public $usuariosResources;
 
-    public $userDependentResource;
+    public $notificacoesResources;
 
-    public $userWebhookResource;
+    public $webhooksResources;
 
-    public $actionResource;
+    public $acoesResources;
 
-    public $copyResource;
+    public $copiasProcessuaisResources;
 
-    public $listenerResource;
+    public $escutasProcessuaisResources;
 
-    public $qualificationProtocolResource;
+    public $protocolosDeHabilitacaoResources;
 
-    public $processInfoResource;
+    public $informacoesProcessuaisResources;
 
-    public $processCourseResource;
+    public $andamentosProcessuaisResources;
 
-    public $processProtocolResource;
+    public $protocolosProcessuaisResources;
 
-    public $processSearchResource;
+    public $consultasProcessuaisResources;
 
     /**
      * Intimaai constructor.
@@ -63,22 +63,22 @@ class Intimaai
     public function __construct($apiKey, $proxy = null, $timeout = null, $debug = false)
     {
         $this->API = new API($apiKey, $proxy, $timeout, $debug);
-        $this->authResource = new Auth($this->API);
-        $this->tribunalResource = new Tribunal($this->API);
-        $this->intimationResource = new Intimation($this->API);
-        $this->certificateResource = new Certificate($this->API);
-        $this->userResource = new User($this->API);
-        $this->userDependentResource = new UserDependent($this->API);
-        $this->userWebhookResource = new UserWebhook($this->API);
+        $this->autenticacoesResources = new Auth($this->API);
+        $this->tribunaisResources = new Tribunal($this->API);
+        $this->certificadosResources = new Certificate($this->API);
+        $this->intimacoesResources = new Intimation($this->API);
+        $this->usuariosResources = new User($this->API);
+        $this->notificacoesResources = new UserNotification($this->API);
+        $this->webhooksResources = new UserWebhook($this->API);
 
-        $this->actionResource = new Action($this->API);
-        $this->copyResource = new ProcessCopy($this->API, $this->actionResource);
-        $this->listenerResource = new ProcessListener($this->API, $this->actionResource);
-        $this->qualificationProtocolResource = new ProcessQualificationProtocol($this->API, $this->actionResource);
-        $this->processInfoResource = new ProcessInfo($this->API, $this->actionResource);
-        $this->processCourseResource = new ProcessCourse($this->API, $this->actionResource);
-        $this->processProtocolResource = new ProcessProtocol($this->API, $this->actionResource);
-        $this->processSearchResource = new ProcessSearch($this->API, $this->actionResource);
+        $this->acoesResources = new Action($this->API);
+        $this->copiasProcessuaisResources = new ProcessCopy($this->API, $this->acoesResources);
+        $this->escutasProcessuaisResources = new ProcessListener($this->API, $this->acoesResources);
+        $this->protocolosDeHabilitacaoResources = new ProcessQualificationProtocol($this->API, $this->acoesResources);
+        $this->informacoesProcessuaisResources = new ProcessInfo($this->API, $this->acoesResources);
+        $this->andamentosProcessuaisResources = new ProcessCourse($this->API, $this->acoesResources);
+        $this->protocolosProcessuaisResources = new ProcessProtocol($this->API, $this->acoesResources);
+        $this->consultasProcessuaisResources = new ProcessSearch($this->API, $this->acoesResources);
     }
 
     /**

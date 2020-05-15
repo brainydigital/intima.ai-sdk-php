@@ -5,6 +5,7 @@ namespace Intimaai\Resources\ProcessCopy;
 use Intimaai\API\API;
 use Intimaai\API\APIRequestException;
 use Intimaai\API\Resource;
+use Intimaai\Models\CopiaProcessual;
 use Intimaai\Resources\Action;
 
 class ProcessCopy extends Resource
@@ -29,7 +30,7 @@ class ProcessCopy extends Resource
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function getById($id)
+    public function consultarPorId($id)
     {
         $options = [
             'path' => $this->getResourceEndpoint() . '/' . $id,
@@ -39,13 +40,13 @@ class ProcessCopy extends Resource
     }
 
     /**
-     * Get a new copy
-     * @param Copy $copy
+     * Make a new copy
+     * @param CopiaProcessual $copy
      * @return mixed
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function getNewCopy(Copy $copy)
+    public function cadastrarNovaCopia(CopiaProcessual $copy)
     {
         $options = [
             'path' => $this->action->getResourceEndpoint() . '/' . $this->getResourceEndpoint(),

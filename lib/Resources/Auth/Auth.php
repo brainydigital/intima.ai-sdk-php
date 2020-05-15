@@ -5,6 +5,8 @@ namespace Intimaai\Resources\Auth;
 use Intimaai\API\API;
 use Intimaai\API\APIRequestException;
 use Intimaai\API\Resource;
+use Intimaai\Models\AtivarIntimacoesParaAutenticacao;
+use Intimaai\Models\NovaAutenticacao;
 
 class Auth extends Resource
 {
@@ -25,7 +27,7 @@ class Auth extends Resource
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function getById($id)
+    public function consultarPorId($id)
     {
         $options = [
             'path' => $this->getResourceEndpoint() . '/' . $id,
@@ -35,13 +37,13 @@ class Auth extends Resource
     }
 
     /**
-     * Get a new auth
-     * @param NewAuth $auth
+     * Make a new auth
+     * @param NovaAutenticacao $auth
      * @return mixed
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function getNewAuth(NewAuth $auth)
+    public function cadastrarNovaAutenticacao(NovaAutenticacao $auth)
     {
         $options = [
             'path' => $this->getResourceEndpoint(),
@@ -57,12 +59,12 @@ class Auth extends Resource
     /**
      * Enable intimations capture for a auth
      * @param int $authId
-     * @param EnableAuth $enableAuth
+     * @param AtivarIntimacoesParaAutenticacao $enableAuth
      * @return mixed
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function enableIntimationsAuth($authId, EnableAuth $enableAuth)
+    public function ativarCapturaDeIntimacoesParaAutenticacao($authId, AtivarIntimacoesParaAutenticacao $enableAuth)
     {
         $options = [
             'path' => $this->getResourceEndpoint() . '/' . $authId . '/intimations/enable',
@@ -83,7 +85,7 @@ class Auth extends Resource
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function disableIntimationsAuth($authId)
+    public function desativarCapturaDeIntimacoesParaAutenticacao($authId)
     {
         $options = [
             'path' => $this->getResourceEndpoint() . '/' . $authId . '/intimations/disable',

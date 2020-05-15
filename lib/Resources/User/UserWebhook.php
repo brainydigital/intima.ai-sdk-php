@@ -5,6 +5,7 @@ namespace Intimaai\Resources\User;
 use Intimaai\API\API;
 use Intimaai\API\APIRequestException;
 use Intimaai\API\Resource;
+use Intimaai\Models\Webhook;
 
 class UserWebhook extends Resource
 {
@@ -25,7 +26,7 @@ class UserWebhook extends Resource
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function getById($id)
+    public function consultarPorId($id)
     {
         $options = [
             'path' => $this->getResourceEndpoint() . '/' . $id,
@@ -35,13 +36,13 @@ class UserWebhook extends Resource
     }
 
     /**
-     * Get a new user webhook
+     * Make a new user webhook
      * @param Webhook $userWebhook
      * @return mixed
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function getNewUserWebhook(Webhook $userWebhook)
+    public function cadastrarNovoWebhook(Webhook $userWebhook)
     {
         $options = [
             'path' => $this->getResourceEndpoint(),
@@ -63,7 +64,7 @@ class UserWebhook extends Resource
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function updateUserWebhook($userWebhookId, Webhook $userWebhook)
+    public function atualizarWebhook($userWebhookId, Webhook $userWebhook)
     {
         $options = [
             'path' => $this->getResourceEndpoint() . '/' . $userWebhookId,
@@ -84,7 +85,7 @@ class UserWebhook extends Resource
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function deleteUserWebhook($userWebhookId)
+    public function excluirWebhook($userWebhookId)
     {
         $options = [
             'path' => $this->getResourceEndpoint() . '/' . $userWebhookId,

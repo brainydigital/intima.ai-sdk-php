@@ -5,6 +5,7 @@ namespace Intimaai\Resources\ProcessProtocol;
 use Intimaai\API\API;
 use Intimaai\API\APIRequestException;
 use Intimaai\API\Resource;
+use Intimaai\Models\ProtocoloProcessual;
 use Intimaai\Resources\Action;
 use Intimaai\Resources\ProcessCopy\Copy;
 
@@ -30,7 +31,7 @@ class ProcessProtocol extends Resource
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function getById($id)
+    public function consultarPorId($id)
     {
         $options = [
             'path' => $this->getResourceEndpoint() . '/' . $id,
@@ -40,13 +41,13 @@ class ProcessProtocol extends Resource
     }
 
     /**
-     * Get a new protocol
-     * @param Protocol $protocol
+     * Make a new protocol
+     * @param ProtocoloProcessual $protocol
      * @return mixed
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function getNewProtocol(Protocol $protocol)
+    public function cadastrarNovoProtocolo(ProtocoloProcessual $protocol)
     {
         $body = $this->serialize($protocol);
 
@@ -63,10 +64,10 @@ class ProcessProtocol extends Resource
     }
 
     /**
-     * @param Protocol $protocol
+     * @param ProtocoloProcessual $protocol
      * @return array
      */
-    private function serialize($protocol)
+    private function serialize(ProtocoloProcessual $protocol)
     {
         $documents = $protocol->getDocumentos();
         $peticao = $protocol->getPeticao();

@@ -26,7 +26,7 @@ class Intimation extends Resource
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function getById($id)
+    public function consultarPorId($id)
     {
         $options = [
             'path' => $this->getResourceEndpoint() . '/' . $id,
@@ -42,7 +42,7 @@ class Intimation extends Resource
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function markAsRevised($intimationId)
+    public function marcarIntimacaoComoRevisada($intimationId)
     {
         $options = [
             'path' => $this->getResourceEndpoint() . '/' . $intimationId . '/mark-as-revised',

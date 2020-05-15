@@ -6,6 +6,7 @@ use Intimaai\API\API;
 use Intimaai\API\APIRequestException;
 use Intimaai\API\Paginator;
 use Intimaai\API\Resource;
+use Intimaai\Models\AndamentoProcessual;
 use Intimaai\Resources\Action;
 use Intimaai\Resources\ResourceResult;
 
@@ -31,7 +32,7 @@ class ProcessCourse extends Resource
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function getById($id)
+    public function consultarPorId($id)
     {
         $options = [
             'path' => $this->getResourceEndpoint() . '/' . $id,
@@ -41,13 +42,13 @@ class ProcessCourse extends Resource
     }
 
     /**
-     * Get a new course
-     * @param Course $course
+     * Make a new course
+     * @param AndamentoProcessual $course
      * @return mixed
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function getNewCourse(Course $course)
+    public function cadastrarNovoAndamento(AndamentoProcessual $course)
     {
         $options = [
             'path' => $this->action->getResourceEndpoint(),
@@ -67,7 +68,7 @@ class ProcessCourse extends Resource
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function captureCourse($courseId)
+    public function capturarAndamentos($courseId)
     {
         $options = [
             'path' => $this->action->getResourceEndpoint() . '/' . $this->getResourceEndpoint() . '/' . $courseId . '/capture',
@@ -77,13 +78,13 @@ class ProcessCourse extends Resource
     }
 
     /**
-     * Get a new course and capture
-     * @param Course $course
+     * Make a new course and capture
+     * @param AndamentoProcessual $course
      * @return mixed
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function getNewCourseAndCapture(Course $course)
+    public function cadastrarNovoAndamentoECapturarAndamentos(AndamentoProcessual $course)
     {
         $options = [
             'path' => $this->action->getResourceEndpoint() . '/' . $this->getResourceEndpoint() . '/create-and-capture',
@@ -102,7 +103,7 @@ class ProcessCourse extends Resource
      * @return Paginator
      * @throws \Exception
      */
-    public function getCourseResults($courseId)
+    public function consultarResultadosDoAndamento($courseId)
     {
         $resource = new ResourceResult($this->getAPI(), $this, $courseId);
         return $resource->paginate();
@@ -115,7 +116,7 @@ class ProcessCourse extends Resource
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function deleteCourse($courseId)
+    public function excluirAndamento($courseId)
     {
         $options = [
             'path' => $this->getResourceEndpoint() . '/' . $courseId,

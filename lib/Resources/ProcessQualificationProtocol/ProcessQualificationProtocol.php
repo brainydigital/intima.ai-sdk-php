@@ -5,6 +5,8 @@ namespace Intimaai\Resources\ProcessQualificationProtocol;
 use Intimaai\API\API;
 use Intimaai\API\APIRequestException;
 use Intimaai\API\Resource;
+use Intimaai\Models\PrimeiraEtapaParaProtocoloDeHabilitacao;
+use Intimaai\Models\SegundaEtapaParaProtocoloDeHabilitacao;
 use Intimaai\Resources\Action;
 use Intimaai\Resources\ProcessCopy\Copy;
 
@@ -30,7 +32,7 @@ class ProcessQualificationProtocol extends Resource
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function getById($id)
+    public function consultarPorId($id)
     {
         $options = [
             'path' => $this->getResourceEndpoint() . '/' . $id,
@@ -40,13 +42,13 @@ class ProcessQualificationProtocol extends Resource
     }
 
     /**
-     * Get a new qualification protocol
-     * @param FirstStepQualificationProtocol $qualificationProtocol
+     * Make a new qualification protocol, first step
+     * @param PrimeiraEtapaParaProtocoloDeHabilitacao $qualificationProtocol
      * @return mixed
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function getNewQualificationProtocolFirstStep(FirstStepQualificationProtocol $qualificationProtocol)
+    public function cadastrarPrimeiraEtapaParaNovoProtocoloDeHabilitacao(PrimeiraEtapaParaProtocoloDeHabilitacao $qualificationProtocol)
     {
         $options = [
             'path' => $this->action->getResourceEndpoint() . '/' . $this->getResourceEndpoint(),
@@ -60,14 +62,14 @@ class ProcessQualificationProtocol extends Resource
     }
 
     /**
-     * Get a new qualification protocol
+     * Make a new qualification protocol, second and last step
      * @param int $qualificationProtocolId
-     * @param SecondStepQualificationProtocol $qualificationProtocol
+     * @param SegundaEtapaParaProtocoloDeHabilitacao $qualificationProtocol
      * @return mixed
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function getNewQualificationProtocolSecondStep($qualificationProtocolId, SecondStepQualificationProtocol $qualificationProtocol)
+    public function cadastrarSegundaEtapaParaNovoProtocoloDeHabilitacao($qualificationProtocolId, SegundaEtapaParaProtocoloDeHabilitacao $qualificationProtocol)
     {
         $body = $this->serialize($qualificationProtocol);
 
@@ -84,7 +86,7 @@ class ProcessQualificationProtocol extends Resource
     }
 
     /**
-     * @param SecondStepQualificationProtocol $qualificationProtocol
+     * @param SegundaEtapaParaProtocoloDeHabilitacao $qualificationProtocol
      * @return array
      */
     private function serialize($qualificationProtocol)

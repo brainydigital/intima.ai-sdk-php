@@ -5,6 +5,7 @@ namespace Intimaai\Resources\Certificate;
 use Intimaai\API\API;
 use Intimaai\API\APIRequestException;
 use Intimaai\API\Resource;
+use Intimaai\Models\Certificado;
 
 class Certificate extends Resource
 {
@@ -25,7 +26,7 @@ class Certificate extends Resource
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function getById($id)
+    public function consultarPorId($id)
     {
         $options = [
             'path' => $this->getResourceEndpoint() . '/' . $id,
@@ -35,13 +36,13 @@ class Certificate extends Resource
     }
 
     /**
-     * Create a new certificate
-     * @param UserCertificate $certificate
+     * Make a new certificate
+     * @param Certificado $certificate
      * @return mixed
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function getNewCertificate(UserCertificate $certificate)
+    public function cadastrarNovoCertificado(Certificado $certificate)
     {
         $options = [
             'path' => $this->getResourceEndpoint(),
@@ -66,12 +67,12 @@ class Certificate extends Resource
     /**
      * Create a new certificate
      * @param int $certificateId
-     * @param UserCertificate $certificate
+     * @param Certificado $certificate
      * @return mixed
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function updateCertificate($certificateId, UserCertificate $certificate)
+    public function atualizarCertificado($certificateId, Certificado $certificate)
     {
         $options = [
             'path' => $this->getResourceEndpoint() . '/' . $certificateId,
@@ -100,7 +101,7 @@ class Certificate extends Resource
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function deleteCertificate($certificateId)
+    public function excluirCertificado($certificateId)
     {
         $options = [
             'path' => $this->getResourceEndpoint() . '/' . $certificateId,

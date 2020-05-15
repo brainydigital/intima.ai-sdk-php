@@ -5,6 +5,7 @@ namespace Intimaai\Resources\ProcessInfo;
 use Intimaai\API\API;
 use Intimaai\API\APIRequestException;
 use Intimaai\API\Resource;
+use Intimaai\Models\InformacaoProcessual;
 use Intimaai\Resources\Action;
 
 class ProcessInfo extends Resource
@@ -29,7 +30,7 @@ class ProcessInfo extends Resource
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function getById($id)
+    public function consultarPorId($id)
     {
         $options = [
             'path' => $this->getResourceEndpoint() . '/' . $id,
@@ -39,13 +40,13 @@ class ProcessInfo extends Resource
     }
 
     /**
-     * Get a new process information
-     * @param Process $process
+     * Make a new process information
+     * @param InformacaoProcessual $process
      * @return mixed
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function getNewProcessInfo(Process $process)
+    public function capturarNovaInformacaoProcessual(InformacaoProcessual $process)
     {
         $options = [
             'path' => $this->action->getResourceEndpoint() . '/' . $this->getResourceEndpoint(),

@@ -6,6 +6,8 @@ use Intimaai\API\API;
 use Intimaai\API\APIRequestException;
 use Intimaai\API\Paginator;
 use Intimaai\API\Resource;
+use Intimaai\Models\AtualizarEscutaProcessual;
+use Intimaai\Models\EscutaProcessual;
 use Intimaai\Resources\Action;
 use Intimaai\Resources\ResourceResult;
 
@@ -31,7 +33,7 @@ class ProcessListener extends Resource
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function getById($id)
+    public function consultarPorId($id)
     {
         $options = [
             'path' => $this->getResourceEndpoint() . '/' . $id,
@@ -41,13 +43,13 @@ class ProcessListener extends Resource
     }
 
     /**
-     * Get a new listener
-     * @param Listener $listener
+     * Make a new listener
+     * @param EscutaProcessual $listener
      * @return mixed
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function getNewCopy(Listener $listener)
+    public function cadastrarNovaEscuta(EscutaProcessual $listener)
     {
         $options = [
             'path' => $this->action->getResourceEndpoint(),
@@ -68,7 +70,7 @@ class ProcessListener extends Resource
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function captureListener($listenerId)
+    public function capturarEscuta($listenerId)
     {
         $options = [
             'path' => $this->action->getResourceEndpoint() . '/' . $this->getResourceEndpoint() . '/' . $listenerId . '/capture',
@@ -78,13 +80,13 @@ class ProcessListener extends Resource
     }
 
     /**
-     * Get a new listener and capture
-     * @param Listener $listener
+     * Make a new listener and capture
+     * @param EscutaProcessual $listener
      * @return mixed
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function getNewListenerAndCapture(Listener $listener)
+    public function cadastrarNovaEscutaECapturar(EscutaProcessual $listener)
     {
         $options = [
             'path' => $this->action->getResourceEndpoint() . '/' . $this->getResourceEndpoint() . '/create-and-capture',
@@ -104,7 +106,7 @@ class ProcessListener extends Resource
      * @return Paginator
      * @throws \Exception
      */
-    public function getListenerResults($listenerId)
+    public function consultarResultadosCapturadosDaEscuta($listenerId)
     {
         $resource = new ResourceResult($this->getAPI(), $this, $listenerId);
         return $resource->paginate();
@@ -113,12 +115,12 @@ class ProcessListener extends Resource
     /**
      * Update a listener
      * @param int $listenerId
-     * @param ListenerUpdate $listener
+     * @param AtualizarEscutaProcessual $listener
      * @return mixed
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function updateListener($listenerId, ListenerUpdate $listener)
+    public function atualizarEscuta($listenerId, AtualizarEscutaProcessual $listener)
     {
         $options = [
             'path' => $this->getResourceEndpoint() . '/' . $listenerId,
@@ -137,7 +139,7 @@ class ProcessListener extends Resource
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function deleteListener($listenerId)
+    public function excluirEscuta($listenerId)
     {
         $options = [
             'path' => $this->getResourceEndpoint() . '/' . $listenerId,

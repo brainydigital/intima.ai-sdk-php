@@ -36,7 +36,7 @@ class Action extends Resource
      * @throws APIRequestException
      * @throws \Exception
      */
-    public function getById($id)
+    public function consultarPorId($id)
     {
         $options = [
             'path' => $this->getResourceEndpoint() . '/' . $id,
@@ -51,7 +51,7 @@ class Action extends Resource
      * @return Paginator
      * @throws \Exception
      */
-    public function getActionResults($actionId)
+    public function consultarResultadosDaAcao($actionId)
     {
         $resource = new ResourceResult($this->getAPI(), $this, $actionId);
         return $resource->paginate();
