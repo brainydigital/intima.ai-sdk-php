@@ -16,6 +16,8 @@ Este repositório é a implementação da API do [Intima.ai](https://app.intima.
 
 - Versão da API: 2.0.0
 
+- Documentação da API: [API de Integração](https://documenter.getpostman.com/view/2116715/SzmmVuso?version=latest)
+
 ## Requerimentos
 
 PHP >= 5.5
