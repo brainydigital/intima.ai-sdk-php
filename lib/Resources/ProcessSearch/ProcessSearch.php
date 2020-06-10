@@ -9,8 +9,7 @@ use Intimaai\API\Resource;
 use Intimaai\Models\ConsultaProcessual;
 use Intimaai\Models\PreAnaliseDeConsultaProcessual;
 use Intimaai\Resources\Action;
-use Intimaai\Resources\ProcessInfo\Process;
-use Intimaai\Resources\ProcessInfo\ProcessSearchAnalyse;
+use Intimaai\Resources\ProcessSearchAnalyse;
 use Intimaai\Resources\ResourceResult;
 
 class ProcessSearch extends Resource

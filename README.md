@@ -103,7 +103,8 @@ Resource | Descrição
 [**protocolosDeHabilitacaoResources**](docs/resources/protocolosDeHabilitacaoResources.md#protocolosDeHabilitacaoResources) | Contém todos os endpoints/métodos para os protocolos de habilitação
 [**informacoesProcessuaisResources**](docs/resources/informacoesProcessuaisResources.md#informacoesProcessuaisResources) | Contém todos os endpoints/métodos para as informações processuais
 [**andamentosProcessuaisResources**](docs/resources/andamentosProcessuaisResources.md#andamentosProcessuaisResources) | Contém todos os endpoints/métodos para os andamentos processuais
-[**protocolosProcessuaisResources**](docs/resources/protocolosProcessuaisResources.md#protocolosProcessuaisResources) | Contém todos os endpoints/métodos para os protocolos
+[**protocolosProcessuaisResources**](docs/resources/protocolosProcessuaisResources.md#protocolosProcessuaisResources) | Contém todos os endpoints/métodos para os protocolos no PJE
+[**protocolosProcessuaisEsajResources**](docs/resources/protocolosProcessuaisEsajResources.md#protocolosProcessuaisEsajResources) | Contém todos os endpoints/métodos para os protocolos no ESAJ
 [**consultasProcessuaisResources**](docs/resources/consultasProcessuaisResources.md#consultasProcessuaisResources) | Contém todos os endpoints/métodos para consultas processuais e pré-análises
 
 

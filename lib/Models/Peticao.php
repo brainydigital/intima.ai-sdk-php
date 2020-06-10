@@ -12,13 +12,23 @@ class Peticao
      * Peticao constructor.
      * @param string $arquivo
      * @param int $tipoDocumento
-     * @param string $descricaoDocumento
+     * @param string|null $descricaoDocumento
      */
-    public function __construct($arquivo, $tipoDocumento, $descricaoDocumento)
+    public function __construct($arquivo, $tipoDocumento, $descricaoDocumento = null)
     {
         $this->arquivo = $arquivo;
         $this->tipoDocumento = $tipoDocumento;
         $this->descricaoDocumento = $descricaoDocumento;
+
+        $this->validate($arquivo);
+    }
+
+    private function validate($filePath)
+    {
+        if (!file_exists($filePath))
+        {
+            throw new \Exception('O caminho do arquivo informado é inválido!');
+        }
     }
 
     /**

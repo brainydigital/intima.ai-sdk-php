@@ -1,10 +1,9 @@
 <?php
 
-namespace Intimaai\Resources\ProcessInfo;
+namespace Intimaai\Resources;
 
 use Intimaai\API\API;
 use Intimaai\API\Resource;
-use Intimaai\Resources\Action;
 use Intimaai\Resources\ProcessSearch\ProcessSearch;
 
 class ProcessSearchAnalyse extends Resource
