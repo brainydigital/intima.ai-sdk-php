@@ -15,6 +15,33 @@ Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **id** | **int**| é o id referente a ação no Intima.ai | [obrigatório]
 
+### Exemplos
+```php
+<?php
+
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use Intimaai\Intimaai;
+use Intimaai\API\APIRequestException;
+
+try 
+{
+    $intimaai = new Intimaai('your_api_token');
+
+    $result = $intimaai->acoesResources->consultarPorId(45217);
+    dump($result);
+}
+catch (APIRequestException $exception)
+{
+    dump($exception->toJson());
+}
+catch (\Exception $exception)
+{
+    dump($exception->getMessage());
+}
+?>
+```
+
 # **consultarResultadosDaAcao**
 
 ### Parametros
@@ -36,17 +63,9 @@ try
 {
     $intimaai = new Intimaai('your_api_token');
 
-    $result = $intimaai->acoesResources->consultarPorId(45217);
-    dump($result);
-
     $resultsPaginator = $intimaai->acoesResources->consultarResultadosDaAcao(45217);
     $resultsPaginator->getPage(1);
-    dump($resultsPaginator);
-
-    $paginator = $intimaai->acoesResources->paginate();
-    $paginator->getPage(1);
-
-    dump($paginator->getCollection());
+    dump($resultsPaginator->getCollection());
 }
 catch (APIRequestException $exception)
 {

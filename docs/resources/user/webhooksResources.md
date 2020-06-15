@@ -17,6 +17,33 @@ Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **id** | **int**| é o id referente ao webhook do usuário no Intima.ai | [obrigatório]
 
+### Exemplos
+```php
+<?php
+
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use Intimaai\Intimaai;
+use Intimaai\API\APIRequestException;
+
+try 
+{
+    $intimaai = new Intimaai('your_api_token');
+
+    $resultById = $intimaai->webhooksResources->consultarPorId(45217);
+    dump($resultById);
+}
+catch (APIRequestException $exception)
+{
+    dump($exception->toJson());
+}
+catch (\Exception $exception)
+{
+    dump($exception->getMessage());
+}
+?>
+```
+
 # **cadastrarNovoWebhook**
 
 ### Parametros
@@ -24,6 +51,35 @@ Nome | Tipo | Descrição | Notas
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **userWebhook** | [**Webhook**](../../models/webhook/Webhook.md) | parametros necessários para a criação de um novo registro | [obrigatório]
+
+### Exemplos
+```php
+<?php
+
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use Intimaai\Intimaai;
+use Intimaai\API\APIRequestException;
+use Intimaai\Models\Webhook;
+
+try 
+{
+    $intimaai = new Intimaai('your_api_token');
+
+    $newWebhook = new Webhook(0, 'GET', 'https://example.com');
+    $resultNew = $intimaai->webhooksResources->cadastrarNovoWebhook($newWebhook);
+    dump($resultNew);
+}
+catch (APIRequestException $exception)
+{
+    dump($exception->toJson());
+}
+catch (\Exception $exception)
+{
+    dump($exception->getMessage());
+}
+?>
+```
 
 # **atualizarWebhook**
 
@@ -33,6 +89,35 @@ Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **userWebhookId** | **int**| é o id referente ao webhook do usuário no Intima.ai | [obrigatório]
 **userWebhook** | [**Webhook**](../../models/webhook/Webhook.md) | parametros necessários para a criação de um novo registro | [obrigatório]
+
+### Exemplos
+```php
+<?php
+
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use Intimaai\Intimaai;
+use Intimaai\API\APIRequestException;
+use Intimaai\Models\Webhook;
+
+try 
+{
+    $intimaai = new Intimaai('your_api_token');
+
+    $updateWebhook = new Webhook(0, 'POST', 'https://example.com');
+    $resultUpdate = $intimaai->webhooksResources->atualizarWebhook(2, $updateWebhook);
+    dump($resultUpdate);
+}
+catch (APIRequestException $exception)
+{
+    dump($exception->toJson());
+}
+catch (\Exception $exception)
+{
+    dump($exception->getMessage());
+}
+?>
+```
 
 # **excluirWebhook**
 
@@ -50,30 +135,13 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 use Intimaai\Intimaai;
 use Intimaai\API\APIRequestException;
-use Intimaai\Resources\User\Webhook;
 
 try 
 {
     $intimaai = new Intimaai('your_api_token');
 
-    $resultById = $intimaai->webhooksResources->consultarPorId(45217);
-    dump($resultById);
-
-    $newWebhook = new Webhook(0, 'GET', 'https://example.com');
-    $resultNew = $intimaai->webhooksResources->cadastrarNovoWebhook($newWebhook);
-    dump($resultNew);
-
-    $updateWebhook = new Webhook(0, 'POST', 'https://example.com');
-    $resultUpdate = $intimaai->webhooksResources->atualizarWebhook(2, $updateWebhook);
-    dump($resultUpdate);
-
     $resultDelete = $intimaai->webhooksResources->excluirWebhook(2);
     dump($resultDelete);
-
-    $paginator = $intimaai->webhooksResources->paginate();
-    $paginator->getPage(1);
-
-    dump($paginator->getCollection());
 }
 catch (APIRequestException $exception)
 {

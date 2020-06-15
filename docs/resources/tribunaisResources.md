@@ -29,11 +29,6 @@ try
 
     $result = $intimaai->tribunaisResources->consultarPorId(45217);
     dump($result);
-
-    $paginator = $intimaai->tribunaisResources->paginate();
-    $paginator->getPage(1);
-
-    dump($paginator->getCollection());
 }
 catch (APIRequestException $exception)
 {

@@ -17,6 +17,33 @@ Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **id** | **int**| é o id referente ao dependente do usuário no Intima.ai | [obrigatório]
 
+### Exemplos
+```php
+<?php
+
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use Intimaai\Intimaai;
+use Intimaai\API\APIRequestException;
+
+try 
+{
+    $intimaai = new Intimaai('your_api_token');
+
+    $resultById = $intimaai->notificacoesResources->consultarPorId(45217);
+    dump($resultById);
+}
+catch (APIRequestException $exception)
+{
+    dump($exception->toJson());
+}
+catch (\Exception $exception)
+{
+    dump($exception->getMessage());
+}
+?>
+```
+
 # **cadastrarNovoEmailParaNotificacoes**
 
 ### Parametros
@@ -24,6 +51,33 @@ Nome | Tipo | Descrição | Notas
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **email** | **string**| email que deseja cadastrar para receber notificações | [obrigatório]
+
+### Exemplos
+```php
+<?php
+
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use Intimaai\Intimaai;
+use Intimaai\API\APIRequestException;
+
+try 
+{
+    $intimaai = new Intimaai('your_api_token');
+
+    $resultNew = $intimaai->notificacoesResources->cadastrarNovoEmailParaNotificacoes('user@email.com');
+    dump($resultNew);
+}
+catch (APIRequestException $exception)
+{
+    dump($exception->toJson());
+}
+catch (\Exception $exception)
+{
+    dump($exception->getMessage());
+}
+?>
+```
 
 # **atualizarEmailParaNotificacoes**
 
@@ -33,6 +87,33 @@ Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **userEmailNotification_id** | **int**| é o id referente ao email cadastrado que recebe notificações | [obrigatório]
 **email** | **string**| email que deseja atualizar para receber notificações | [obrigatório]
+
+### Exemplos
+```php
+<?php
+
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use Intimaai\Intimaai;
+use Intimaai\API\APIRequestException;
+
+try 
+{
+    $intimaai = new Intimaai('your_api_token');
+
+    $resulUpdate = $intimaai->notificacoesResources->atualizarEmailParaNotificacoes(3, 'user2@email.com');
+    dump($resulUpdate);
+}
+catch (APIRequestException $exception)
+{
+    dump($exception->toJson());
+}
+catch (\Exception $exception)
+{
+    dump($exception->getMessage());
+}
+?>
+```
 
 # **excluirEmailParaNotificacoes**
 
@@ -55,22 +136,8 @@ try
 {
     $intimaai = new Intimaai('your_api_token');
 
-    $resultById = $intimaai->notificacoesResources->consultarPorId(45217);
-    dump($resultById);
-
-    $resultNew = $intimaai->notificacoesResources->cadastrarNovoEmailParaNotificacoes('user@email.com');
-    dump($resultNew);
-
-    $resulUpdate = $intimaai->notificacoesResources->atualizarEmailParaNotificacoes(3, 'user2@email.com');
-    dump($resulUpdate);
-
     $resulDelete = $intimaai->notificacoesResources->excluirEmailParaNotificacoes(3);
     dump($resulDelete);
-
-    $paginator = $intimaai->notificacoesResources->paginate();
-    $paginator->getPage(1);
-
-    dump($paginator->getCollection());
 }
 catch (APIRequestException $exception)
 {

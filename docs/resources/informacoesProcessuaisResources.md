@@ -15,6 +15,33 @@ Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **id** | **int**| é o id referente as informações processuais capturadas no Intima.ai | [obrigatório]
 
+### Exemplos
+```php
+<?php
+
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use Intimaai\Intimaai;
+use Intimaai\API\APIRequestException;
+
+try 
+{
+    $intimaai = new Intimaai('your_api_token');
+
+    $resultById = $intimaai->informacoesProcessuaisResources->consultarPorId(45217);
+    dump($resultById);
+}
+catch (APIRequestException $exception)
+{
+    dump($exception->toJson());
+}
+catch (\Exception $exception)
+{
+    dump($exception->getMessage());
+}
+?>
+```
+
 # **capturarNovaInformacaoProcessual**
 
 ### Parametros
@@ -37,17 +64,9 @@ try
 {
     $intimaai = new Intimaai('your_api_token');
 
-    $resultById = $intimaai->informacoesProcessuaisResources->consultarPorId(45217);
-    dump($resultById);
-    
     $process = new InformacaoProcessual('00000000000000000000', 120);
     $resultNew = $intimaai->informacoesProcessuaisResources->capturarNovaInformacaoProcessual($process);
     dump($resultNew);
-
-    $paginator = $intimaai->informacoesProcessuaisResources->paginate();
-    $paginator->getPage(1);
-
-    dump($paginator->getCollection());
 }
 catch (APIRequestException $exception)
 {

@@ -19,6 +19,33 @@ Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **id** | **int**| é o id referente ao andamento processual no Intima.ai | [obrigatório]
 
+### Exemplos
+```php
+<?php
+
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use Intimaai\Intimaai;
+use Intimaai\API\APIRequestException;
+
+try 
+{
+    $intimaai = new Intimaai('your_api_token');
+
+    $resultById = $intimaai->andamentosProcessuaisResources->consultarPorId(45217);
+    dump($resultById);
+}
+catch (APIRequestException $exception)
+{
+    dump($exception->toJson());
+}
+catch (\Exception $exception)
+{
+    dump($exception->getMessage());
+}
+?>
+```
+
 # **cadastrarNovoAndamento**
 
 ### Parametros
@@ -26,6 +53,35 @@ Nome | Tipo | Descrição | Notas
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **course** | [**AndamentoProcessual**](../models/process_course/AndamentoProcessual.md) | parametros necessários para a criação de um novo registro | [obrigatório]
+
+### Exemplos
+```php
+<?php
+
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use Intimaai\Intimaai;
+use Intimaai\API\APIRequestException;
+use Intimaai\Models\AndamentoProcessual;
+
+try 
+{
+    $intimaai = new Intimaai('your_api_token');
+
+    $newCourse = new AndamentoProcessual('0000000-00.0000.0.00.0000', 120);
+    $resultNew = $intimaai->andamentosProcessuaisResources->cadastrarNovoAndamento($newCourse);
+    dump($resultNew);
+}
+catch (APIRequestException $exception)
+{
+    dump($exception->toJson());
+}
+catch (\Exception $exception)
+{
+    dump($exception->getMessage());
+}
+?>
+```
 
 # **capturarAndamentos**
 
@@ -35,6 +91,33 @@ Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **courseId** | **int**| é o id referente ao andamento processual no Intima.ai | [obrigatório]
 
+### Exemplos
+```php
+<?php
+
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use Intimaai\Intimaai;
+use Intimaai\API\APIRequestException;
+
+try 
+{
+    $intimaai = new Intimaai('your_api_token');
+
+    $resultCapture = $intimaai->andamentosProcessuaisResources->capturarAndamentos(12);
+    dump($resultCapture);
+}
+catch (APIRequestException $exception)
+{
+    dump($exception->toJson());
+}
+catch (\Exception $exception)
+{
+    dump($exception->getMessage());
+}
+?>
+```
+
 # **cadastrarNovoAndamentoECapturarAndamentos**
 
 ### Parametros
@@ -43,6 +126,35 @@ Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **course** | [**AndamentoProcessual**](../models/process_course/AndamentoProcessual.md) | parametros necessários para a criação e captura de um novo registro | [obrigatório]
 
+### Exemplos
+```php
+<?php
+
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use Intimaai\Intimaai;
+use Intimaai\API\APIRequestException;
+use Intimaai\Models\AndamentoProcessual;
+
+try 
+{
+    $intimaai = new Intimaai('your_api_token');
+
+    $newCourse = new AndamentoProcessual('0000000-00.0000.0.00.0000', 120);
+    $resultNew = $intimaai->andamentosProcessuaisResources->cadastrarNovoAndamentoECapturarAndamentos($newCourse);
+    dump($resultNew);
+}
+catch (APIRequestException $exception)
+{
+    dump($exception->toJson());
+}
+catch (\Exception $exception)
+{
+    dump($exception->getMessage());
+}
+?>
+```
+
 # **consultarResultadosDoAndamento**
 
 ### Parametros
@@ -50,6 +162,34 @@ Nome | Tipo | Descrição | Notas
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **courseId** | **int**| é o id referente ao andamento processual no Intima.ai | [obrigatório]
+
+### Exemplos
+```php
+<?php
+
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use Intimaai\Intimaai;
+use Intimaai\API\APIRequestException;
+
+try 
+{
+    $intimaai = new Intimaai('your_api_token');
+
+    $paginatorResults = $intimaai->andamentosProcessuaisResources->consultarResultadosDoAndamento(21);
+    $paginatorResults->getPage(1);
+    dump($paginatorResults->getCollection());
+}
+catch (APIRequestException $exception)
+{
+    dump($exception->toJson());
+}
+catch (\Exception $exception)
+{
+    dump($exception->getMessage());
+}
+?>
+```
 
 # **excluirAndamento**
 
@@ -73,26 +213,8 @@ try
 {
     $intimaai = new Intimaai('your_api_token');
 
-    $resultById = $intimaai->andamentosProcessuaisResources->consultarPorId(45217);
-    dump($resultById);
-
-    $newCourse = new AndamentoProcessual('0000000-00.0000.0.00.0000', 120);
-    $resultNew = $intimaai->andamentosProcessuaisResources->cadastrarNovoAndamento($newCourse);
-    dump($resultNew);
-
-    $resultCapture = $intimaai->andamentosProcessuaisResources->capturarAndamentos(12);
-    dump($resultCapture);
-
-    $paginatorResults = $intimaai->andamentosProcessuaisResources->consultarResultadosDoAndamento(21);
-    $paginatorResults->getPage(1);
-
     $resultDelete = $intimaai->andamentosProcessuaisResources->excluirAndamento(12);
     dump($resultDelete);
-
-    $paginator = $intimaai->andamentosProcessuaisResources->paginate();
-    $paginator->getPage(1);
-
-    dump($paginator->getCollection());
 }
 catch (APIRequestException $exception)
 {

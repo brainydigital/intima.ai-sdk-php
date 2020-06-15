@@ -15,6 +15,33 @@ Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **id** | **int**| é o id referente ao protocolo no Intima.ai | [obrigatório]
 
+### Exemplos
+```php
+<?php
+
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use Intimaai\Intimaai;
+use Intimaai\API\APIRequestException;
+
+try 
+{
+    $intimaai = new Intimaai('your_api_token');
+
+    $resultById = $intimaai->protocolosProcessuaisResources->consultarPorId(45217);
+    dump($resultById);
+}
+catch (APIRequestException $exception)
+{
+    dump($exception->toJson());
+}
+catch (\Exception $exception)
+{
+    dump($exception->getMessage());
+}
+?>
+```
+
 # **cadastrarNovoProtocolo**
 
 ### Parametros
@@ -31,16 +58,12 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 use Intimaai\Intimaai;
 use Intimaai\API\APIRequestException;
-use Intimaai\Models\Peticao;
 use Intimaai\Models\Documento;
 use Intimaai\Models\ProtocoloProcessual;
 
 try 
 {
     $intimaai = new Intimaai('your_api_token');
-
-    $resultById = $intimaai->protocolosProcessuaisResources->consultarPorId(45217);
-    dump($resultById);
     
 //    $peticao = new Peticao('/path/to/doc.pdf', 0, 'doc');
     $doc = new Documento('/path/to/anexo.pdf', 0, 'anexo', 1);
@@ -48,11 +71,6 @@ try
 
     $resultNew = $intimaai->protocolosProcessuaisResources->cadastrarNovoProtocolo($protocol);
     dump($resultNew);
-
-    $paginator = $intimaai->protocolosProcessuaisResources->paginate();
-    $paginator->getPage(1);
-
-    dump($paginator->getCollection());
 }
 catch (APIRequestException $exception)
 {

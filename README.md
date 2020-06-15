@@ -43,7 +43,7 @@ Baixe os arquivos e dê o include do `autoload.php`:
 
 ## Começando
 
-Após seguir os passos da [instalação](#Instalação):
+Após seguir os passos da [instalação](#Instalação). Por exemplo, para realizar uma cópia processual:
 
 ```php
 <?php
@@ -58,19 +58,46 @@ try
 {
     $intimaai = new Intimaai('your_api_token');
 
-    $copyById = $intimaai->copiasProcessuaisResources->consultarPorId(45217);
-    dump($copyById);
-
     $copy = new CopiaProcessual('00000000000000000000', 120);
     $newCopy = $intimaai->copiasProcessuaisResources->cadastrarNovaCopia($copy);
     dump($newCopy);
+}
+catch (APIRequestException $exception)
+{
+    dump($exception->toJson());
+}
+catch (\Exception $exception)
+{
+    dump($exception->getMessage());
+}
+?>
+```
+
+## Paginação
+
+A maioria os recursos do SDK (Resources) possuem paginação, que pode ser acessada atravez do 
+[**Paginator**](./docs/models/api/Paginator.md). A utilização da paginação de um recurso é bem simples:
+
+```php
+<?php
+
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use Intimaai\Intimaai;
+use Intimaai\API\APIRequestException;
+
+try 
+{
+    $intimaai = new Intimaai('your_api_token');
 
     $paginator = $intimaai->copiasProcessuaisResources->paginate();
+
     $paginator->getPage(1);
-    //$paginator->nextPage();
-    //$paginator->previousPage();
-    //$paginator->hasNextPage();
-    //$paginator->loadAll();
+    $paginator->nextPage();
+    $paginator->previousPage();
+    $paginator->hasNextPage();
+    $paginator->loadAll();
+
     dump($paginator->getCollection());
 }
 catch (APIRequestException $exception)
