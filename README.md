@@ -75,7 +75,7 @@ catch (\Exception $exception)
 
 ## Paginação
 
-A maioria os recursos do SDK (Resources) possuem paginação, que pode ser acessada atravez do 
+A maioria dos recursos do SDK (Resources) possuem paginação, que pode ser acessada atravez do 
 [**Paginator**](./docs/models/api/Paginator.md). A utilização da paginação de um recurso é bem simples:
 
 ```php
