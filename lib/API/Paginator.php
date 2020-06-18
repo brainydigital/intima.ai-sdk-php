@@ -1,9 +1,6 @@
 <?php
 
-
 namespace Intimaai\API;
-
-use Tightenco\Collect\Support\Collection;
 
 class Paginator
 {
@@ -40,7 +37,7 @@ class Paginator
 
     /**
      * Return a collection of resources
-     * @return Collection
+     * @return array|mixed
      */
     public function getCollection()
     {
