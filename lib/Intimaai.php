@@ -12,8 +12,6 @@ use Intimaai\Resources\ProcessCourse\ProcessCourse;
 use Intimaai\Resources\ProcessInfo\ProcessInfo;
 use Intimaai\Resources\ProcessListener\ProcessListener;
 use Intimaai\Resources\ProcessProtocol\ProcessProtocol;
-use Intimaai\Resources\ProcessProtocol\ProcessProtocolEsaj;
-use Intimaai\Resources\ProcessProtocol\ProcessProtocolPje;
 use Intimaai\Resources\ProcessQualificationProtocol\ProcessQualificationProtocol;
 use Intimaai\Resources\ProcessSearch\ProcessSearch;
 use Intimaai\Resources\Tribunal;
@@ -51,9 +49,7 @@ class Intimaai
 
     public $andamentosProcessuais;
 
-    public $protocolosProcessuaisPje;
-
-    public $protocolosProcessuaisEsaj;
+    public $protocolosProcessuais;
 
     public $consultasProcessuais;
 
@@ -81,8 +77,7 @@ class Intimaai
         $this->protocolosDeHabilitacao = new ProcessQualificationProtocol($this->API, $this->acoes);
         $this->informacoesProcessuais = new ProcessInfo($this->API, $this->acoes);
         $this->andamentosProcessuais = new ProcessCourse($this->API, $this->acoes);
-        $this->protocolosProcessuaisPje = new ProcessProtocolPje($this->API, $this->acoes);
-        $this->protocolosProcessuaisEsaj = new ProcessProtocolEsaj($this->API, $this->acoes);
+        $this->protocolosProcessuais = new ProcessProtocol($this->API, $this->acoes);
         $this->consultasProcessuais = new ProcessSearch($this->API, $this->acoes);
     }
 

@@ -58,9 +58,9 @@ try
 {
     $intimaai = new Intimaai('api_token');
 
-    $copy = new CopiaProcessual('00000000000000000000', 120);
-    $newCopy = $intimaai->copiasProcessuais->cadastrarNovaCopia($copy);
-    dump($newCopy);
+    $copiaProcessual = new CopiaProcessual('00000000000000000000', 120);
+    $resultado = $intimaai->copiasProcessuais->cadastrarNovaCopia($copiaProcessual);
+    dump($resultado);
 }
 catch (APIRequestException $exception)
 {
@@ -88,17 +88,17 @@ use Intimaai\API\APIRequestException;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $paginator = $intimaai->copiasProcessuais->paginar();
+    $paginacao = $intimaai->copiasProcessuais->paginar();
 
-    $paginator->obterPagina(1);
-    $paginator->proximaPagina();
-    $paginator->paginaAnterior();
-    $paginator->existeProximaPagina();
-    $paginator->carregarTudo();
+    $paginacao->obterPagina(1);
+    $paginacao->proximaPagina();
+    $paginacao->paginaAnterior();
+    $paginacao->existeProximaPagina();
+    $paginacao->carregarTudo();
 
-    dump($paginator->obterColecao());
+    dump($paginacao->obterColecao());
 }
 catch (APIRequestException $exception)
 {
@@ -115,7 +115,7 @@ catch (\Exception $exception)
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 
-Resource | Descrição
+Recurso | Descrição
 ------------ | -------------
 [**autenticacoes**](docs/resources/autenticacoesResources.md#autenticacoes) | Contém todos os endpoints/métodos para as autenticações
 [**tribunais**](docs/resources/tribunaisResources.md#tribunais) | Contém todos os endpoints/métodos para os tribunais
@@ -130,8 +130,7 @@ Resource | Descrição
 [**protocolosDeHabilitacao**](docs/resources/protocolosDeHabilitacaoResources.md#protocolosDeHabilitacao) | Contém todos os endpoints/métodos para os protocolos de habilitação
 [**informacoesProcessuais**](docs/resources/informacoesProcessuaisResources.md#informacoesProcessuais) | Contém todos os endpoints/métodos para as informações processuais
 [**andamentosProcessuais**](docs/resources/andamentosProcessuaisResources.md#andamentosProcessuais) | Contém todos os endpoints/métodos para os andamentos processuais
-[**protocolosProcessuaisPje**](docs/resources/protocolosProcessuaisPjeResources.md#protocolosProcessuaisPje) | Contém todos os endpoints/métodos para os protocolos no PJE
-[**protocolosProcessuaisEsaj**](docs/resources/protocolosProcessuaisEsajResources.md#protocolosProcessuaisEsaj) | Contém todos os endpoints/métodos para os protocolos no ESAJ
+[**protocolosProcessuais**](docs/resources/protocolosProcessuaisResources.md#protocolosProcessuais) | Contém todos os endpoints/métodos para os protocolos
 [**consultasProcessuais**](docs/resources/consultasProcessuaisResources.md#consultasProcessuais) | Contém todos os endpoints/métodos para consultas processuais e pré-análises
 
 
