@@ -1,11 +1,11 @@
-# **copiasProcessuaisResources**
+# **copiasProcessuais**
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
-[**consultarPorId**](copiasProcessuaisResources.md#consultarPorId) | **GET** /process-copies/{id} | Visualiza as informações processuais por id
-[**cadastrarNovaCopia**](copiasProcessuaisResources.md#cadastrarNovaCopia) | **POST** /actions/process-copies | Cadastra uma nova cópia processual
+[**consultarPorId**](copiasProcessuaisResources.md#consultarPorId) | **GET** /copias-processuais/{id} | Visualiza as informações processuais por id
+[**cadastrarNovaCopia**](copiasProcessuaisResources.md#cadastrarNovaCopia) | **POST** /acoes/copias-processuais | Cadastra uma nova cópia processual
 
 # **consultarPorId**
 
@@ -26,10 +26,10 @@ use Intimaai\API\APIRequestException;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $resultById = $intimaai->copiasProcessuaisResources->consultarPorId(45217);
-    dump($resultById);
+    $resultado = $intimaai->copiasProcessuais->consultarPorId(45217);
+    dump($resultado);
 }
 catch (APIRequestException $exception)
 {
@@ -48,7 +48,7 @@ catch (\Exception $exception)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**copy** | [**CopiaProcessual**](../models/copy/CopiaProcessual.md) | parametros necessários para a criação de um novo registro | [obrigatório]
+**copiaProcessual** | [**CopiaProcessual**](../models/copy/CopiaProcessual.md) | parametros necessários para a criação de um novo registro | [obrigatório]
 
 ### Exemplos
 ```php
@@ -62,11 +62,11 @@ use Intimaai\Models\CopiaProcessual;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $newCopy = new CopiaProcessual('0000000-00.0000.0.00.0000', 1);
-    $resultNew = $intimaai->copiasProcessuaisResources->cadastrarNovaCopia($newCopy);
-    dump($resultNew);
+    $copia = new CopiaProcessual('0000000-00.0000.0.00.0000', 1);
+    $resultado = $intimaai->copiasProcessuais->cadastrarNovaCopia($copia);
+    dump($resultado);
 }
 catch (APIRequestException $exception)
 {

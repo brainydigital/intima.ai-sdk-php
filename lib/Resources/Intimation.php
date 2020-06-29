@@ -3,6 +3,7 @@
 namespace Intimaai\Resources;
 
 
+use Exception;
 use Intimaai\API\API;
 use Intimaai\API\APIRequestException;
 use Intimaai\API\Resource;
@@ -11,7 +12,7 @@ class Intimation extends Resource
 {
     public function getResourceEndpoint()
     {
-        return 'intimations';
+        return 'intimacoes';
     }
 
     public function __construct(API $api)
@@ -20,11 +21,11 @@ class Intimation extends Resource
     }
 
     /**
-     * Get a intimation by id
+     * Obtem uma intimações pelo id
      * @param int $id
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
     public function consultarPorId($id)
     {
@@ -36,16 +37,16 @@ class Intimation extends Resource
     }
 
     /**
-     * Mark a intimation as revised
-     * @param int $intimationId
+     * Marca uma intimação como revisada
+     * @param int $intimacaoId
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
-    public function marcarIntimacaoComoRevisada($intimationId)
+    public function marcarIntimacaoComoRevisada($intimacaoId)
     {
         $options = [
-            'path' => $this->getResourceEndpoint() . '/' . $intimationId . '/mark-as-revised',
+            'path' => $this->getResourceEndpoint() . '/' . $intimacaoId . '/marcar-como-revisada',
             'method' => API::PUT
         ];
         return $this->getAPI()->request($options, true);

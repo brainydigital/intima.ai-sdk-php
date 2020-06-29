@@ -2,6 +2,7 @@
 
 namespace Intimaai\Resources\ProcessCopy;
 
+use Exception;
 use Intimaai\API\API;
 use Intimaai\API\APIRequestException;
 use Intimaai\API\Resource;
@@ -14,7 +15,7 @@ class ProcessCopy extends Resource
 
     function getResourceEndpoint()
     {
-        return 'process-copies';
+        return 'copias-processuais';
     }
 
     public function __construct(API $api, Action $action)
@@ -24,11 +25,11 @@ class ProcessCopy extends Resource
     }
 
     /**
-     * Get a copy by id
+     * Obtem uma cópia processual pelo id
      * @param int $id
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
     public function consultarPorId($id)
     {
@@ -40,20 +41,20 @@ class ProcessCopy extends Resource
     }
 
     /**
-     * Make a new copy
-     * @param CopiaProcessual $copy
+     * Cadastra uma nova cópia processual
+     * @param CopiaProcessual $copiaProcessual
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
-    public function cadastrarNovaCopia(CopiaProcessual $copy)
+    public function cadastrarNovaCopia(CopiaProcessual $copiaProcessual)
     {
         $options = [
             'path' => $this->action->getResourceEndpoint() . '/' . $this->getResourceEndpoint(),
             'method' => API::POST,
             'body' => [
-                'process_number' => $copy->getProcessNumber(),
-                'auth_id' => $copy->getAuthId()
+                'process_number' => $copiaProcessual->getProcessNumber(),
+                'auth_id' => $copiaProcessual->getAuthId()
             ]
         ];
         return $this->getAPI()->request($options, true);

@@ -2,6 +2,7 @@
 
 namespace Intimaai\Resources\Auth;
 
+use Exception;
 use Intimaai\API\API;
 use Intimaai\API\APIRequestException;
 use Intimaai\API\Resource;
@@ -12,7 +13,7 @@ class Auth extends Resource
 {
     public function getResourceEndpoint()
     {
-        return 'auths';
+        return 'autenticacoes';
     }
 
     public function __construct(API $api)
@@ -21,11 +22,11 @@ class Auth extends Resource
     }
 
     /**
-     * Get a auth by id
+     * Obtem uma autenticação por id
      * @param int $id
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
     public function consultarPorId($id)
     {
@@ -37,58 +38,60 @@ class Auth extends Resource
     }
 
     /**
-     * Make a new auth
-     * @param NovaAutenticacao $auth
+     * Cadastra uma nova autenticação
+     * @param NovaAutenticacao $autenticacao
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
-    public function cadastrarNovaAutenticacao(NovaAutenticacao $auth)
+    public function cadastrarNovaAutenticacao(NovaAutenticacao $autenticacao)
     {
         $options = [
             'path' => $this->getResourceEndpoint(),
             'method' => API::POST,
             'body' => [
-                'process_number' => $copy->getProcessNumber(),
-                'auth_id' => $copy->getAuthId()
+                'tribunal_id' => $autenticacao->getTribunalId(),
+                'user_certificate_id' => $autenticacao->getCertificadoId(),
+                'login' => $autenticacao->getLogin(),
+                'password' => $autenticacao->getPassword()
             ]
         ];
         return $this->getAPI()->request($options, true);
     }
 
     /**
-     * Enable intimations capture for a auth
-     * @param int $authId
-     * @param AtivarIntimacoesParaAutenticacao $enableAuth
+     * Ativa a captura de intimações para uma autenticação
+     * @param int $autenticacaoId
+     * @param AtivarIntimacoesParaAutenticacao $ativarAutenticacao
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
-    public function ativarCapturaDeIntimacoesParaAutenticacao($authId, AtivarIntimacoesParaAutenticacao $enableAuth)
+    public function ativarCapturaDeIntimacoesParaAutenticacao($autenticacaoId, AtivarIntimacoesParaAutenticacao $ativarAutenticacao)
     {
         $options = [
-            'path' => $this->getResourceEndpoint() . '/' . $authId . '/intimations/enable',
+            'path' => $this->getResourceEndpoint() . '/' . $autenticacaoId . '/intimacoes/ativar',
             'method' => API::PUT,
             'body' => [
-                'tabs' => $enableAuth->getTabs(),
-                'week_days' => $enableAuth->getWeekDays(),
-                'day_hour' => $enableAuth->getDayHour()
+                'tabs' => $ativarAutenticacao->getTabs(),
+                'week_days' => $ativarAutenticacao->getWeekDays(),
+                'day_hour' => $ativarAutenticacao->getDayHour()
             ]
         ];
         return $this->getAPI()->request($options, true);
     }
 
     /**
-     * Disable intimations capture for a auth
-     * @param int $authId
+     * Desativa a captura de intimações para uma autenticação
+     * @param int $autenticacaoId
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
-    public function desativarCapturaDeIntimacoesParaAutenticacao($authId)
+    public function desativarCapturaDeIntimacoesParaAutenticacao($autenticacaoId)
     {
         $options = [
-            'path' => $this->getResourceEndpoint() . '/' . $authId . '/intimations/disable',
+            'path' => $this->getResourceEndpoint() . '/' . $autenticacaoId . '/intimacoes/desativar',
             'method' => API::PUT
         ];
         return $this->getAPI()->request($options, true);

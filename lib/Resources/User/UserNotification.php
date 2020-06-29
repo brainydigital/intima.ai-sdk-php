@@ -2,6 +2,7 @@
 
 namespace Intimaai\Resources\User;
 
+use Exception;
 use Intimaai\API\API;
 use Intimaai\API\APIRequestException;
 use Intimaai\API\Resource;
@@ -10,7 +11,7 @@ class UserNotification extends Resource
 {
     function getResourceEndpoint()
     {
-        return 'user-notifications';
+        return 'usuarios-notificacoes';
     }
 
     public function __construct(API $api)
@@ -19,11 +20,11 @@ class UserNotification extends Resource
     }
 
     /**
-     * Get a email by id
+     * Obtem um email cadastrado para receber notificações pelo id
      * @param int $id
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
     public function consultarPorId($id)
     {
@@ -35,11 +36,11 @@ class UserNotification extends Resource
     }
 
     /**
-     * Make a new email for notifications
+     * Cadastra um novo email para receber notificações
      * @param string $email
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
     public function cadastrarNovoEmailParaNotificacoes($email)
     {
@@ -54,17 +55,17 @@ class UserNotification extends Resource
     }
 
     /**
-     * Update a email for notifications
-     * @param int $userEmailNotificationId
+     * Atualiza um email para receber notificações pelo id
+     * @param int $emailNotificaoId
      * @param string $email
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
-    public function atualizarEmailParaNotificacoes($userEmailNotificationId, $email)
+    public function atualizarEmailParaNotificacoes($emailNotificaoId, $email)
     {
         $options = [
-            'path' => $this->getResourceEndpoint() . '/' . $userEmailNotificationId,
+            'path' => $this->getResourceEndpoint() . '/' . $emailNotificaoId,
             'method' => API::PUT,
             'body' => [
                 'email' => $email
@@ -74,16 +75,16 @@ class UserNotification extends Resource
     }
 
     /**
-     * Delete a email for notifications
-     * @param int $userEmailNotificationId
+     * Deleta um email cadastrado pelo id, que deixara de receber notificações
+     * @param int $emailNotificaoId
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
-    public function excluirEmailParaNotificacoes($userEmailNotificationId)
+    public function excluirEmailParaNotificacoes($emailNotificaoId)
     {
         $options = [
-            'path' => $this->getResourceEndpoint() . '/' . $userEmailNotificationId,
+            'path' => $this->getResourceEndpoint() . '/' . $emailNotificaoId,
             'method' => API::DELETE
         ];
         return $this->getAPI()->request($options, true);

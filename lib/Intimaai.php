@@ -13,6 +13,7 @@ use Intimaai\Resources\ProcessInfo\ProcessInfo;
 use Intimaai\Resources\ProcessListener\ProcessListener;
 use Intimaai\Resources\ProcessProtocol\ProcessProtocol;
 use Intimaai\Resources\ProcessProtocol\ProcessProtocolEsaj;
+use Intimaai\Resources\ProcessProtocol\ProcessProtocolPje;
 use Intimaai\Resources\ProcessQualificationProtocol\ProcessQualificationProtocol;
 use Intimaai\Resources\ProcessSearch\ProcessSearch;
 use Intimaai\Resources\Tribunal;
@@ -24,37 +25,37 @@ class Intimaai
 {
     private $API;
 
-    public $autenticacoesResources;
+    public $autenticacoes;
 
-    public $tribunaisResources;
+    public $tribunais;
 
-    public $certificadosResources;
+    public $certificados;
 
-    public $intimacoesResources;
+    public $intimacoes;
 
-    public $usuariosResources;
+    public $usuarios;
 
-    public $notificacoesResources;
+    public $notificacoes;
 
-    public $webhooksResources;
+    public $webhooks;
 
-    public $acoesResources;
+    public $acoes;
 
-    public $copiasProcessuaisResources;
+    public $copiasProcessuais;
 
-    public $escutasProcessuaisResources;
+    public $escutasProcessuais;
 
-    public $protocolosDeHabilitacaoResources;
+    public $protocolosDeHabilitacao;
 
-    public $informacoesProcessuaisResources;
+    public $informacoesProcessuais;
 
-    public $andamentosProcessuaisResources;
+    public $andamentosProcessuais;
 
-    public $protocolosProcessuaisResources;
+    public $protocolosProcessuaisPje;
 
-    public $protocolosProcessuaisEsajResources;
+    public $protocolosProcessuaisEsaj;
 
-    public $consultasProcessuaisResources;
+    public $consultasProcessuais;
 
     /**
      * Intimaai constructor.
@@ -66,23 +67,23 @@ class Intimaai
     public function __construct($apiKey, $proxy = null, $timeout = null, $debug = false)
     {
         $this->API = new API($apiKey, $proxy, $timeout, $debug);
-        $this->autenticacoesResources = new Auth($this->API);
-        $this->tribunaisResources = new Tribunal($this->API);
-        $this->certificadosResources = new Certificate($this->API);
-        $this->intimacoesResources = new Intimation($this->API);
-        $this->usuariosResources = new User($this->API);
-        $this->notificacoesResources = new UserNotification($this->API);
-        $this->webhooksResources = new UserWebhook($this->API);
+        $this->autenticacoes = new Auth($this->API);
+        $this->tribunais = new Tribunal($this->API);
+        $this->certificados = new Certificate($this->API);
+        $this->intimacoes = new Intimation($this->API);
+        $this->usuarios = new User($this->API);
+        $this->notificacoes = new UserNotification($this->API);
+        $this->webhooks = new UserWebhook($this->API);
 
-        $this->acoesResources = new Action($this->API);
-        $this->copiasProcessuaisResources = new ProcessCopy($this->API, $this->acoesResources);
-        $this->escutasProcessuaisResources = new ProcessListener($this->API, $this->acoesResources);
-        $this->protocolosDeHabilitacaoResources = new ProcessQualificationProtocol($this->API, $this->acoesResources);
-        $this->informacoesProcessuaisResources = new ProcessInfo($this->API, $this->acoesResources);
-        $this->andamentosProcessuaisResources = new ProcessCourse($this->API, $this->acoesResources);
-        $this->protocolosProcessuaisResources = new ProcessProtocol($this->API, $this->acoesResources);
-        $this->protocolosProcessuaisEsajResources = new ProcessProtocolEsaj($this->API, $this->acoesResources);
-        $this->consultasProcessuaisResources = new ProcessSearch($this->API, $this->acoesResources);
+        $this->acoes = new Action($this->API);
+        $this->copiasProcessuais = new ProcessCopy($this->API, $this->acoes);
+        $this->escutasProcessuais = new ProcessListener($this->API, $this->acoes);
+        $this->protocolosDeHabilitacao = new ProcessQualificationProtocol($this->API, $this->acoes);
+        $this->informacoesProcessuais = new ProcessInfo($this->API, $this->acoes);
+        $this->andamentosProcessuais = new ProcessCourse($this->API, $this->acoes);
+        $this->protocolosProcessuaisPje = new ProcessProtocolPje($this->API, $this->acoes);
+        $this->protocolosProcessuaisEsaj = new ProcessProtocolEsaj($this->API, $this->acoes);
+        $this->consultasProcessuais = new ProcessSearch($this->API, $this->acoes);
     }
 
     /**

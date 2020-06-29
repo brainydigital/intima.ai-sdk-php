@@ -2,20 +2,20 @@
 
 namespace Intimaai\Resources\ProcessProtocol;
 
+use Exception;
 use Intimaai\API\API;
 use Intimaai\API\APIRequestException;
 use Intimaai\API\Resource;
 use Intimaai\Models\ProtocoloProcessual;
 use Intimaai\Resources\Action;
-use Intimaai\Resources\ProcessCopy\Copy;
 
-class ProcessProtocol extends Resource
+class ProcessProtocolPje extends Resource
 {
     protected $action;
 
     function getResourceEndpoint()
     {
-        return 'process-protocols';
+        return 'pje/protocolos-processuais';
     }
 
     public function __construct(API $api, Action $action)
@@ -25,11 +25,11 @@ class ProcessProtocol extends Resource
     }
 
     /**
-     * Get a protocol by id
+     * Obtem um protocolo processual pelo id
      * @param int $id
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
     public function consultarPorId($id)
     {
@@ -41,21 +41,21 @@ class ProcessProtocol extends Resource
     }
 
     /**
-     * Make a new protocol
-     * @param ProtocoloProcessual $protocol
+     * Cadastra um novo protocolo processual para o PJE
+     * @param ProtocoloProcessual $protocoloProcessual
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
-    public function cadastrarNovoProtocolo(ProtocoloProcessual $protocol)
+    public function cadastrarNovoProtocolo(ProtocoloProcessual $protocoloProcessual)
     {
-        $body = $this->serialize($protocol);
+        $body = $this->serialize($protocoloProcessual);
 
         $options = [
             'path' => $this->action->getResourceEndpoint() . '/' . $this->getResourceEndpoint(),
             'method' => API::POST,
             'options' => [
-                'is_multipart' => ($protocol->getDocumentos() || $protocol->getPeticao())
+                'is_multipart' => ($protocoloProcessual->getDocumentos() || $protocoloProcessual->getPeticao())
             ],
             'body' => $body
         ];

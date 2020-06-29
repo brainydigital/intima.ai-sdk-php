@@ -17,6 +17,6 @@ class ResourceResult extends Resource
     public function __construct(API $api, Resource $resource, $resourceId)
     {
         parent::__construct($api);
-        $this->resourcePath = $resource->getResourceEndpoint() . '/' . $resourceId . '/results';
+        $this->resourcePath = $resource->getResourceEndpoint() . '/' . $resourceId . '/resultados';
     }
 }

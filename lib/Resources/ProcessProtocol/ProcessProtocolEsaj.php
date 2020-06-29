@@ -2,6 +2,7 @@
 
 namespace Intimaai\Resources\ProcessProtocol;
 
+use Exception;
 use Intimaai\API\API;
 use Intimaai\API\APIRequestException;
 use Intimaai\API\Resource;
@@ -15,7 +16,7 @@ class ProcessProtocolEsaj extends Resource
 
     function getResourceEndpoint()
     {
-        return 'process-protocols-esaj';
+        return 'esaj/protocolos-processuais';
     }
 
     public function __construct(API $api, Action $action)
@@ -25,20 +26,20 @@ class ProcessProtocolEsaj extends Resource
     }
 
     /**
-     * Make a new protocol for ESAJ, first step
-     * @param PrimeiraEtapaParaProtocoloProcessualEsaj $protocol
+     * Cadastra um novo protocolo para o ESAJ, está é a primeira etapa (de duas etapas) para cadastrar um novo protocolo no Intima.ai
+     * @param PrimeiraEtapaParaProtocoloProcessualEsaj $primeiraEtapaParaProtocoloProcessualEsaj
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
-    public function cadastrarPrimeiraEtapaParaNovoProtocoloEsaj(PrimeiraEtapaParaProtocoloProcessualEsaj $protocol)
+    public function cadastrarPrimeiraEtapaParaNovoProtocoloEsaj(PrimeiraEtapaParaProtocoloProcessualEsaj $primeiraEtapaParaProtocoloProcessualEsaj)
     {
         $options = [
             'path' => $this->action->getResourceEndpoint() . '/' . $this->getResourceEndpoint(),
             'method' => API::POST,
             'body' => [
-                'process_number' => $protocol->getProcessNumber(),
-                'auth_id' => $protocol->getAuthId()
+                'process_number' => $primeiraEtapaParaProtocoloProcessualEsaj->getProcessNumber(),
+                'auth_id' => $primeiraEtapaParaProtocoloProcessualEsaj->getAuthId()
             ]
         ];
 
@@ -46,19 +47,19 @@ class ProcessProtocolEsaj extends Resource
     }
 
     /**
-     * Make a new protocol, second and last step
-     * @param int $protocolId
-     * @param SegundaEtapaParaProtocoloProcessualEsaj $protocol
+     * Cadastra um novo protocolo para o ESAJ, está é a segunda e ultima etapa para cadastrar um novo protocolo no Intima.ai
+     * @param int $protocoloProcessualId
+     * @param SegundaEtapaParaProtocoloProcessualEsaj $segundaEtapaParaProtocoloProcessualEsaj
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
-    public function cadastrarSegundaEtapaParaNovoProtocoloEsaj($protocolId, SegundaEtapaParaProtocoloProcessualEsaj $protocol)
+    public function cadastrarSegundaEtapaParaNovoProtocoloEsaj($protocoloProcessualId, SegundaEtapaParaProtocoloProcessualEsaj $segundaEtapaParaProtocoloProcessualEsaj)
     {
-        $body = $this->serialize($protocol);
+        $body = $this->serialize($segundaEtapaParaProtocoloProcessualEsaj);
 
         $options = [
-            'path' => $this->action->getResourceEndpoint() . '/' . $this->getResourceEndpoint() . '/' . $protocolId,
+            'path' => $this->action->getResourceEndpoint() . '/' . $this->getResourceEndpoint() . '/' . $protocoloProcessualId,
             'method' => API::POST,
             'options' => [
                 'is_multipart' => true

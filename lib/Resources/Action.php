@@ -2,6 +2,7 @@
 
 namespace Intimaai\Resources;
 
+use Exception;
 use Intimaai\API\API;
 use Intimaai\API\APIRequestException;
 use Intimaai\API\Paginator;
@@ -21,7 +22,7 @@ class Action extends Resource
 
     function getResourceEndpoint()
     {
-        return 'actions';
+        return 'acoes';
     }
 
     public function __construct(API $api)
@@ -34,7 +35,7 @@ class Action extends Resource
      * @param int $id
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
     public function consultarPorId($id)
     {
@@ -47,13 +48,13 @@ class Action extends Resource
 
     /**
      * Get action results
-     * @param int $actionId
+     * @param int $acaoId
      * @return Paginator
-     * @throws \Exception
+     * @throws Exception
      */
-    public function consultarResultadosDaAcao($actionId)
+    public function consultarResultadosDaAcao($acaoId)
     {
-        $resource = new ResourceResult($this->getAPI(), $this, $actionId);
-        return $resource->paginate();
+        $resource = new ResourceResult($this->getAPI(), $this, $acaoId);
+        return $resource->paginar();
     }
 }

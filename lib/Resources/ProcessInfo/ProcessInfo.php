@@ -2,6 +2,7 @@
 
 namespace Intimaai\Resources\ProcessInfo;
 
+use Exception;
 use Intimaai\API\API;
 use Intimaai\API\APIRequestException;
 use Intimaai\API\Resource;
@@ -14,7 +15,7 @@ class ProcessInfo extends Resource
 
     function getResourceEndpoint()
     {
-        return 'process-infos';
+        return 'informacoes-processuais';
     }
 
     public function __construct(API $api, Action $action)
@@ -24,11 +25,11 @@ class ProcessInfo extends Resource
     }
 
     /**
-     * Get a process information by id
+     * Obtem uma informação processual pelo id
      * @param int $id
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
     public function consultarPorId($id)
     {
@@ -40,20 +41,20 @@ class ProcessInfo extends Resource
     }
 
     /**
-     * Make a new process information
-     * @param InformacaoProcessual $process
+     * Cadastra uma nova informação processual
+     * @param InformacaoProcessual $informacaoProcessual
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
-    public function capturarNovaInformacaoProcessual(InformacaoProcessual $process)
+    public function capturarNovaInformacaoProcessual(InformacaoProcessual $informacaoProcessual)
     {
         $options = [
             'path' => $this->action->getResourceEndpoint() . '/' . $this->getResourceEndpoint(),
             'method' => API::POST,
             'body' => [
-                'process_number' => $process->getProcessNumber(),
-                'auth_id' => $process->getAuthId()
+                'process_number' => $informacaoProcessual->getProcessNumber(),
+                'auth_id' => $informacaoProcessual->getAuthId()
             ]
         ];
         return $this->getAPI()->request($options, true);

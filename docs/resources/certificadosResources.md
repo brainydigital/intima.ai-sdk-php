@@ -1,13 +1,13 @@
-# **certificadosResources**
+# **certificados**
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
-[**consultarPorId**](certificadosResources.md#consultarPorId) | **GET** /certificates/{id} | Visualiza um certificado
-[**cadastrarNovoCertificado**](certificadosResources.md#cadastrarNovoCertificado) | **POST** /certificates | Cadastra um novo certificado
-[**atualizarCertificado**](certificadosResources.md#atualizarCertificado) | **POST** /certificates/{certificate_id} | Atualiza um certificado
-[**excluirCertificado**](certificadosResources.md#excluirCertificado) | **DELETE** /certificates/{certificate_id} | Exclui um certificado
+[**consultarPorId**](certificadosResources.md#consultarPorId) | **GET** /certificados/{id} | Visualiza um certificado
+[**cadastrarNovoCertificado**](certificadosResources.md#cadastrarNovoCertificado) | **POST** /certificados | Cadastra um novo certificado
+[**atualizarCertificado**](certificadosResources.md#atualizarCertificado) | **POST** /certificados/{certificado_id} | Atualiza um certificado
+[**excluirCertificado**](certificadosResources.md#excluirCertificado) | **DELETE** /certificados/{certificado_id} | Exclui um certificado
 
 # **consultarPorId**
 
@@ -28,10 +28,10 @@ use Intimaai\API\APIRequestException;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $resultById = $intimaai->certificadosResources->consultarPorId(45217);
-    dump($resultById);
+    $resultado = $intimaai->certificados->consultarPorId(45217);
+    dump($resultado);
 }
 catch (APIRequestException $exception)
 {
@@ -50,7 +50,7 @@ catch (\Exception $exception)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**certificate** | [**Certificado**](../models/certificate/Certificado.md)| parametros necessários para a criação de um novo registro | [obrigatório]
+**certificado** | [**Certificado**](../models/certificate/Certificado.md)| parametros necessários para a criação de um novo registro | [obrigatório]
 
 ### Exemplos
 ```php
@@ -64,11 +64,12 @@ use Intimaai\Models\Certificado;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $newCert = new Certificado('/path/to/file.pfx', '12345678');
-    $resultNew = $intimaai->certificadosResources->cadastrarNovoCertificado($newCert);
-    dump($resultNew);
+    $certificado = new Certificado('/path/to/file.pfx', '12345678');
+    $resultado = $intimaai->certificados->cadastrarNovoCertificado($certificado);
+
+    dump($resultado);
 }
 catch (APIRequestException $exception)
 {
@@ -87,8 +88,8 @@ catch (\Exception $exception)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**certificateId** | **int**| é o id referente ao certificado cadastrado no Intima.ai | [obrigatório]
-**certificate** | [**Certificado**](../models/certificate/Certificado.md)| parametros necessários para a atualização do registro | [obrigatório]
+**certificadoId** | **int**| é o id referente ao certificado cadastrado no Intima.ai | [obrigatório]
+**certificado** | [**Certificado**](../models/certificate/Certificado.md)| parametros necessários para a atualização do registro | [obrigatório]
 
 ### Exemplos
 ```php
@@ -102,11 +103,11 @@ use Intimaai\Models\Certificado;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
     
-    $cert = new Certificado('/path/to/file.pfx', '12345678');
-    $resultUpdated = $intimaai->certificadosResources->atualizarCertificado(1, $cert);
-    dump($resultUpdated);
+    $certificado = new Certificado('/path/to/file.pfx', '12345678');
+    $resultado = $intimaai->certificados->atualizarCertificado(1, $certificado);
+    dump($resultado);
 }
 catch (APIRequestException $exception)
 {
@@ -125,7 +126,7 @@ catch (\Exception $exception)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**certificateId** | **int**| é o id referente ao certificado cadastrado no Intima.ai | [obrigatório]
+**certificadoId** | **int**| é o id referente ao certificado cadastrado no Intima.ai | [obrigatório]
 
 ### Exemplos
 ```php
@@ -138,10 +139,10 @@ use Intimaai\API\APIRequestException;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $resultDelete = $intimaai->certificadosResources->excluirCertificado(1);
-    dump($resultDelete);
+    $resultado = $intimaai->certificados->excluirCertificado(1);
+    dump($resultado);
 }
 catch (APIRequestException $exception)
 {

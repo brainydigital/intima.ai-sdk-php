@@ -1,11 +1,11 @@
-# **acoesResources**
+# **acoes**
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
-[**consultarPorId**](acoesResources.md#consultarPorId) | **GET** /actions/{id} | Visualiza uma ação pelo id
-[**consultarResultadosDaAcao**](acoesResources.md#consultarResultadosDaAcao) | **GET** /actions/{action_id}/results | Retorna um [**Paginator**](../models/api/Paginator.md) com o resultados de uma ação
+[**consultarPorId**](acoesResources.md#consultarPorId) | **GET** /acoes/{id} | Visualiza uma ação pelo id
+[**consultarResultadosDaAcao**](acoesResources.md#consultarResultadosDaAcao) | **GET** /acoes/{acao_id}/resultados | Retorna um [**Paginator**](../models/api/Paginator.md) com o resultados de uma ação
 
 # **consultarPorId**
 
@@ -26,10 +26,10 @@ use Intimaai\API\APIRequestException;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $result = $intimaai->acoesResources->consultarPorId(45217);
-    dump($result);
+    $resultados = $intimaai->acoes->consultarPorId(45217);
+    dump($resultados);
 }
 catch (APIRequestException $exception)
 {
@@ -48,7 +48,7 @@ catch (\Exception $exception)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**actionId** | **int**| é o id referente a ação no Intima.ai | [obrigatório]
+**acaoId** | **int**| é o id referente a ação no Intima.ai | [obrigatório]
 
 ### Exemplos
 ```php
@@ -61,11 +61,12 @@ use Intimaai\API\APIRequestException;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $resultsPaginator = $intimaai->acoesResources->consultarResultadosDaAcao(45217);
-    $resultsPaginator->getPage(1);
-    dump($resultsPaginator->getCollection());
+    $resultados = $intimaai->acoes->consultarResultadosDaAcao(45217);
+    $resultados->obterPagina(1);
+
+    dump($resultados->obterColecao());
 }
 catch (APIRequestException $exception)
 {

@@ -16,7 +16,7 @@ Este repositório é a implementação da API do [Intima.ai](https://app.intima.
 
 - Versão da API: 2.0.0
 
-- Documentação da API: [API de Integração](https://documenter.getpostman.com/view/2116715/SzmmVuso?version=latest)
+- Referência da API: [Referência completa da API](https://documenter.getpostman.com/view/2116715/SzmmVuso?version=latest)
 
 ## Requerimentos
 
@@ -56,10 +56,10 @@ use Intimaai\Models\CopiaProcessual;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
     $copy = new CopiaProcessual('00000000000000000000', 120);
-    $newCopy = $intimaai->copiasProcessuaisResources->cadastrarNovaCopia($copy);
+    $newCopy = $intimaai->copiasProcessuais->cadastrarNovaCopia($copy);
     dump($newCopy);
 }
 catch (APIRequestException $exception)
@@ -75,7 +75,7 @@ catch (\Exception $exception)
 
 ## Paginação
 
-A maioria dos recursos do SDK (Resources) possuem paginação, que pode ser acessada atravez do 
+A maioria dos recursos do SDK possuem paginação, que pode ser acessada atravez da classe 
 [**Paginator**](./docs/models/api/Paginator.md). A utilização da paginação de um recurso é bem simples:
 
 ```php
@@ -90,15 +90,15 @@ try
 {
     $intimaai = new Intimaai('your_api_token');
 
-    $paginator = $intimaai->copiasProcessuaisResources->paginate();
+    $paginator = $intimaai->copiasProcessuais->paginar();
 
-    $paginator->getPage(1);
-    $paginator->nextPage();
-    $paginator->previousPage();
-    $paginator->hasNextPage();
-    $paginator->loadAll();
+    $paginator->obterPagina(1);
+    $paginator->proximaPagina();
+    $paginator->paginaAnterior();
+    $paginator->existeProximaPagina();
+    $paginator->carregarTudo();
 
-    dump($paginator->getCollection());
+    dump($paginator->obterColecao());
 }
 catch (APIRequestException $exception)
 {
@@ -117,27 +117,27 @@ Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 
 Resource | Descrição
 ------------ | -------------
-[**autenticacoesResources**](docs/resources/autenticacoesResources.md#autenticacoesResources) | Contém todos os endpoints/métodos para os auths
-[**tribunaisResources**](docs/resources/tribunaisResources.md#tribunaisResources) | Contém todos os endpoints/métodos para os tribunais
-[**certificadosResources**](docs/resources/certificadosResources.md#certificadosResources) | Contém todos os endpoints/métodos para os seus certificados
-[**intimacoesResources**](docs/resources/intimacoesResources.md#intimacoesResources) | Contém todos os endpoints/métodos para intimações capturadas
-[**usuariosResources**](docs/resources/user/usuariosResources.md#usuariosResources) | Contém todos os endpoints/métodos para seu usuário
-[**notificacoesResources**](docs/resources/user/notificacoesResources.md#notificacoesResources) | Contém todos os endpoints/métodos para seu os dependentes do usuário (que irão receber notificações)
-[**webhooksResources**](docs/resources/user/webhooksResources.md#webhooksResources) | Contém todos os endpoints/métodos para os webhooks do usuário
-[**acoesResources**](docs/resources/acoesResources.md#acoesResources) | Contém todos os endpoints/métodos para ações
-[**copiasProcessuaisResources**](docs/resources/copiasProcessuaisResources.md#copiasProcessuaisResources) | Contém todos os endpoints/métodos para as cópias processuais
-[**escutasProcessuaisResources**](docs/resources/escutasProcessuaisResources.md#escutasProcessuaisResources) | Contém todos os endpoints/métodos para as escutas processuais
-[**protocolosDeHabilitacaoResources**](docs/resources/protocolosDeHabilitacaoResources.md#protocolosDeHabilitacaoResources) | Contém todos os endpoints/métodos para os protocolos de habilitação
-[**informacoesProcessuaisResources**](docs/resources/informacoesProcessuaisResources.md#informacoesProcessuaisResources) | Contém todos os endpoints/métodos para as informações processuais
-[**andamentosProcessuaisResources**](docs/resources/andamentosProcessuaisResources.md#andamentosProcessuaisResources) | Contém todos os endpoints/métodos para os andamentos processuais
-[**protocolosProcessuaisResources**](docs/resources/protocolosProcessuaisResources.md#protocolosProcessuaisResources) | Contém todos os endpoints/métodos para os protocolos no PJE
-[**protocolosProcessuaisEsajResources**](docs/resources/protocolosProcessuaisEsajResources.md#protocolosProcessuaisEsajResources) | Contém todos os endpoints/métodos para os protocolos no ESAJ
-[**consultasProcessuaisResources**](docs/resources/consultasProcessuaisResources.md#consultasProcessuaisResources) | Contém todos os endpoints/métodos para consultas processuais e pré-análises
+[**autenticacoes**](docs/resources/autenticacoesResources.md#autenticacoes) | Contém todos os endpoints/métodos para as autenticações
+[**tribunais**](docs/resources/tribunaisResources.md#tribunais) | Contém todos os endpoints/métodos para os tribunais
+[**certificados**](docs/resources/certificadosResources.md#certificados) | Contém todos os endpoints/métodos para os seus certificados
+[**intimacoes**](docs/resources/intimacoesResources.md#intimacoes) | Contém todos os endpoints/métodos para intimações capturadas
+[**usuarios**](docs/resources/user/usuariosResources.md#usuarios) | Contém todos os endpoints/métodos para seu usuário
+[**notificacoes**](docs/resources/user/notificacoesResources.md#notificacoes) | Contém todos os endpoints/métodos para as notificações do seu usuário
+[**webhooks**](docs/resources/user/webhooksResources.md#webhooks) | Contém todos os endpoints/métodos para os webhooks do usuário
+[**acoes**](docs/resources/acoesResources.md#acoes) | Contém todos os endpoints/métodos para ações que podem ser realizadas no `Intima.ai`
+[**copiasProcessuais**](docs/resources/copiasProcessuaisResources.md#copiasProcessuais) | Contém todos os endpoints/métodos para as cópias processuais
+[**escutasProcessuais**](docs/resources/escutasProcessuaisResources.md#escutasProcessuais) | Contém todos os endpoints/métodos para as escutas processuais
+[**protocolosDeHabilitacao**](docs/resources/protocolosDeHabilitacaoResources.md#protocolosDeHabilitacao) | Contém todos os endpoints/métodos para os protocolos de habilitação
+[**informacoesProcessuais**](docs/resources/informacoesProcessuaisResources.md#informacoesProcessuais) | Contém todos os endpoints/métodos para as informações processuais
+[**andamentosProcessuais**](docs/resources/andamentosProcessuaisResources.md#andamentosProcessuais) | Contém todos os endpoints/métodos para os andamentos processuais
+[**protocolosProcessuaisPje**](docs/resources/protocolosProcessuaisPjeResources.md#protocolosProcessuaisPje) | Contém todos os endpoints/métodos para os protocolos no PJE
+[**protocolosProcessuaisEsaj**](docs/resources/protocolosProcessuaisEsajResources.md#protocolosProcessuaisEsaj) | Contém todos os endpoints/métodos para os protocolos no ESAJ
+[**consultasProcessuais**](docs/resources/consultasProcessuaisResources.md#consultasProcessuais) | Contém todos os endpoints/métodos para consultas processuais e pré-análises
 
 
 ## Documentação para Autenticação
 
-### ApiKeyAuth
+### API Token
 
 - **Tipo**: API Key
 - **Parametro da API**: api_token

@@ -2,6 +2,7 @@
 
 namespace Intimaai\Resources\User;
 
+use Exception;
 use Intimaai\API\API;
 use Intimaai\API\APIRequestException;
 use Intimaai\API\Resource;
@@ -10,7 +11,7 @@ class User extends Resource
 {
     function getResourceEndpoint()
     {
-        return 'user';
+        return 'usuarios';
     }
 
     public function __construct(API $api)
@@ -19,10 +20,10 @@ class User extends Resource
     }
 
     /**
-     * Get authenticated user
+     * Obtem as informações do usuário autenticado
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
     public function consultarUsuario()
     {

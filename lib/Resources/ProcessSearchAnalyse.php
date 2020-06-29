@@ -10,7 +10,7 @@ class ProcessSearchAnalyse extends Resource
 {
     protected $action;
 
-    private $resourcePath = 'search-analyses';
+    private $resourcePath = 'consultas-analises';
 
     function getResourceEndpoint()
     {

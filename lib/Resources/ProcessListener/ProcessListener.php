@@ -2,6 +2,7 @@
 
 namespace Intimaai\Resources\ProcessListener;
 
+use Exception;
 use Intimaai\API\API;
 use Intimaai\API\APIRequestException;
 use Intimaai\API\Paginator;
@@ -17,7 +18,7 @@ class ProcessListener extends Resource
 
     function getResourceEndpoint()
     {
-        return 'process-listeners';
+        return 'escutas-processuais';
     }
 
     public function __construct(API $api, Action $action)
@@ -27,11 +28,11 @@ class ProcessListener extends Resource
     }
 
     /**
-     * Get a listener by id
+     * Obtem uma escuta processual pelo id
      * @param int $id
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
     public function consultarPorId($id)
     {
@@ -43,106 +44,106 @@ class ProcessListener extends Resource
     }
 
     /**
-     * Make a new listener
-     * @param EscutaProcessual $listener
+     * Cadastra uma nova escuta processual
+     * @param EscutaProcessual $escutaProcessual
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
-    public function cadastrarNovaEscuta(EscutaProcessual $listener)
+    public function cadastrarNovaEscuta(EscutaProcessual $escutaProcessual)
     {
         $options = [
             'path' => $this->action->getResourceEndpoint(),
             'method' => API::POST,
             'body' => [
-                'process_number' => $listener->getProcessNumber(),
-                'auth_id' => $listener->getAuthId(),
-                'schedule_times' => $listener->getScheduleTimes()
+                'process_number' => $escutaProcessual->getProcessNumber(),
+                'auth_id' => $escutaProcessual->getAuthId(),
+                'schedule_times' => $escutaProcessual->getScheduleTimes()
             ]
         ];
         return $this->getAPI()->request($options, true);
     }
 
     /**
-     * Capture listener by id
-     * @param int $listenerId
+     * Captura uma escuta processual pelo id
+     * @param int $escutaProcessualId
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
-    public function capturarEscuta($listenerId)
+    public function capturarEscuta($escutaProcessualId)
     {
         $options = [
-            'path' => $this->action->getResourceEndpoint() . '/' . $this->getResourceEndpoint() . '/' . $listenerId . '/capture',
+            'path' => $this->action->getResourceEndpoint() . '/' . $this->getResourceEndpoint() . '/' . $escutaProcessualId . '/capturar',
             'method' => API::GET
         ];
         return $this->getAPI()->request($options, true);
     }
 
     /**
-     * Make a new listener and capture
-     * @param EscutaProcessual $listener
+     * Cadastra e captura uma escuta processual no Intima.ai
+     * @param EscutaProcessual $escutaProcessual
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
-    public function cadastrarNovaEscutaECapturar(EscutaProcessual $listener)
+    public function cadastrarNovaEscutaECapturar(EscutaProcessual $escutaProcessual)
     {
         $options = [
-            'path' => $this->action->getResourceEndpoint() . '/' . $this->getResourceEndpoint() . '/create-and-capture',
+            'path' => $this->action->getResourceEndpoint() . '/' . $this->getResourceEndpoint() . '/criar-e-capturar',
             'method' => API::POST,
             'body' => [
-                'process_number' => $listener->getProcessNumber(),
-                'auth_id' => $listener->getAuthId(),
-                'schedule_times' => $listener->getScheduleTimes()
+                'process_number' => $escutaProcessual->getProcessNumber(),
+                'auth_id' => $escutaProcessual->getAuthId(),
+                'schedule_times' => $escutaProcessual->getScheduleTimes()
             ]
         ];
         return $this->getAPI()->request($options, true);
     }
 
     /**
-     * Get a listener capture results
-     * @param int $listenerId
+     * Obtem os resultados capturados de uma escuta processual
+     * @param int $escutaProcessualId
      * @return Paginator
-     * @throws \Exception
+     * @throws Exception
      */
-    public function consultarResultadosCapturadosDaEscuta($listenerId)
+    public function consultarResultadosCapturadosDaEscuta($escutaProcessualId)
     {
-        $resource = new ResourceResult($this->getAPI(), $this, $listenerId);
-        return $resource->paginate();
+        $resource = new ResourceResult($this->getAPI(), $this, $escutaProcessualId);
+        return $resource->paginar();
     }
 
     /**
-     * Update a listener
-     * @param int $listenerId
-     * @param AtualizarEscutaProcessual $listener
+     * Atualiza uma escuta processual pelo id
+     * @param int $escutaProcessualId
+     * @param AtualizarEscutaProcessual $escutaProcessual
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
-    public function atualizarEscuta($listenerId, AtualizarEscutaProcessual $listener)
+    public function atualizarEscuta($escutaProcessualId, AtualizarEscutaProcessual $escutaProcessual)
     {
         $options = [
-            'path' => $this->getResourceEndpoint() . '/' . $listenerId,
+            'path' => $this->getResourceEndpoint() . '/' . $escutaProcessualId,
             'method' => API::PUT,
             'body' => [
-                'schedule_times' => $listener->getScheduleTimes()
+                'schedule_times' => $escutaProcessual->getScheduleTimes()
             ]
         ];
         return $this->getAPI()->request($options, true);
     }
 
     /**
-     * Delete a listener
-     * @param int $listenerId
+     * Deleta uma escuta processual pelo id
+     * @param int $escutaProcessualId
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
-    public function excluirEscuta($listenerId)
+    public function excluirEscuta($escutaProcessualId)
     {
         $options = [
-            'path' => $this->getResourceEndpoint() . '/' . $listenerId,
+            'path' => $this->getResourceEndpoint() . '/' . $escutaProcessualId,
             'method' => API::DELETE
         ];
         return $this->getAPI()->request($options, true);

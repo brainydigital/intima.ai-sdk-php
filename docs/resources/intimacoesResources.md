@@ -1,11 +1,11 @@
-# **intimacoesResources**
+# **intimacoes**
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
-[**consultarPorId**](intimacoesResources.md#consultarPorId) | **GET** /intimations/{id} | Visualiza uma intimação
-[**marcarIntimacaoComoRevisada**](intimacoesResources.md#marcarIntimacaoComoRevisada) | **PUT** /intimations/{intimation_id}/mark-as-revised | Marca uma intimação como revisada
+[**consultarPorId**](intimacoesResources.md#consultarPorId) | **GET** /intimacoes/{id} | Visualiza uma intimação
+[**marcarIntimacaoComoRevisada**](intimacoesResources.md#marcarIntimacaoComoRevisada) | **PUT** /intimacoes/{intimacao_id}/marcar-como-revisada | Marca uma intimação como revisada
 
 # **consultarPorId**
 
@@ -26,10 +26,10 @@ use Intimaai\API\APIRequestException;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $resultById = $intimaai->intimacoesResources->consultarPorId(45217);
-    dump($resultById);
+    $resultado = $intimaai->intimacoes->consultarPorId(45217);
+    dump($resultado);
 }
 catch (APIRequestException $exception)
 {
@@ -48,7 +48,7 @@ catch (\Exception $exception)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**intimationId** | **int**| é o id referente a intimação no Intima.ai | [obrigatório]
+**intimacaoId** | **int**| é o id referente a intimação no Intima.ai | [obrigatório]
 
 ### Exemplos
 ```php
@@ -61,10 +61,10 @@ use Intimaai\API\APIRequestException;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $resultMark = $intimaai->intimacoesResources->marcarIntimacaoComoRevisada(45217);
-    dump($resultMark);
+    $resultado = $intimaai->intimacoes->marcarIntimacaoComoRevisada(45217);
+    dump($resultado);
 }
 catch (APIRequestException $exception)
 {

@@ -1,15 +1,15 @@
-# **consultasProcessuaisResources**
+# **consultasProcessuais**
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
-[**consultarPorId**](consultasProcessuaisResources.md#consultarPorId) | **GET** /process-searchs/{id} | Visualiza uma consulta processual
-[**cadastrarNovaConsulta**](consultasProcessuaisResources.md#cadastrarNovaConsulta) | **POST** /actions/process-searchs | Cadastra uma nova consulta processual
-[**consultarResultadosDaConsulta**](consultasProcessuaisResources.md#consultarResultadosDaConsulta) | **GET** /process-searchs/{search_id}/results | Retorna um [**Paginator**](../models/api/Paginator.md) com os processos capturados
-[**listarPreAnalisesDeConsultas**](consultasProcessuaisResources.md#listarPreAnalisesDeConsultas) | **GET** /process-searchs/search-analyses | Retorna um [**Paginator**](../models/api/Paginator.md) com as pré-análises previamente realizadas para as consultas processuais
-[**consultarPorIdPreAnaliseDeConsulta**](consultasProcessuaisResources.md#consultarPorIdPreAnaliseDeConsulta) | **GET** /process-searchs/search-analyses/{id} | Visualiza uma pré-análise que foi realizada para uma determinada consulta processual
-[**cadastrarPreAnaliseDeConsulta**](consultasProcessuaisResources.md#cadastrarPreAnaliseDeConsulta) | **POST** /actions/process-searchs/search-analyses | Cadastra uma nova pré-análise para uma determinada consulta processual
+[**consultarPorId**](consultasProcessuaisResources.md#consultarPorId) | **GET** /consultas-processuais/{id} | Visualiza uma consulta processual
+[**cadastrarNovaConsulta**](consultasProcessuaisResources.md#cadastrarNovaConsulta) | **POST** /acoes/consultas-processuais | Cadastra uma nova consulta processual
+[**consultarResultadosDaConsulta**](consultasProcessuaisResources.md#consultarResultadosDaConsulta) | **GET** /consultas-processuais/{consulta_id}/resultados | Retorna um [**Paginator**](../models/api/Paginator.md) com os processos capturados
+[**listarPreAnalisesDeConsultas**](consultasProcessuaisResources.md#listarPreAnalisesDeConsultas) | **GET** /consultas-processuais/consultas-analises | Retorna um [**Paginator**](../models/api/Paginator.md) com as pré-análises previamente realizadas para as consultas processuais
+[**consultarPorIdPreAnaliseDeConsulta**](consultasProcessuaisResources.md#consultarPorIdPreAnaliseDeConsulta) | **GET** /consultas-processuais/consultas-analises/{id} | Visualiza uma pré-análise que foi realizada para uma determinada consulta processual
+[**cadastrarPreAnaliseDeConsulta**](consultasProcessuaisResources.md#cadastrarPreAnaliseDeConsulta) | **POST** /acoes/consultas-processuais/consultas-analises | Cadastra uma nova pré-análise para uma determinada consulta processual
 
 # **consultarPorId**
 
@@ -30,10 +30,10 @@ use Intimaai\API\APIRequestException;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $resultById = $intimaai->consultasProcessuaisResources->consultarPorId(45217);
-    dump($resultById);
+    $resultado = $intimaai->consultasProcessuais->consultarPorId(45217);
+    dump($resultado);
 }
 catch (APIRequestException $exception)
 {
@@ -52,7 +52,7 @@ catch (\Exception $exception)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**search** | [**ConsultaProcessual**](../models/process_search/ConsultaProcessual.md) | parametros necessários para a criação de um novo registro | [obrigatório]
+**consultaProcessual** | [**ConsultaProcessual**](../models/process_search/ConsultaProcessual.md) | parametros necessários para a criação de um novo registro | [obrigatório]
 
 ### Exemplos
 ```php
@@ -66,11 +66,11 @@ use Intimaai\Models\ConsultaProcessual;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $processSearch = new ConsultaProcessual(1, '0000000-00.0000.0.00.0000');
-    $resultNew = $intimaai->consultasProcessuaisResources->cadastrarNovaConsulta($processSearch);
-    dump($resultNew);
+    $consulta = new ConsultaProcessual(1, '0000000-00.0000.0.00.0000');
+    $resultado = $intimaai->consultasProcessuais->cadastrarNovaConsulta($consulta);
+    dump($resultado);
 }
 catch (APIRequestException $exception)
 {
@@ -89,7 +89,7 @@ catch (\Exception $exception)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**searchId** | **int**| é o id referente a consulta processual no Intima.ai | [obrigatório]
+**consultaProcessualId** | **int**| é o id referente a consulta processual no Intima.ai | [obrigatório]
 
 ### Exemplos
 ```php
@@ -102,11 +102,11 @@ use Intimaai\API\APIRequestException;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $resultsPaginator= $intimaai->consultasProcessuaisResources->consultarResultadosDaConsulta(31);
-    $resultsPaginator->getPage(1);
-    dump($resultsPaginator->getCollection());
+    $resultados = $intimaai->consultasProcessuais->consultarResultadosDaConsulta(31);
+    $resultados->obterPagina(1);
+    dump($resultados->obterColecao());
 }
 catch (APIRequestException $exception)
 {
@@ -136,11 +136,11 @@ use Intimaai\API\APIRequestException;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $resultsAnalysesPaginator= $intimaai->consultasProcessuaisResources->listarPreAnalisesDeConsultas();
-    $resultsAnalysesPaginator->getPage(1);
-    dump($resultsAnalysesPaginator->getCollection());
+    $resultados = $intimaai->consultasProcessuais->listarPreAnalisesDeConsultas();
+    $resultados->obterPagina(1);
+    dump($resultados->obterColecao());
 }
 catch (APIRequestException $exception)
 {
@@ -172,10 +172,10 @@ use Intimaai\API\APIRequestException;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $resultPreAnalyse = $intimaai->consultasProcessuaisResources->consultarPorIdPreAnaliseDeConsulta(1);
-    dump($resultPreAnalyse);
+    $resultados = $intimaai->consultasProcessuais->consultarPorIdPreAnaliseDeConsulta(1);
+    dump($resultados);
 }
 catch (APIRequestException $exception)
 {
@@ -194,7 +194,7 @@ catch (\Exception $exception)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**searchAnalyse** | [**PreAnaliseDeConsultaProcessual**](../models/process_search/PreAnaliseDeConsultaProcessual.md) | parametros necessários para a criação de um novo registro | [obrigatório]
+**preAnaliseDeConsultaProcessual** | [**PreAnaliseDeConsultaProcessual**](../models/process_search/PreAnaliseDeConsultaProcessual.md) | parametros necessários para a criação de um novo registro | [obrigatório]
 
 ### Exemplos
 ```php
@@ -208,11 +208,11 @@ use Intimaai\Models\PreAnaliseDeConsultaProcessual;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $processSearchAnalyse = new PreAnaliseDeConsultaProcessual(1, '0000000-00.0000.0.00.0000');
-    $resultNewPreAnalyse = $intimaai->consultasProcessuaisResources->cadastrarPreAnaliseDeConsulta($processSearchAnalyse);
-    dump($resultNewPreAnalyse);
+    $consultaAnalise = new PreAnaliseDeConsultaProcessual(1, '0000000-00.0000.0.00.0000');
+    $resultado = $intimaai->consultasProcessuais->cadastrarPreAnaliseDeConsulta($consultaAnalise);
+    dump($resultado);
 }
 catch (APIRequestException $exception)
 {

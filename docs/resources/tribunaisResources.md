@@ -1,10 +1,10 @@
-# **tribunaisResources**
+# **tribunais**
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
-[**consultarPorId**](tribunaisResources.md#consultarPorId) | **GET** /tribunals/{id} | Visualiza um tribunal
+[**consultarPorId**](tribunaisResources.md#consultarPorId) | **GET** /tribunais/{id} | Visualiza um tribunal
 
 # **consultarPorId**
 
@@ -25,10 +25,10 @@ use Intimaai\API\APIRequestException;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $result = $intimaai->tribunaisResources->consultarPorId(45217);
-    dump($result);
+    $resultado = $intimaai->tribunais->consultarPorId(45217);
+    dump($resultado);
 }
 catch (APIRequestException $exception)
 {

@@ -1,12 +1,12 @@
-# **protocolosDeHabilitacaoResources**
+# **protocolosDeHabilitacao**
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
-[**consultarPorId**](protocolosDeHabilitacaoResources.md#consultarPorId) | **GET** /process-qualification-protocols/{id} | Visualiza um protocolo de habilitação pelo id
-[**cadastrarPrimeiraEtapaParaNovoProtocoloDeHabilitacao**](protocolosDeHabilitacaoResources.md#cadastrarPrimeiraEtapaParaNovoProtocoloDeHabilitacao) | **POST** /actions/process-qualification-protocols | Cadastra um novo protocolo de habilitação, e coleta as informações iniciais para a primeira etapa
-[**cadastrarSegundaEtapaParaNovoProtocoloDeHabilitacao**](protocolosDeHabilitacaoResources.md#cadastrarSegundaEtapaParaNovoProtocoloDeHabilitacao) | **POST** /actions/process-qualification-protocols/{qualification_protocol_id} | Finaliza o protoco de habilitação, está é a segunda e ultima etapa do protocolo de habilitação
+[**consultarPorId**](protocolosDeHabilitacaoResources.md#consultarPorId) | **GET** /protocolos-de-habilitacao/{id} | Visualiza um protocolo de habilitação pelo id
+[**cadastrarPrimeiraEtapaParaNovoProtocoloDeHabilitacao**](protocolosDeHabilitacaoResources.md#cadastrarPrimeiraEtapaParaNovoProtocoloDeHabilitacao) | **POST** /acoes/protocolos-de-habilitacao | Cadastra um novo protocolo de habilitação, e coleta as informações iniciais para a primeira etapa
+[**cadastrarSegundaEtapaParaNovoProtocoloDeHabilitacao**](protocolosDeHabilitacaoResources.md#cadastrarSegundaEtapaParaNovoProtocoloDeHabilitacao) | **POST** /acoes/protocolos-de-habilitacao/{protocolo_habilitacao_id} | Finaliza o protoco de habilitação, está é a segunda e ultima etapa do protocolo de habilitação
 
 # **consultarPorId**
 
@@ -27,10 +27,10 @@ use Intimaai\API\APIRequestException;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $resultById = $intimaai->protocolosDeHabilitacaoResources->consultarPorId(45217);
-    dump($resultById);
+    $resultado = $intimaai->protocolosDeHabilitacao->consultarPorId(45217);
+    dump($resultado);
 }
 catch (APIRequestException $exception)
 {
@@ -49,7 +49,7 @@ catch (\Exception $exception)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**qualificationProtocol** | [**PrimeiraEtapaParaProtocoloDeHabilitacao**](../models/qualification_protocol/PrimeiraEtapaParaProtocoloDeHabilitacao.md) | parametros necessários para a criação de um novo registro | [obrigatório]
+**primeiraEtapaParaProtocoloDeHabilitacao** | [**PrimeiraEtapaParaProtocoloDeHabilitacao**](../models/qualification_protocol/PrimeiraEtapaParaProtocoloDeHabilitacao.md) | parametros necessários para a criação de um novo registro | [obrigatório]
 
 ### Exemplos
 ```php
@@ -63,11 +63,11 @@ use Intimaai\Models\PrimeiraEtapaParaProtocoloDeHabilitacao;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $protocol = new PrimeiraEtapaParaProtocoloDeHabilitacao('0000000-00.0000.0.00.0000', 1);
-    $resultNewFirstStep = $intimaai->protocolosDeHabilitacaoResources->cadastrarPrimeiraEtapaParaNovoProtocoloDeHabilitacao($protocol);
-    dump($resultNewFirstStep);
+    $protocolo = new PrimeiraEtapaParaProtocoloDeHabilitacao('0000000-00.0000.0.00.0000', 1);
+    $resultado = $intimaai->protocolosDeHabilitacao->cadastrarPrimeiraEtapaParaNovoProtocoloDeHabilitacao($protocolo);
+    dump($resultado);
 }
 catch (APIRequestException $exception)
 {
@@ -86,8 +86,8 @@ catch (\Exception $exception)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**qualificationProtocolId** | **int**| é o id referente ao protocolo de habilitação cadastrado no Intima.ai, fornecido na primeira etapa | [obrigatório]
-**qualificationProtocol** | [**SegundaEtapaParaProtocoloDeHabilitacao**](../models/qualification_protocol/SegundaEtapaParaProtocoloDeHabilitacao.md) | parametros necessários para a segunda e ultima etapa do protocolo de habilitação | [obrigatório]
+**protocoloDeHabilitacaoId** | **int**| é o id referente ao protocolo de habilitação cadastrado no Intima.ai, fornecido na primeira etapa | [obrigatório]
+**segundaEtapaParaProtocoloDeHabilitacao** | [**SegundaEtapaParaProtocoloDeHabilitacao**](../models/qualification_protocol/SegundaEtapaParaProtocoloDeHabilitacao.md) | parametros necessários para a segunda e ultima etapa do protocolo de habilitação | [obrigatório]
 
 ### Exemplos
 ```php
@@ -102,12 +102,12 @@ use Intimaai\Models\SegundaEtapaParaProtocoloDeHabilitacao;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
     $doc = new Documento('/path/to/file.pdf', 0, 'anexo', 1);
-    $protocolSecondStep = new SegundaEtapaParaProtocoloDeHabilitacao(0, 0, 1, ['BANCO FULANO'], 0, [$doc]);
-    $resultNewSecondStep = $intimaai->protocolosDeHabilitacaoResources->cadastrarSegundaEtapaParaNovoProtocoloDeHabilitacao(41, $protocolSecondStep);
-    dump($resultNewSecondStep);
+    $protocolo = new SegundaEtapaParaProtocoloDeHabilitacao(0, 0, 1, ['BANCO FULANO'], 0, [$doc]);
+    $resultado = $intimaai->protocolosDeHabilitacao->cadastrarSegundaEtapaParaNovoProtocoloDeHabilitacao(41, $protocolo);
+    dump($resultado);
 }
 catch (APIRequestException $exception)
 {

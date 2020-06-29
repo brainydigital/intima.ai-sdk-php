@@ -5,20 +5,20 @@ namespace Intimaai\Models;
 class AtivarIntimacoesParaAutenticacao
 {
     private $tabs;
-    private $week_days;
-    private $day_hour;
+    private $weekDays;
+    private $dayHour;
 
     /**
      * AtivarIntimacoesParaAutenticacao constructor.
      * @param array $tabs
-     * @param array $week_days
-     * @param array $day_hour
+     * @param array $weekDays
+     * @param array $dayHour
      */
-    public function __construct($tabs, $week_days, $day_hour)
+    public function __construct($tabs, $weekDays, $dayHour)
     {
         $this->tabs = $tabs;
-        $this->week_days = $week_days;
-        $this->day_hour = $day_hour;
+        $this->weekDays = $weekDays;
+        $this->dayHour = $dayHour;
     }
 
     /**
@@ -42,15 +42,15 @@ class AtivarIntimacoesParaAutenticacao
      */
     public function getWeekDays()
     {
-        return $this->week_days;
+        return $this->weekDays;
     }
 
     /**
-     * @param array $week_days
+     * @param array $weekDays
      */
-    public function setWeekDays($week_days)
+    public function setWeekDays($weekDays)
     {
-        $this->week_days = $week_days;
+        $this->weekDays = $weekDays;
     }
 
     /**
@@ -58,14 +58,14 @@ class AtivarIntimacoesParaAutenticacao
      */
     public function getDayHour()
     {
-        return $this->day_hour;
+        return $this->dayHour;
     }
 
     /**
-     * @param array $day_hour
+     * @param array $dayHour
      */
-    public function setDayHour($day_hour)
+    public function setDayHour($dayHour)
     {
-        $this->day_hour = $day_hour;
+        $this->dayHour = $dayHour;
     }
 }

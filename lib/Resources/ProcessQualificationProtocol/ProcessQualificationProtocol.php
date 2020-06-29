@@ -2,13 +2,13 @@
 
 namespace Intimaai\Resources\ProcessQualificationProtocol;
 
+use Exception;
 use Intimaai\API\API;
 use Intimaai\API\APIRequestException;
 use Intimaai\API\Resource;
 use Intimaai\Models\PrimeiraEtapaParaProtocoloDeHabilitacao;
 use Intimaai\Models\SegundaEtapaParaProtocoloDeHabilitacao;
 use Intimaai\Resources\Action;
-use Intimaai\Resources\ProcessCopy\Copy;
 
 class ProcessQualificationProtocol extends Resource
 {
@@ -16,7 +16,7 @@ class ProcessQualificationProtocol extends Resource
 
     function getResourceEndpoint()
     {
-        return 'process-qualification-protocols';
+        return 'protocolos-de-habilitacao';
     }
 
     public function __construct(API $api, Action $action)
@@ -26,11 +26,11 @@ class ProcessQualificationProtocol extends Resource
     }
 
     /**
-     * Get a qualification protocol by id
+     * Obtem um protocolo de habilitação pelo id
      * @param int $id
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
     public function consultarPorId($id)
     {
@@ -42,42 +42,42 @@ class ProcessQualificationProtocol extends Resource
     }
 
     /**
-     * Make a new qualification protocol, first step
-     * @param PrimeiraEtapaParaProtocoloDeHabilitacao $qualificationProtocol
+     * Cadastra um novo protocolo de habilitação, está é a primeira etapa (de duas etapas) para cadastrar um novo protocolo de habilitação no Intima.ai
+     * @param PrimeiraEtapaParaProtocoloDeHabilitacao $primeiraEtapaParaProtocoloDeHabilitacao
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
-    public function cadastrarPrimeiraEtapaParaNovoProtocoloDeHabilitacao(PrimeiraEtapaParaProtocoloDeHabilitacao $qualificationProtocol)
+    public function cadastrarPrimeiraEtapaParaNovoProtocoloDeHabilitacao(PrimeiraEtapaParaProtocoloDeHabilitacao $primeiraEtapaParaProtocoloDeHabilitacao)
     {
         $options = [
             'path' => $this->action->getResourceEndpoint() . '/' . $this->getResourceEndpoint(),
             'method' => API::POST,
             'body' => [
-                'process_number' => $qualificationProtocol->getProcessNumber(),
-                'auth_id' => $qualificationProtocol->getAuthId()
+                'process_number' => $primeiraEtapaParaProtocoloDeHabilitacao->getProcessNumber(),
+                'auth_id' => $primeiraEtapaParaProtocoloDeHabilitacao->getAuthId()
             ]
         ];
         return $this->getAPI()->request($options, true);
     }
 
     /**
-     * Make a new qualification protocol, second and last step
-     * @param int $qualificationProtocolId
-     * @param SegundaEtapaParaProtocoloDeHabilitacao $qualificationProtocol
+     * Cadastra um novo protocolo de habilitação, está é a segunda e ultima etapa para cadastrar um novo protocolo de habilitação no Intima.ai
+     * @param int $protocoloDeHabilitacaoId
+     * @param SegundaEtapaParaProtocoloDeHabilitacao $segundaEtapaParaProtocoloDeHabilitacao
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
-    public function cadastrarSegundaEtapaParaNovoProtocoloDeHabilitacao($qualificationProtocolId, SegundaEtapaParaProtocoloDeHabilitacao $qualificationProtocol)
+    public function cadastrarSegundaEtapaParaNovoProtocoloDeHabilitacao($protocoloDeHabilitacaoId, SegundaEtapaParaProtocoloDeHabilitacao $segundaEtapaParaProtocoloDeHabilitacao)
     {
-        $body = $this->serialize($qualificationProtocol);
+        $body = $this->serialize($segundaEtapaParaProtocoloDeHabilitacao);
 
         $options = [
-            'path' => $this->action->getResourceEndpoint() . '/' . $this->getResourceEndpoint() . '/' . $qualificationProtocolId,
+            'path' => $this->action->getResourceEndpoint() . '/' . $this->getResourceEndpoint() . '/' . $protocoloDeHabilitacaoId,
             'method' => API::POST,
             'options' => [
-                'is_multipart' => ($qualificationProtocol->getDocumentos()) ? true : false
+                'is_multipart' => ($segundaEtapaParaProtocoloDeHabilitacao->getDocumentos()) ? true : false
             ],
             'body' => $body
         ];

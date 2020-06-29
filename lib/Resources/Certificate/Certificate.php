@@ -2,6 +2,7 @@
 
 namespace Intimaai\Resources\Certificate;
 
+use Exception;
 use Intimaai\API\API;
 use Intimaai\API\APIRequestException;
 use Intimaai\API\Resource;
@@ -11,7 +12,7 @@ class Certificate extends Resource
 {
     public function getResourceEndpoint()
     {
-        return 'certificates';
+        return 'certificados';
     }
 
     public function __construct(API $api)
@@ -20,11 +21,11 @@ class Certificate extends Resource
     }
 
     /**
-     * Get a certificate by id
+     * Obtem um certificado pelo id
      * @param int $id
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
     public function consultarPorId($id)
     {
@@ -36,13 +37,13 @@ class Certificate extends Resource
     }
 
     /**
-     * Make a new certificate
-     * @param Certificado $certificate
+     * Cadastra um novo certificado
+     * @param Certificado $certificado
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
-    public function cadastrarNovoCertificado(Certificado $certificate)
+    public function cadastrarNovoCertificado(Certificado $certificado)
     {
         $options = [
             'path' => $this->getResourceEndpoint(),
@@ -53,11 +54,11 @@ class Certificate extends Resource
             'body' => [
                 [
                     'name'     => 'pfx',
-                    'contents' => fopen($certificate->getPfx(), 'r')
+                    'contents' => fopen($certificado->getPfx(), 'r')
                 ],
                 [
                     'name'     => 'password',
-                    'contents' => $certificate->getPassword()
+                    'contents' => $certificado->getPassword()
                 ]
             ]
         ];
@@ -65,17 +66,17 @@ class Certificate extends Resource
     }
 
     /**
-     * Create a new certificate
-     * @param int $certificateId
-     * @param Certificado $certificate
+     * Atualiza um certificado pelo id
+     * @param int $certificadoId
+     * @param Certificado $certificado
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
-    public function atualizarCertificado($certificateId, Certificado $certificate)
+    public function atualizarCertificado($certificadoId, Certificado $certificado)
     {
         $options = [
-            'path' => $this->getResourceEndpoint() . '/' . $certificateId,
+            'path' => $this->getResourceEndpoint() . '/' . $certificadoId,
             'method' => API::POST,
             'options' => [
                 'is_multipart' => true
@@ -83,11 +84,11 @@ class Certificate extends Resource
             'body' => [
                 [
                     'name'     => 'pfx',
-                    'contents' => fopen($certificate->getPfx(), 'r')
+                    'contents' => fopen($certificado->getPfx(), 'r')
                 ],
                 [
                     'name'     => 'password',
-                    'contents' => $certificate->getPassword()
+                    'contents' => $certificado->getPassword()
                 ]
             ]
         ];
@@ -95,16 +96,16 @@ class Certificate extends Resource
     }
 
     /**
-     * Delete a certificate
-     * @param int $certificateId
+     * Deleta um certificado pelo id
+     * @param int $certificadoId
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
-    public function excluirCertificado($certificateId)
+    public function excluirCertificado($certificadoId)
     {
         $options = [
-            'path' => $this->getResourceEndpoint() . '/' . $certificateId,
+            'path' => $this->getResourceEndpoint() . '/' . $certificadoId,
             'method' => API::DELETE
         ];
         return $this->getAPI()->request($options, true);

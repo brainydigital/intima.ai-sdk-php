@@ -1,13 +1,13 @@
-# **webhooksResources**
+# **webhooks**
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
-[**consultarPorId**](webhooksResources.md#consultarPorId) | **GET** /user-webhooks | Visualiza um webhook do usuário
-[**cadastrarNovoWebhook**](webhooksResources.md#cadastrarNovoWebhook) | **POST** /user-webhooks | Cadastra um novo webhook do usuário
-[**atualizarWebhook**](webhooksResources.md#atualizarWebhook) | **PUT** /user-webhooks/{user_webhook_id} | Atualiza um webhook do usuário
-[**excluirWebhook**](webhooksResources.md#excluirWebhook) | **DELETE** /user-webhooks/{user_webhook_id} | Exclui um webhook do usuário
+[**consultarPorId**](webhooksResources.md#consultarPorId) | **GET** /usuarios-webhooks | Visualiza um webhook do usuário
+[**cadastrarNovoWebhook**](webhooksResources.md#cadastrarNovoWebhook) | **POST** /usuarios-webhooks | Cadastra um novo webhook do usuário
+[**atualizarWebhook**](webhooksResources.md#atualizarWebhook) | **PUT** /usuarios-webhooks/{webhook_id} | Atualiza um webhook do usuário
+[**excluirWebhook**](webhooksResources.md#excluirWebhook) | **DELETE** /usuarios-webhooks/{webhook_id} | Exclui um webhook do usuário
 
 # **consultarPorId**
 
@@ -28,10 +28,10 @@ use Intimaai\API\APIRequestException;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $resultById = $intimaai->webhooksResources->consultarPorId(45217);
-    dump($resultById);
+    $resultado = $intimaai->webhooks->consultarPorId(45217);
+    dump($resultado);
 }
 catch (APIRequestException $exception)
 {
@@ -50,7 +50,7 @@ catch (\Exception $exception)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**userWebhook** | [**Webhook**](../../models/webhook/Webhook.md) | parametros necessários para a criação de um novo registro | [obrigatório]
+**webhook** | [**Webhook**](../../models/webhook/Webhook.md) | parametros necessários para a criação de um novo registro | [obrigatório]
 
 ### Exemplos
 ```php
@@ -64,11 +64,11 @@ use Intimaai\Models\Webhook;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $newWebhook = new Webhook(0, 'GET', 'https://example.com');
-    $resultNew = $intimaai->webhooksResources->cadastrarNovoWebhook($newWebhook);
-    dump($resultNew);
+    $webhook = new Webhook(0, 'GET', 'https://example.com');
+    $resultado = $intimaai->webhooks->cadastrarNovoWebhook($webhook);
+    dump($resultado);
 }
 catch (APIRequestException $exception)
 {
@@ -87,8 +87,8 @@ catch (\Exception $exception)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**userWebhookId** | **int**| é o id referente ao webhook do usuário no Intima.ai | [obrigatório]
-**userWebhook** | [**Webhook**](../../models/webhook/Webhook.md) | parametros necessários para a criação de um novo registro | [obrigatório]
+**webhookId** | **int**| é o id referente ao webhook do usuário no Intima.ai | [obrigatório]
+**webhook** | [**Webhook**](../../models/webhook/Webhook.md) | parametros necessários para a criação de um novo registro | [obrigatório]
 
 ### Exemplos
 ```php
@@ -102,11 +102,11 @@ use Intimaai\Models\Webhook;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $updateWebhook = new Webhook(0, 'POST', 'https://example.com');
-    $resultUpdate = $intimaai->webhooksResources->atualizarWebhook(2, $updateWebhook);
-    dump($resultUpdate);
+    $webhook = new Webhook(0, 'POST', 'https://example.com');
+    $resultado = $intimaai->webhooks->atualizarWebhook(2, $webhook);
+    dump($resultado);
 }
 catch (APIRequestException $exception)
 {
@@ -125,7 +125,7 @@ catch (\Exception $exception)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**userWebhookId** | **int**| é o id referente ao webhook do usuário no Intima.ai | [obrigatório]
+**webhookId** | **int**| é o id referente ao webhook do usuário no Intima.ai | [obrigatório]
 
 ### Exemplos
 ```php
@@ -138,10 +138,10 @@ use Intimaai\API\APIRequestException;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $resultDelete = $intimaai->webhooksResources->excluirWebhook(2);
-    dump($resultDelete);
+    $resultado = $intimaai->webhooks->excluirWebhook(2);
+    dump($resultado);
 }
 catch (APIRequestException $exception)
 {

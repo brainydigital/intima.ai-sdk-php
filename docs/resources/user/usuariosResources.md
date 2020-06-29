@@ -1,10 +1,10 @@
-# **usuariosResources**
+# **usuarios**
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
-[**consultarUsuario**](usuariosResources.md#consultarUsuario) | **GET** /user | Visualiza as informações do seu usuário
+[**consultarUsuario**](usuariosResources.md#consultarUsuario) | **GET** /usuarios | Visualiza as informações do seu usuário
 
 # **consultarUsuario**
 
@@ -23,10 +23,10 @@ use Intimaai\API\APIRequestException;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $result = $intimaai->usuariosResources->consultarUsuario();
-    dump($result);
+    $resultado = $intimaai->usuarios->consultarUsuario();
+    dump($resultado);
 }
 catch (APIRequestException $exception)
 {

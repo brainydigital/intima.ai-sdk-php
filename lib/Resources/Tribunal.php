@@ -2,6 +2,7 @@
 
 namespace Intimaai\Resources;
 
+use Exception;
 use Intimaai\API\API;
 use Intimaai\API\APIRequestException;
 use Intimaai\API\Resource;
@@ -10,7 +11,7 @@ class Tribunal extends Resource
 {
     public function getResourceEndpoint()
     {
-        return 'tribunals';
+        return 'tribunais';
     }
 
     public function __construct(API $api)
@@ -19,11 +20,11 @@ class Tribunal extends Resource
     }
 
     /**
-     * Get a tribunal by id
+     * Obtem um tribunal pelo id
      * @param int $id
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
     public function consultarPorId($id)
     {

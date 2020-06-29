@@ -1,15 +1,15 @@
-# **andamentosProcessuaisResources**
+# **andamentosProcessuais**
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
-[**consultarPorId**](andamentosProcessuaisResources.md#consultarPorId) | **GET** /process-courses/{id} | Visualiza um andamento processual
-[**cadastrarNovoAndamento**](andamentosProcessuaisResources.md#cadastrarNovoAndamento) | **POST** /process-courses | Cadastra um novo andamento processual
-[**capturarAndamentos**](andamentosProcessuaisResources.md#capturarAndamentos) | **GET** /actions/process-courses/{course_id}/capture | Captura os andamentos processuais de um andamento processual previamente cadastrado no Intima.ai
-[**cadastrarNovoAndamentoECapturarAndamentos**](andamentosProcessuaisResources.md#cadastrarNovoAndamentoECapturarAndamentos) | **POST** /actions/process-courses/create-and-capture | Cadastra e captura os andamento processuais no Intima.ai
-[**consultarResultadosDoAndamento**](andamentosProcessuaisResources.md#consultarResultadosDoAndamento) | **GET** /process-courses/{course_id}/results | Retorna um *Paginator* com os andamento processuais capturados
-[**excluirAndamento**](andamentosProcessuaisResources.md#excluirAndamento) | **DELETE** /process-courses/{course_id} | Exclui um andamento processual
+[**consultarPorId**](andamentosProcessuaisResources.md#consultarPorId) | **GET** /andamentos-processuais/{id} | Visualiza um andamento processual
+[**cadastrarNovoAndamento**](andamentosProcessuaisResources.md#cadastrarNovoAndamento) | **POST** /andamentos-processuais | Cadastra um novo andamento processual
+[**capturarAndamentos**](andamentosProcessuaisResources.md#capturarAndamentos) | **GET** /acoes/andamentos-processuais/{andamento_id}/capturar | Captura os andamentos processuais de um andamento processual previamente cadastrado no Intima.ai
+[**cadastrarNovoAndamentoECapturarAndamentos**](andamentosProcessuaisResources.md#cadastrarNovoAndamentoECapturarAndamentos) | **POST** /acoes/andamentos-processuais/criar-e-capturar | Cadastra e captura os andamento processuais no Intima.ai
+[**consultarResultadosDoAndamento**](andamentosProcessuaisResources.md#consultarResultadosDoAndamento) | **GET** /andamentos-processuais/{andamento_id}/resultados | Retorna um *Paginator* com os andamento processuais capturados
+[**excluirAndamento**](andamentosProcessuaisResources.md#excluirAndamento) | **DELETE** /andamentos-processuais/{andamento_id} | Exclui um andamento processual
 
 # **consultarPorId**
 
@@ -30,10 +30,10 @@ use Intimaai\API\APIRequestException;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $resultById = $intimaai->andamentosProcessuaisResources->consultarPorId(45217);
-    dump($resultById);
+    $resultado = $intimaai->andamentosProcessuais->consultarPorId(45217);
+    dump($resultado);
 }
 catch (APIRequestException $exception)
 {
@@ -52,7 +52,7 @@ catch (\Exception $exception)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**course** | [**AndamentoProcessual**](../models/process_course/AndamentoProcessual.md) | parametros necessários para a criação de um novo registro | [obrigatório]
+**andamentoProcessual** | [**AndamentoProcessual**](../models/process_course/AndamentoProcessual.md) | parametros necessários para a criação de um novo registro | [obrigatório]
 
 ### Exemplos
 ```php
@@ -66,11 +66,11 @@ use Intimaai\Models\AndamentoProcessual;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $newCourse = new AndamentoProcessual('0000000-00.0000.0.00.0000', 120);
-    $resultNew = $intimaai->andamentosProcessuaisResources->cadastrarNovoAndamento($newCourse);
-    dump($resultNew);
+    $andamento = new AndamentoProcessual('0000000-00.0000.0.00.0000', 120);
+    $resultado = $intimaai->andamentosProcessuais->cadastrarNovoAndamento($andamento);
+    dump($resultado);
 }
 catch (APIRequestException $exception)
 {
@@ -89,7 +89,7 @@ catch (\Exception $exception)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**courseId** | **int**| é o id referente ao andamento processual no Intima.ai | [obrigatório]
+**andamentoProcessualId** | **int**| é o id referente ao andamento processual no Intima.ai | [obrigatório]
 
 ### Exemplos
 ```php
@@ -102,10 +102,10 @@ use Intimaai\API\APIRequestException;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $resultCapture = $intimaai->andamentosProcessuaisResources->capturarAndamentos(12);
-    dump($resultCapture);
+    $resultado = $intimaai->andamentosProcessuais->capturarAndamentos(12);
+    dump($resultado);
 }
 catch (APIRequestException $exception)
 {
@@ -124,7 +124,7 @@ catch (\Exception $exception)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**course** | [**AndamentoProcessual**](../models/process_course/AndamentoProcessual.md) | parametros necessários para a criação e captura de um novo registro | [obrigatório]
+**andamentoProcessual** | [**AndamentoProcessual**](../models/process_course/AndamentoProcessual.md) | parametros necessários para a criação e captura de um novo registro | [obrigatório]
 
 ### Exemplos
 ```php
@@ -138,11 +138,11 @@ use Intimaai\Models\AndamentoProcessual;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $newCourse = new AndamentoProcessual('0000000-00.0000.0.00.0000', 120);
-    $resultNew = $intimaai->andamentosProcessuaisResources->cadastrarNovoAndamentoECapturarAndamentos($newCourse);
-    dump($resultNew);
+    $andamento = new AndamentoProcessual('0000000-00.0000.0.00.0000', 120);
+    $resultado = $intimaai->andamentosProcessuais->cadastrarNovoAndamentoECapturarAndamentos($andamento);
+    dump($resultado);
 }
 catch (APIRequestException $exception)
 {
@@ -161,7 +161,7 @@ catch (\Exception $exception)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**courseId** | **int**| é o id referente ao andamento processual no Intima.ai | [obrigatório]
+**andamentoProcessualId** | **int**| é o id referente ao andamento processual no Intima.ai | [obrigatório]
 
 ### Exemplos
 ```php
@@ -174,11 +174,12 @@ use Intimaai\API\APIRequestException;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $paginatorResults = $intimaai->andamentosProcessuaisResources->consultarResultadosDoAndamento(21);
-    $paginatorResults->getPage(1);
-    dump($paginatorResults->getCollection());
+    $resultados = $intimaai->andamentosProcessuais->consultarResultadosDoAndamento(21);
+    $resultados->obterPagina(1);
+
+    dump($resultados->obterColecao());
 }
 catch (APIRequestException $exception)
 {
@@ -197,7 +198,7 @@ catch (\Exception $exception)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**courseId** | **int**| é o id referente ao andamento processual no Intima.ai | [obrigatório]
+**andamentoProcessualId** | **int**| é o id referente ao andamento processual no Intima.ai | [obrigatório]
 
 ### Exemplos
 ```php
@@ -211,10 +212,10 @@ use Intimaai\Models\AndamentoProcessual;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $resultDelete = $intimaai->andamentosProcessuaisResources->excluirAndamento(12);
-    dump($resultDelete);
+    $resultado = $intimaai->andamentosProcessuais->excluirAndamento(12);
+    dump($resultado);
 }
 catch (APIRequestException $exception)
 {

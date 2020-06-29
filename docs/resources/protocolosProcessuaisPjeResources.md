@@ -1,11 +1,11 @@
-# **protocolosProcessuaisResources**
+# **protocolosProcessuaisPje**
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
-[**consultarPorId**](protocolosProcessuaisResources.md#consultarPorId) | **GET** /process-protocols/{id} | Visualiza um protocolo
-[**cadastrarNovoProtocolo**](protocolosProcessuaisResources.md#cadastrarNovoProtocolo) | **POST** /actions/process-protocols | Cadastra um novo protocolo
+[**consultarPorId**](protocolosProcessuaisResources.md#consultarPorId) | **GET** /pje/protocolos-processuais/{protocolo_id} | Visualiza um protocolo
+[**cadastrarNovoProtocolo**](protocolosProcessuaisResources.md#cadastrarNovoProtocolo) | **POST** /acoes/pje/protocolos-processuais | Cadastra um novo protocolo para o PJE
 
 # **consultarPorId**
 
@@ -26,10 +26,10 @@ use Intimaai\API\APIRequestException;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $resultById = $intimaai->protocolosProcessuaisResources->consultarPorId(45217);
-    dump($resultById);
+    $resultado = $intimaai->protocolosProcessuaisPje->consultarPorId(45217);
+    dump($resultado);
 }
 catch (APIRequestException $exception)
 {
@@ -48,7 +48,7 @@ catch (\Exception $exception)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**protocol** | [**ProtocoloProcessual**](../models/protocol/ProtocoloProcessual.md) | parametros necessários para a criação de um novo registro | [obrigatório]
+**protocoloProcessual** | [**ProtocoloProcessual**](../models/protocol/ProtocoloProcessual.md) | parametros necessários para a criação de um novo registro | [obrigatório]
 
 ### Exemplos
 ```php
@@ -63,14 +63,14 @@ use Intimaai\Models\ProtocoloProcessual;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
     
 //    $peticao = new Peticao('/path/to/doc.pdf', 0, 'doc');
     $doc = new Documento('/path/to/anexo.pdf', 0, 'anexo', 1);
-    $protocol = new ProtocoloProcessual('0000000-00.0000.0.00.0000', 1, 0, null, null, null, [$doc]);
+    $protocolo = new ProtocoloProcessual('0000000-00.0000.0.00.0000', 1, 0, null, null, null, [$doc]);
 
-    $resultNew = $intimaai->protocolosProcessuaisResources->cadastrarNovoProtocolo($protocol);
-    dump($resultNew);
+    $resultado = $intimaai->protocolosProcessuaisPje->cadastrarNovoProtocolo($protocolo);
+    dump($resultado);
 }
 catch (APIRequestException $exception)
 {

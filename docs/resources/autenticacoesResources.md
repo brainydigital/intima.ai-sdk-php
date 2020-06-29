@@ -1,13 +1,13 @@
-# **autenticacoesResources**
+# **autenticacoes**
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
-[**consultarPorId**](autenticacoesResources.md#consultarPorId) | **GET** /auths/{id} | Visualiza um auth
-[**cadastrarNovaAutenticacao**](autenticacoesResources.md#cadastrarNovaAutenticacao) | **POST** /auths | Cadastra um novo auth
-[**ativarCapturaDeIntimacoesParaAutenticacao**](autenticacoesResources.md#ativarCapturaDeIntimacoesParaAutenticacao) | **PUT** /auths/{auth_id}/intimations/enable | Ativa a captura de intimações para um auth
-[**desativarCapturaDeIntimacoesParaAutenticacao**](autenticacoesResources.md#desativarCapturaDeIntimacoesParaAutenticacao) | **PUT** /auths/{auth_id}/intimations/disable | Desativa a captura de intimações para um auth
+[**consultarPorId**](autenticacoesResources.md#consultarPorId) | **GET** /autenticacoes/{id} | Visualiza um auth
+[**cadastrarNovaAutenticacao**](autenticacoesResources.md#cadastrarNovaAutenticacao) | **POST** /autenticacoes | Cadastra um novo auth
+[**ativarCapturaDeIntimacoesParaAutenticacao**](autenticacoesResources.md#ativarCapturaDeIntimacoesParaAutenticacao) | **PUT** /autenticacoes/{autenticacao_id}/intimacoes/ativar | Ativa a captura de intimações para um auth
+[**desativarCapturaDeIntimacoesParaAutenticacao**](autenticacoesResources.md#desativarCapturaDeIntimacoesParaAutenticacao) | **PUT** /autenticacoes/{autenticacao_id}/intimacoes/desativar | Desativa a captura de intimações para um auth
 
 # **consultarPorId**
 
@@ -28,10 +28,10 @@ use Intimaai\API\APIRequestException;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $resultById = $intimaai->autenticacoesResources->consultarPorId(45217);
-    dump($resultById);
+    $resultado = $intimaai->autenticacoes->consultarPorId(45217);
+    dump($resultado);
 }
 catch (APIRequestException $exception)
 {
@@ -50,7 +50,7 @@ catch (\Exception $exception)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**auth** | [**NovaAutenticacao**](../models/auth/NovaAutenticacao.md)| parametros necessários para a criação de um novo registro | [obrigatório]
+**autenticacao** | [**NovaAutenticacao**](../models/auth/NovaAutenticacao.md)| parametros necessários para a criação de um novo registro | [obrigatório]
 
 ### Exemplos
 ```php
@@ -64,11 +64,11 @@ use Intimaai\Models\NovaAutenticacao;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $newAuth = new NovaAutenticacao(1, 1);
-    $resultNew = $intimaai->autenticacoesResources->cadastrarNovaAutenticacao($newAuth);
-    dump($resultNew);
+    $autenticacao = new NovaAutenticacao(1, 1);
+    $resultado = $intimaai->autenticacoes->cadastrarNovaAutenticacao($autenticacao);
+    dump($resultado);
 }
 catch (APIRequestException $exception)
 {
@@ -87,8 +87,8 @@ catch (\Exception $exception)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**authId** | **int**| é o id referente ao tribunal cadastrado em "Tribunais ativos" no Intima.ai | [obrigatório]
-**enable_auth** | [**AtivarIntimacoesParaAutenticacao**](../models/auth/AtivarIntimacoesParaAutenticacao.md)| parametros necessários para a ativação da captura de intimações | [obrigatório]
+**autenticacaoId** | **int**| é o id referente ao tribunal cadastrado em "Tribunais ativos" no Intima.ai | [obrigatório]
+**ativarAutenticacao** | [**AtivarIntimacoesParaAutenticacao**](../models/auth/AtivarIntimacoesParaAutenticacao.md)| parametros necessários para a ativação da captura de intimações | [obrigatório]
 
 ### Exemplos
 ```php
@@ -102,11 +102,11 @@ use Intimaai\Models\AtivarIntimacoesParaAutenticacao;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $enableAuth = new AtivarIntimacoesParaAutenticacao(['SEM_PRAZO'], [0, 1], ['06:00']);
-    $resultEnable = $intimaai->autenticacoesResources->ativarCapturaDeIntimacoesParaAutenticacao(1, $enableAuth);
-    dump($resultEnable);
+    $ativarIntimacoes = new AtivarIntimacoesParaAutenticacao(['SEM_PRAZO'], [0, 1], ['06:00']);
+    $resultado = $intimaai->autenticacoes->ativarCapturaDeIntimacoesParaAutenticacao(1, $ativarIntimacoes);
+    dump($resultado);
 }
 catch (APIRequestException $exception)
 {
@@ -125,7 +125,7 @@ catch (\Exception $exception)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**authId** | **int**| é o id referente ao tribunal cadastrado em "Tribunais ativos" no Intima.ai | [obrigatório]
+**autenticacaoId** | **int**| é o id referente ao tribunal cadastrado em "Tribunais ativos" no Intima.ai | [obrigatório]
 
 ### Exemplos
 ```php
@@ -138,10 +138,10 @@ use Intimaai\API\APIRequestException;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $resultDisable = $intimaai->autenticacoesResources->desativarCapturaDeIntimacoesParaAutenticacao(1);
-    dump($resultDisable);
+    $resultado = $intimaai->autenticacoes->desativarCapturaDeIntimacoesParaAutenticacao(1);
+    dump($resultado);
 }
 catch (APIRequestException $exception)
 {

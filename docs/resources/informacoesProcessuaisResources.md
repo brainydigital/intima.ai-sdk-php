@@ -1,11 +1,11 @@
-# **informacoesProcessuaisResources**
+# **informacoesProcessuais**
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
-[**consultarPorId**](informacoesProcessuaisResources.md#consultarPorId) | **GET** /process-infos/{id} | Visualiza as informações processuais por id
-[**capturarNovaInformacaoProcessual**](informacoesProcessuaisResources.md#capturarNovaInformacaoProcessual) | **POST** /actions/process-infos | Cadastra uma nova captura de informações processuais de um processo
+[**consultarPorId**](informacoesProcessuaisResources.md#consultarPorId) | **GET** /informacoes-processuais/{id} | Visualiza as informações processuais por id
+[**capturarNovaInformacaoProcessual**](informacoesProcessuaisResources.md#capturarNovaInformacaoProcessual) | **POST** /acoes/informacoes-processuais | Cadastra uma nova captura de informações processuais de um processo
 
 # **consultarPorId**
 
@@ -26,10 +26,10 @@ use Intimaai\API\APIRequestException;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $resultById = $intimaai->informacoesProcessuaisResources->consultarPorId(45217);
-    dump($resultById);
+    $resultado = $intimaai->informacoesProcessuais->consultarPorId(45217);
+    dump($resultado);
 }
 catch (APIRequestException $exception)
 {
@@ -48,7 +48,7 @@ catch (\Exception $exception)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**process** | [**InformacaoProcessual**](../models/process_info/InformacaoProcessual.md) | parametros necessários para a criação de um novo registro | [obrigatório]
+**informacaoProcessual** | [**InformacaoProcessual**](../models/process_info/InformacaoProcessual.md) | parametros necessários para a criação de um novo registro | [obrigatório]
 
 ### Exemplos
 ```php
@@ -62,11 +62,11 @@ use Intimaai\Models\InformacaoProcessual;
 
 try 
 {
-    $intimaai = new Intimaai('your_api_token');
+    $intimaai = new Intimaai('api_token');
 
-    $process = new InformacaoProcessual('00000000000000000000', 120);
-    $resultNew = $intimaai->informacoesProcessuaisResources->capturarNovaInformacaoProcessual($process);
-    dump($resultNew);
+    $processoInfo = new InformacaoProcessual('00000000000000000000', 120);
+    $resultado = $intimaai->informacoesProcessuais->capturarNovaInformacaoProcessual($processoInfo);
+    dump($resultado);
 }
 catch (APIRequestException $exception)
 {

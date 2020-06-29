@@ -4,22 +4,22 @@ namespace Intimaai\Models;
 
 class NovaAutenticacao
 {
-    private $tribunal_id;
-    private $user_certificate_id;
+    private $tribunalId;
+    private $certificadoId;
     private $login;
     private $password;
 
     /**
      * NovaAutenticacao constructor.
-     * @param int $tribunal_id
-     * @param int|null $user_certificate_id
+     * @param int $tribunalId
+     * @param int|null $certificadoId
      * @param string|null $login
      * @param string|null $password
      */
-    public function __construct($tribunal_id, $user_certificate_id = null, $login = null, $password = null)
+    public function __construct($tribunalId, $certificadoId = null, $login = null, $password = null)
     {
-        $this->tribunal_id = $tribunal_id;
-        $this->user_certificate_id = $user_certificate_id;
+        $this->tribunalId = $tribunalId;
+        $this->certificadoId = $certificadoId;
         $this->login = $login;
         $this->password = $password;
     }
@@ -29,35 +29,35 @@ class NovaAutenticacao
      */
     public function getTribunalId()
     {
-        return $this->tribunal_id;
+        return $this->tribunalId;
     }
 
     /**
-     * @param int $tribunal_id
+     * @param int $tribunalId
      */
-    public function setTribunalId($tribunal_id)
+    public function setTribunalId($tribunalId)
     {
-        $this->tribunal_id = $tribunal_id;
+        $this->tribunalId = $tribunalId;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getUserCertificateId()
+    public function getCertificadoId()
     {
-        return $this->user_certificate_id;
+        return $this->certificadoId;
     }
 
     /**
-     * @param int $user_certificate_id
+     * @param int|null $certificadoId
      */
-    public function setUserCertificateId($user_certificate_id)
+    public function setCertificadoId($certificadoId)
     {
-        $this->user_certificate_id = $user_certificate_id;
+        $this->certificadoId = $certificadoId;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
     public function getLogin()
     {
@@ -65,7 +65,7 @@ class NovaAutenticacao
     }
 
     /**
-     * @param mixed $login
+     * @param string|null $login
      */
     public function setLogin($login)
     {
@@ -73,7 +73,7 @@ class NovaAutenticacao
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
     public function getPassword()
     {
@@ -81,7 +81,7 @@ class NovaAutenticacao
     }
 
     /**
-     * @param mixed $password
+     * @param string|null $password
      */
     public function setPassword($password)
     {

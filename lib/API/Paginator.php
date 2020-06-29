@@ -36,20 +36,41 @@ class Paginator
     }
 
     /**
+     * Retorna uma coleção com os recursos
+     * @return array|mixed
+     */
+    public function obterColecao()
+    {
+        return $this->getCollection();
+    }
+
+    /**
      * Return a collection of resources
      * @return array|mixed
      */
-    public function getCollection()
+    private function getCollection()
     {
         return $this->data;
+    }
+
+    /**
+     * Obtem uma página do recurso
+     * @param int $pagina Número da página do recurso
+     * @return Paginator
+     * @throws APIRequestException
+     */
+    public function obterPagina($pagina)
+    {
+        return $this->getPage($pagina);
     }
 
     /**
      * Get an specific page
      * @param int $page Page number
      * @return Paginator
+     * @throws APIRequestException
      */
-    public function getPage($page)
+    private function getPage($page)
     {
         $options = [
             'path' => $this->resourceClass->getResourceEndpoint(),
@@ -66,10 +87,21 @@ class Paginator
     }
 
     /**
+     * Obtem os recursos da próxima página
+     * @return Paginator
+     * @throws APIRequestException
+     */
+    public function proximaPagina()
+    {
+        return $this->nextPage();
+    }
+
+    /**
      * Get next page
      * @return Paginator
+     * @throws APIRequestException
      */
-    public function nextPage()
+    private function nextPage()
     {
         if(($this->currentPage < $this->lastPage) || (!$this->currentPage && !$this->paginationData)) {
             $this->currentPage++;
@@ -80,10 +112,21 @@ class Paginator
     }
 
     /**
+     * Obtem os recursos da página anterior
+     * @return Paginator
+     * @throws APIRequestException
+     */
+    public function paginaAnterior()
+    {
+        return $this->previousPage();
+    }
+
+    /**
      * Get previous page
      * @return Paginator
+     * @throws APIRequestException
      */
-    public function previousPage()
+    private function previousPage()
     {
         if($this->currentPage > 1) {
             $this->currentPage--;
@@ -93,7 +136,16 @@ class Paginator
         return $this;
     }
 
-    public function hasNextPage()
+    /**
+     * Verifica se a próxima página existe, retorna uma booleana
+     * @return bool
+     */
+    public function existeProximaPagina()
+    {
+        return $this->hasNextPage();
+    }
+
+    private function hasNextPage()
     {
         if($this->currentPage < $this->lastPage) {
             return true;
@@ -103,12 +155,25 @@ class Paginator
     }
 
     /**
+     * Carrega todos os recursos requisitados
+     * Tenha cuidado ao utilizar está função.
+     * Sua conta pode ser bloqueada temporariamente, devido ao grande numero de requisições sequenciais.
+     * @return Paginator
+     * @throws APIRequestException
+     */
+    public function carregarTudo()
+    {
+        return $this->loadAll();
+    }
+
+    /**
      * Load all requested resources.
      * Be careful with this function.
      * Your account could be blocked because a big number of sequential requests.
      * @return Paginator
+     * @throws APIRequestException
      */
-    public function loadAll()
+    private function loadAll()
     {
         if($this->currentPage === 1 && $this->lastPage === 1) {
             return $this->getPage($this->currentPage);

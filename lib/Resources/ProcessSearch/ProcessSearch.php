@@ -2,6 +2,7 @@
 
 namespace Intimaai\Resources\ProcessSearch;
 
+use Exception;
 use Intimaai\API\API;
 use Intimaai\API\APIRequestException;
 use Intimaai\API\Paginator;
@@ -19,7 +20,7 @@ class ProcessSearch extends Resource
 
     function getResourceEndpoint()
     {
-        return 'process-searchs';
+        return 'consultas-processuais';
     }
 
     public function __construct(API $api, Action $action)
@@ -30,11 +31,11 @@ class ProcessSearch extends Resource
     }
 
     /**
-     * Get a process search by id
+     * Obtem uma consulta processual pelo id
      * @param int $id
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
     public function consultarPorId($id)
     {
@@ -46,58 +47,60 @@ class ProcessSearch extends Resource
     }
 
     /**
-     * Make a new process search
-     * @param ConsultaProcessual $search
+     * Cadastra uma nova consulta processual
+     * @param ConsultaProcessual $consultaProcessual
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
-    public function cadastrarNovaConsulta(ConsultaProcessual $search)
+    public function cadastrarNovaConsulta(ConsultaProcessual $consultaProcessual)
     {
-        if (empty($search->getProcessNumber()) && empty($search->getNomeParte()) && empty($search->getNomeRepresentante())) {
-            throw new \Exception('Você precisa fornecer ao menos um parametro para a busca.');
+        if (empty($consultaProcessual->getProcessNumber()) &&
+            empty($consultaProcessual->getNomeParte()) &&
+            empty($consultaProcessual->getNomeRepresentante())) {
+            throw new Exception('Você precisa fornecer ao menos um parametro para a busca.');
         }
 
         $options = [
             'path' => $this->action->getResourceEndpoint() . '/' . $this->getResourceEndpoint(),
             'method' => API::POST,
             'body' => [
-                'process_number' => $search->getProcessNumber(),
-                'auth_id' => $search->getAuthId(),
-                'nome_parte' => $search->getNomeParte(),
-                'nome_representante' => $search->getNomeRepresentante(),
-                'token' => $search->getToken()
+                'process_number' => $consultaProcessual->getProcessNumber(),
+                'auth_id' => $consultaProcessual->getAuthId(),
+                'nome_parte' => $consultaProcessual->getNomeParte(),
+                'nome_representante' => $consultaProcessual->getNomeRepresentante(),
+                'token' => $consultaProcessual->getToken()
             ]
         ];
         return $this->getAPI()->request($options, true);
     }
 
     /**
-     * Get process search results
-     * @param int $searchId
+     * Obtem os resultados das consultas processual pelo id
+     * @param int $consultaProcessualId
      * @return Paginator
      */
-    public function consultarResultadosDaConsulta($searchId)
+    public function consultarResultadosDaConsulta($consultaProcessualId)
     {
-        $resource = new ResourceResult($this->getAPI(), $this, $searchId);
-        return $resource->paginate();
+        $resource = new ResourceResult($this->getAPI(), $this, $consultaProcessualId);
+        return $resource->paginar();
     }
 
     /**
-     * Get processes searchs analyses
+     * Obtem todas as pré-analises de consultas processuais (paginadas)
      * @return Paginator
      */
     public function listarPreAnalisesDeConsultas()
     {
-        return $this->searchAnalyse->paginate();
+        return $this->searchAnalyse->paginar();
     }
 
     /**
-     * Get a process search analyse by id
+     * Obtem uma pré-analise de uma consulta processual pelo id
      * @param int $id
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
     public function consultarPorIdPreAnaliseDeConsulta($id)
     {
@@ -109,27 +112,29 @@ class ProcessSearch extends Resource
     }
 
     /**
-     * Make a new process search analyse
-     * @param PreAnaliseDeConsultaProcessual $searchAnalyse
+     * Cadastra uma nova pré-analise para uma consulta processual
+     * @param PreAnaliseDeConsultaProcessual $preAnaliseDeConsultaProcessual
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
-    public function cadastrarPreAnaliseDeConsulta(PreAnaliseDeConsultaProcessual $searchAnalyse)
+    public function cadastrarPreAnaliseDeConsulta(PreAnaliseDeConsultaProcessual $preAnaliseDeConsultaProcessual)
     {
-        if (empty($searchAnalyse->getProcessNumber()) && empty($searchAnalyse->getNomeParte()) && empty($searchAnalyse->getNomeRepresentante())) {
-            throw new \Exception('Você precisa fornecer ao menos um parametro para a busca.');
+        if (empty($preAnaliseDeConsultaProcessual->getProcessNumber()) &&
+            empty($preAnaliseDeConsultaProcessual->getNomeParte()) &&
+            empty($preAnaliseDeConsultaProcessual->getNomeRepresentante())) {
+            throw new Exception('Você precisa fornecer ao menos um parametro para a busca.');
         }
 
         $options = [
             'path' => $this->action->getResourceEndpoint() . '/' . $this->searchAnalyse->getResourceEndpoint(),
             'method' => API::POST,
             'body' => [
-                'process_number' => $searchAnalyse->getProcessNumber(),
-                'auth_id' => $searchAnalyse->getAuthId(),
-                'nome_parte' => $searchAnalyse->getNomeParte(),
-                'nome_representante' => $searchAnalyse->getNomeRepresentante(),
-                'token' => $searchAnalyse->getToken()
+                'process_number' => $preAnaliseDeConsultaProcessual->getProcessNumber(),
+                'auth_id' => $preAnaliseDeConsultaProcessual->getAuthId(),
+                'nome_parte' => $preAnaliseDeConsultaProcessual->getNomeParte(),
+                'nome_representante' => $preAnaliseDeConsultaProcessual->getNomeRepresentante(),
+                'token' => $preAnaliseDeConsultaProcessual->getToken()
             ]
         ];
         return $this->getAPI()->request($options, true);
