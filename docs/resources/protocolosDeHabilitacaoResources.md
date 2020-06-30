@@ -9,14 +9,14 @@
 > - Primeira etapa: Coleta de informações do processo no qual se deseja solicitar habilitação.
 > - Segunda etapa: Realização do protocolo, a partir das informações coletadas na etapa anterior.
 
-##Primeira etapa
+## Primeira etapa
 
 Para realizar a primeira etapa do protocolo de habilitação, basta informar o numero do processo e 
 qual o "Tribunal ativo" das sua lista de Tribunais ativos ele pertence.
 
 ![image](https://intima.ai/images/landpage/conheca_mais/protocolo_04.png)
 
-##Segunda etapa
+## Segunda etapa
 
 Após a finalização da primeira etapa, você terá que informar todas as informações principais do 
 protocolo de habilitação:
@@ -35,7 +35,7 @@ comprovante de protocolo.
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 
-Metodo | Requisição HTTP | Descrição
+Método | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
 [**consultarPorId**](protocolosDeHabilitacaoResources.md#consultarPorId) | **GET** /protocolos-de-habilitacao/{id} | Visualiza um protocolo de habilitação pelo id
 [**cadastrarPrimeiraEtapaParaNovoProtocoloDeHabilitacao**](protocolosDeHabilitacaoResources.md#cadastrarPrimeiraEtapaParaNovoProtocoloDeHabilitacao) | **POST** /acoes/protocolos-de-habilitacao | Cadastra um novo protocolo de habilitação, e coleta as informações iniciais para a primeira etapa
