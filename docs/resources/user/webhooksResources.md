@@ -1,4 +1,8 @@
-# **webhooks**
+# Recurso: **webhooks**
+
+> Atravez deste recurso você poderá cadastrar e manter todos os webhooks que deseja ser notificado, 
+>após o termino de uma ação realizada pelo `Intima.ai`.
+
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 

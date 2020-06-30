@@ -1,4 +1,30 @@
-# **protocolosProcessuais**
+# Recurso: **protocolosProcessuais**
+
+> Você pode realizar protocolos em quase todos os tribunais diponíveis no Brasil. De 
+>forma rápida e segura, sem se preocupar com tamanho dos arquivos em PDF (nos ajustamos e 
+>recortamos automaticamente, de acordo com tribunal selecionado).
+>
+> Para os `protocolos no PJE`, tudo é realizado em apenas uma `única etapa`, já para os `protocolos no 
+>ESAJ`, são necessárias `duas etapas` para conclusão do mesmo.
+
+##Passos básicos para protocolagem
+
+Para realizar um novo protocolo, basta informar o numero do processo e qual o `Tribunal ativo` 
+das sua lista de Tribunais ativos ele pertence. Após isso, será preciso inserir todas as 
+informações principais do protocolo como: Tipo de documento, descrição do documento, 
+documentos/anexos do protocolo (bem como seus tipos e descrições) e etc.
+
+![image](https://intima.ai/images/landpage/conheca_mais/protocolo_01.png)
+
+![image](https://intima.ai/images/landpage/conheca_mais/protocolo_02.png)
+
+Após a finalização da ação de protocolagem, você podera ver a certidão do protocolo que contém 
+todas as informações do protocolo e serve como comprovante.
+
+![image](https://intima.ai/images/landpage/conheca_mais/protocolo_03.png)
+
+![image](https://intima.ai/images/landpage/conheca_mais/protocolo_08.png)
+
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 

@@ -1,4 +1,16 @@
-# **consultasProcessuais**
+# Recurso: **consultasProcessuais**
+
+> Com este recurso você poderá realizar consultas de todos os processos disponíveis em qualquer 
+>tribunal do Brasil. Bastando apenas informar o `numero do proceso` ou o `nome da parte` ou o `nome do 
+>representante`.
+>
+> O `Intima.ai` recomenda que antes de realizar qualquer consulta processual, primeiro solicite 
+>a `pré-analise da consulta processual`, pois dependendo dos termos utilizados na consulta processual, 
+>poderá haver um numero muito alto de registros encontrados, consumindo assim seus créditos.
+>
+> A `pré-analise de uma consulta processual` retorna a quantidade de registros encontrados com os 
+>termos de busca informados.
+
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 

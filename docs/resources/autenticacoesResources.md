@@ -1,4 +1,8 @@
-# **autenticacoes**
+# Recurso: **autenticacoes**
+
+> As autenticações são os serviços de autenticação do `Intima.ai` para os tribunais. 
+> Você pode criar diversas autenticações para diversos tribunais sendo uma autenticação para cada tribunal.
+
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 

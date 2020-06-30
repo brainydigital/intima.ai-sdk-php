@@ -1,4 +1,37 @@
-# **protocolosDeHabilitacao**
+# Recurso: **protocolosDeHabilitacao**
+
+> Assim como os protocolos, você realizar protocolos de habilitação em quase todos os tribunais 
+>diponíveis no Brasil. Sem se preocupar com tamanho dos arquivos em PDF (nos ajustamos e 
+>recortamos automaticamente, de acordo com tribunal selecionado).
+>
+> O protocolo habilitação é realizado em duas etapas:
+>
+> - Primeira etapa: Coleta de informações do processo no qual se deseja solicitar habilitação.
+> - Segunda etapa: Realização do protocolo, a partir das informações coletadas na etapa anterior.
+
+##Primeira etapa
+
+Para realizar a primeira etapa do protocolo de habilitação, basta informar o numero do processo e 
+qual o "Tribunal ativo" das sua lista de Tribunais ativos ele pertence.
+
+![image](https://intima.ai/images/landpage/conheca_mais/protocolo_04.png)
+
+##Segunda etapa
+
+Após a finalização da primeira etapa, você terá que informar todas as informações principais do 
+protocolo de habilitação:
+
+![image](https://intima.ai/images/landpage/conheca_mais/protocolo_05.png)
+
+![image](https://intima.ai/images/landpage/conheca_mais/protocolo_06.png)
+
+Após a finalização da segunda etapa, a ação do protocolo de habilitação estará finalizada e 
+você poderá ver a certidão do protocolo que contem todas as informações do protocolo e serve como 
+comprovante de protocolo.
+
+![image](https://intima.ai/images/landpage/conheca_mais/protocolo_07.png)
+
+![image](https://intima.ai/images/landpage/conheca_mais/protocolo_08.png)
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 

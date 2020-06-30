@@ -1,4 +1,8 @@
-# **notificacoes**
+# Recurso: **notificacoes**
+
+> Atravez deste recurso você poderá ter o controle de todos os outros emails em que se deseja 
+>receber notificações, além do seu email principal.
+
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 

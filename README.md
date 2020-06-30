@@ -43,7 +43,16 @@ Baixe os arquivos e dê o include do `autoload.php`:
 
 ## Começando
 
-Após seguir os passos da [instalação](#Instalação). Por exemplo, para realizar uma cópia processual:
+Os passos necessários para começar a solicitar novas ações dentro do `Intima.ai` (solicitar cópias processuais, ativar escutas de processos, protocolar e etc) são os seguintes:
+
+1. Importe um Certificado do tipo A1 para sua conta (você advogado pode solicitar um certificado A1 em qualquer certificadora autorizada) 
+ou utilize login e senha, caso o tribunal dê suporte;
+
+2. Crie uma Autenticação (serviço de autenticação) para cada Tribunal que você deseja executar Ações;
+
+3. Agora é só solicitar qualquer tipo de ação que o `Intima.ai` dê suporte, seguindo as documentações específicas para cada tipo de ação.
+
+Após seguir os passos da [instalação](#Instalação) e possuir uma autenticação válida para um Tribunal. Por exemplo, para realizar uma nova cópia processual:
 
 ```php
 <?php
@@ -73,7 +82,7 @@ catch (\Exception $exception)
 ?>
 ```
 
-## Paginação
+## Paginando recursos
 
 A maioria dos recursos do SDK possuem paginação, que pode ser acessada atravez da classe 
 [**Paginator**](./docs/models/api/Paginator.md). A utilização da paginação de um recurso é bem simples:

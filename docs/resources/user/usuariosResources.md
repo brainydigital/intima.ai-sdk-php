@@ -1,4 +1,7 @@
-# **usuarios**
+# Recurso: **usuarios**
+
+> Atravez deste recurso você pode consultar todas as informações do usuário.
+
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 

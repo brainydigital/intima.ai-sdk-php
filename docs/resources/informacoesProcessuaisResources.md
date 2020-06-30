@@ -1,4 +1,8 @@
-# **informacoesProcessuais**
+# Recurso: **informacoesProcessuais**
+
+> Com as informações processuais, você poderá obter todas as informações do processo, tais como: 
+>valor da causa, classe judicial, assuntos, polos e etc.
+
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 

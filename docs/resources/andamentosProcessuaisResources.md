@@ -1,4 +1,8 @@
-# **andamentosProcessuais**
+# Recurso: **andamentosProcessuais**
+
+> Com os andamentos processuais, você poderá visualizar todas as movimentações e documentos 
+>(PDF e HTML) do polo interno.
+
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 

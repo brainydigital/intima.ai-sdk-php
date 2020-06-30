@@ -1,8 +1,13 @@
-# **acoes**
+# Recurso: **acoes**
+
+> Todas as ações realizadas dentro do `Intima.ai`, ficam registradas neste recurso. Você pode 
+>utilizar o método `consultarResultadosDaAcao` para visualizar detalhamente os resultados da ação 
+>solicitada.
+
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 
-Metodo | Requisição HTTP | Descrição
+Método | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
 [**consultarPorId**](acoesResources.md#consultarPorId) | **GET** /acoes/{id} | Visualiza uma ação pelo id
 [**consultarResultadosDaAcao**](acoesResources.md#consultarResultadosDaAcao) | **GET** /acoes/{acao_id}/resultados | Retorna um [**Paginator**](../models/api/Paginator.md) com o resultados de uma ação

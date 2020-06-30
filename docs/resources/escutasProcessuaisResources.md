@@ -1,4 +1,10 @@
-# **escutasProcessuais**
+# Recurso: **escutasProcessuais**
+
+> Com a escuta processual você pode saber todas as movimentações que ocorreram em um processo, 
+>e baixar todos os novos documentos anexados ao processo. Para realizar uma escuta processual 
+>é bastante simples, bastando somente informar o numero do processo, tribunal e os horários que 
+>deseja realizar a escuta processual.
+
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 

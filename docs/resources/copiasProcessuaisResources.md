@@ -1,4 +1,8 @@
-# **copiasProcessuais**
+# Recurso: **copiasProcessuais**
+
+> Neste recurso você poderá visualizar e manter todas as suas cópias processuais. 
+>Bastando somente informar o tribunal e numero do processo.
+
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 

@@ -1,8 +1,15 @@
-# **certificados**
+# Recurso: **certificados**
+
+> Certas ações como protocolar, por exemplo, exigem que possua um `Tribunal` com o tipo de autenticação 
+> `Certificado A1`.
+> 
+> Após associar um `Certificado A1` a sua conta, você deverá esperar até que o mesmo seja aprovado e 
+> liberado por nossa equipe.
+
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 
-Metodo | Requisição HTTP | Descrição
+Método | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
 [**consultarPorId**](certificadosResources.md#consultarPorId) | **GET** /certificados/{id} | Visualiza um certificado
 [**cadastrarNovoCertificado**](certificadosResources.md#cadastrarNovoCertificado) | **POST** /certificados | Cadastra um novo certificado
