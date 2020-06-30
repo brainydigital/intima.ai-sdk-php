@@ -4,68 +4,70 @@ namespace Intimaai\Models;
 
 class EscutaProcessual
 {
-    private $processNumber;
-    private $authId;
-    private $scheduleTimes;
+    private $numeroProcesso;
+
+    private $autenticacaoId;
+
+    private $horariosDeCaptura;
 
     /**
      * EscutaProcessual constructor.
-     * @param string $processNumber
-     * @param int $authId
-     * @param array $scheduleTimes
+     * @param string $numeroProcesso
+     * @param int $autenticacaoId
+     * @param array $horariosDeCaptura
      */
-    public function __construct($processNumber, $authId, $scheduleTimes)
+    public function __construct($numeroProcesso, $autenticacaoId, $horariosDeCaptura)
     {
-        $this->processNumber = $processNumber;
-        $this->authId = $authId;
-        $this->scheduleTimes = $scheduleTimes;
+        $this->numeroProcesso = $numeroProcesso;
+        $this->autenticacaoId = $autenticacaoId;
+        $this->horariosDeCaptura = $horariosDeCaptura;
     }
 
     /**
      * @return string
      */
-    public function getProcessNumber()
+    public function getNumeroProcesso()
     {
-        return $this->processNumber;
+        return $this->numeroProcesso;
     }
 
     /**
-     * @param string $processNumber
+     * @param string $numeroProcesso
      */
-    public function setProcessNumber($processNumber)
+    public function setNumeroProcesso($numeroProcesso)
     {
-        $this->processNumber = $processNumber;
+        $this->numeroProcesso = $numeroProcesso;
     }
 
     /**
      * @return int
      */
-    public function getAuthId()
+    public function getAutenticacaoId()
     {
-        return $this->authId;
+        return $this->autenticacaoId;
     }
 
     /**
-     * @param int $authId
+     * @param int $autenticacaoId
      */
-    public function setAuthId($authId)
+    public function setAutenticacaoId($autenticacaoId)
     {
-        $this->authId = $authId;
+        $this->autenticacaoId = $autenticacaoId;
     }
 
     /**
      * @return array
      */
-    public function getScheduleTimes()
+    public function getHorariosDeCaptura()
     {
-        return $this->scheduleTimes;
+        return $this->horariosDeCaptura;
     }
 
     /**
-     * @param array $scheduleTimes
+     * @param array $horariosDeCaptura
      */
-    public function setScheduleTimes($scheduleTimes)
+    public function setHorariosDeCaptura($horariosDeCaptura)
     {
-        $this->scheduleTimes = $scheduleTimes;
+        $this->horariosDeCaptura = $horariosDeCaptura;
     }
 }

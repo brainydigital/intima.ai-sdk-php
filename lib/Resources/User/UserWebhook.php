@@ -49,8 +49,8 @@ class UserWebhook extends Resource
             'path' => $this->getResourceEndpoint(),
             'method' => API::POST,
             'body' => [
-                'action_type' => $webhook->getActionType(),
-                'http_verb' => $webhook->getHttpVerb(),
+                'tipo_acao' => $webhook->getTipoAcao(),
+                'verbo_http' => $webhook->getVerboHttp(),
                 'url' => $webhook->getUrl()
             ]
         ];
@@ -71,8 +71,8 @@ class UserWebhook extends Resource
             'path' => $this->getResourceEndpoint() . '/' . $webhookId,
             'method' => API::PUT,
             'body' => [
-                'action_type' => $webhook->getActionType(),
-                'http_verb' => $webhook->getHttpVerb(),
+                'tipo_acao' => $webhook->getTipoAcao(),
+                'verbo_http' => $webhook->getVerboHttp(),
                 'url' => $webhook->getUrl()
             ]
         ];

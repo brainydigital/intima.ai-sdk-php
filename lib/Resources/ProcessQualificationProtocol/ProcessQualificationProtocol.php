@@ -54,8 +54,8 @@ class ProcessQualificationProtocol extends Resource
             'path' => $this->action->getResourceEndpoint() . '/' . $this->getResourceEndpoint(),
             'method' => API::POST,
             'body' => [
-                'process_number' => $primeiraEtapaParaProtocoloDeHabilitacao->getProcessNumber(),
-                'auth_id' => $primeiraEtapaParaProtocoloDeHabilitacao->getAuthId()
+                'numero_processo' => $primeiraEtapaParaProtocoloDeHabilitacao->getNumeroProcesso(),
+                'autenticacao_id' => $primeiraEtapaParaProtocoloDeHabilitacao->getAutenticacaoId()
             ]
         ];
         return $this->getAPI()->request($options, true);
@@ -156,8 +156,8 @@ class ProcessQualificationProtocol extends Resource
                 'contents' => $doc->getDescricaoDocumento()
             ];
             $body[] = [
-                'name' => "documentos[$index][order]",
-                'contents' => $doc->getOrder()
+                'name' => "documentos[$index][ordem]",
+                'contents' => $doc->getOrdem()
             ];
         }
 

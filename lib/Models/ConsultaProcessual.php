@@ -4,24 +4,24 @@ namespace Intimaai\Models;
 
 class ConsultaProcessual
 {
-    private $authId;
-    private $processNumber;
+    private $autenticacaoId;
+    private $numeroProcesso;
     private $nomeParte;
     private $nomeRepresentante;
     private $token;
 
     /**
      * ConsultaProcessual constructor.
-     * @param int $authId
-     * @param string|null $processNumber
+     * @param int $autenticacaoId
+     * @param string|null $numeroProcesso
      * @param string|null $nomeParte
      * @param string|null $nomeRepresentante
      * @param string|null $token
      */
-    public function __construct($authId, $processNumber = null, $nomeParte = null, $nomeRepresentante = null, $token = null)
+    public function __construct($autenticacaoId, $numeroProcesso = null, $nomeParte = null, $nomeRepresentante = null, $token = null)
     {
-        $this->authId = $authId;
-        $this->processNumber = $processNumber;
+        $this->autenticacaoId = $autenticacaoId;
+        $this->numeroProcesso = $numeroProcesso;
         $this->nomeParte = $nomeParte;
         $this->nomeRepresentante = $nomeRepresentante;
         $this->token = $token;
@@ -30,33 +30,33 @@ class ConsultaProcessual
     /**
      * @return int
      */
-    public function getAuthId()
+    public function getAutenticacaoId()
     {
-        return $this->authId;
+        return $this->autenticacaoId;
     }
 
     /**
-     * @param int $authId
+     * @param int $autenticacaoId
      */
-    public function setAuthId($authId)
+    public function setAutenticacaoId($autenticacaoId)
     {
-        $this->authId = $authId;
+        $this->autenticacaoId = $autenticacaoId;
     }
 
     /**
      * @return string|null
      */
-    public function getProcessNumber()
+    public function getNumeroProcesso()
     {
-        return $this->processNumber;
+        return $this->numeroProcesso;
     }
 
     /**
-     * @param string|null $processNumber
+     * @param string|null $numeroProcesso
      */
-    public function setProcessNumber($processNumber)
+    public function setNumeroProcesso($numeroProcesso)
     {
-        $this->processNumber = $processNumber;
+        $this->numeroProcesso = $numeroProcesso;
     }
 
     /**

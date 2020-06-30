@@ -56,9 +56,9 @@ class ProcessListener extends Resource
             'path' => $this->action->getResourceEndpoint(),
             'method' => API::POST,
             'body' => [
-                'process_number' => $escutaProcessual->getProcessNumber(),
-                'auth_id' => $escutaProcessual->getAuthId(),
-                'schedule_times' => $escutaProcessual->getScheduleTimes()
+                'numero_processo' => $escutaProcessual->getNumeroProcesso(),
+                'autenticacao_id' => $escutaProcessual->getAutenticacaoId(),
+                'horarios_de_captura' => $escutaProcessual->getHorariosDeCaptura()
             ]
         ];
         return $this->getAPI()->request($options, true);
@@ -93,9 +93,9 @@ class ProcessListener extends Resource
             'path' => $this->action->getResourceEndpoint() . '/' . $this->getResourceEndpoint() . '/criar-e-capturar',
             'method' => API::POST,
             'body' => [
-                'process_number' => $escutaProcessual->getProcessNumber(),
-                'auth_id' => $escutaProcessual->getAuthId(),
-                'schedule_times' => $escutaProcessual->getScheduleTimes()
+                'numero_processo' => $escutaProcessual->getNumeroProcesso(),
+                'autenticacao_id' => $escutaProcessual->getAutenticacaoId(),
+                'horarios_de_captura' => $escutaProcessual->getHorariosDeCaptura()
             ]
         ];
         return $this->getAPI()->request($options, true);
@@ -127,7 +127,7 @@ class ProcessListener extends Resource
             'path' => $this->getResourceEndpoint() . '/' . $escutaProcessualId,
             'method' => API::PUT,
             'body' => [
-                'schedule_times' => $escutaProcessual->getScheduleTimes()
+                'horarios_de_captura' => $escutaProcessual->getHorariosDeCaptura()
             ]
         ];
         return $this->getAPI()->request($options, true);

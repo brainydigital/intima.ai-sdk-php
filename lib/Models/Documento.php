@@ -2,27 +2,29 @@
 
 namespace Intimaai\Models;
 
+use Exception;
+
 class Documento
 {
     private $arquivo;
     private $tipoDocumento;
     private $descricaoDocumento;
-    private $order;
+    private $ordem;
 
     /**
      * Documento constructor.
      * @param string $arquivo
      * @param int $tipoDocumento
      * @param string $descricaoDocumento
-     * @param int $order
-     * @throws \Exception
+     * @param int $ordem
+     * @throws Exception
      */
-    public function __construct($arquivo, $tipoDocumento, $descricaoDocumento, $order)
+    public function __construct($arquivo, $tipoDocumento, $descricaoDocumento, $ordem)
     {
         $this->arquivo = $arquivo;
         $this->tipoDocumento = $tipoDocumento;
         $this->descricaoDocumento = $descricaoDocumento;
-        $this->order = $order;
+        $this->ordem = $ordem;
 
         $this->validate();
     }
@@ -31,7 +33,7 @@ class Documento
     {
         if (!file_exists($this->arquivo))
         {
-            throw new \Exception('O caminho do arquivo informado é inválido!');
+            throw new Exception('O caminho do arquivo informado é inválido!');
         }
     }
 
@@ -86,16 +88,16 @@ class Documento
     /**
      * @return int
      */
-    public function getOrder()
+    public function getOrdem()
     {
-        return $this->order;
+        return $this->ordem;
     }
 
     /**
-     * @param int $order
+     * @param int $ordem
      */
-    public function setOrder($order)
+    public function setOrdem($ordem)
     {
-        $this->order = $order;
+        $this->ordem = $ordem;
     }
 }

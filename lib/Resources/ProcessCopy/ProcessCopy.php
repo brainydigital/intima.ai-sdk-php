@@ -53,8 +53,8 @@ class ProcessCopy extends Resource
             'path' => $this->action->getResourceEndpoint() . '/' . $this->getResourceEndpoint(),
             'method' => API::POST,
             'body' => [
-                'process_number' => $copiaProcessual->getProcessNumber(),
-                'auth_id' => $copiaProcessual->getAuthId()
+                'numero_processo' => $copiaProcessual->getNumeroProcesso(),
+                'autenticacao_id' => $copiaProcessual->getAutenticacaoId()
             ]
         ];
         return $this->getAPI()->request($options, true);

@@ -2,21 +2,23 @@
 
 namespace Intimaai\Models;
 
+use Exception;
+
 class Certificado
 {
     private $pfx;
-    private $password;
+    private $senha;
 
     /**
      * Certificado constructor.
      * @param string $pfx
-     * @param string $password
-     * @throws \Exception
+     * @param string $senha
+     * @throws Exception
      */
-    public function __construct($pfx, $password)
+    public function __construct($pfx, $senha)
     {
         $this->pfx = $pfx;
-        $this->password = $password;
+        $this->senha = $senha;
 
         $this->validate();
     }
@@ -25,7 +27,7 @@ class Certificado
     {
         if (!file_exists($this->pfx))
         {
-            throw new \Exception('O caminho do arquivo informado é inválido!');
+            throw new Exception('O caminho do arquivo informado é inválido!');
         }
     }
 
@@ -48,16 +50,16 @@ class Certificado
     /**
      * @return string
      */
-    public function getPassword()
+    public function getSenha()
     {
-        return $this->password;
+        return $this->senha;
     }
 
     /**
-     * @param string $password
+     * @param string $senha
      */
-    public function setPassword($password)
+    public function setSenha($senha)
     {
-        $this->password = $password;
+        $this->senha = $senha;
     }
 }

@@ -65,8 +65,8 @@ class ProcessSearch extends Resource
             'path' => $this->action->getResourceEndpoint() . '/' . $this->getResourceEndpoint(),
             'method' => API::POST,
             'body' => [
-                'process_number' => $consultaProcessual->getProcessNumber(),
-                'auth_id' => $consultaProcessual->getAuthId(),
+                'numero_processo' => $consultaProcessual->getNumeroProcesso(),
+                'autenticacao_id' => $consultaProcessual->getAutenticacaoId(),
                 'nome_parte' => $consultaProcessual->getNomeParte(),
                 'nome_representante' => $consultaProcessual->getNomeRepresentante(),
                 'token' => $consultaProcessual->getToken()
@@ -130,11 +130,10 @@ class ProcessSearch extends Resource
             'path' => $this->action->getResourceEndpoint() . '/' . $this->searchAnalyse->getResourceEndpoint(),
             'method' => API::POST,
             'body' => [
-                'process_number' => $preAnaliseDeConsultaProcessual->getProcessNumber(),
-                'auth_id' => $preAnaliseDeConsultaProcessual->getAuthId(),
+                'numero_processo' => $preAnaliseDeConsultaProcessual->getNumeroProcesso(),
+                'autenticacao_id' => $preAnaliseDeConsultaProcessual->getAutenticacaoId(),
                 'nome_parte' => $preAnaliseDeConsultaProcessual->getNomeParte(),
-                'nome_representante' => $preAnaliseDeConsultaProcessual->getNomeRepresentante(),
-                'token' => $preAnaliseDeConsultaProcessual->getToken()
+                'nome_representante' => $preAnaliseDeConsultaProcessual->getNomeRepresentante()
             ]
         ];
         return $this->getAPI()->request($options, true);

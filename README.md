@@ -124,7 +124,7 @@ Recurso | Descrição
 [**usuarios**](docs/resources/user/usuariosResources.md#usuarios) | Contém todos os endpoints/métodos para seu usuário
 [**notificacoes**](docs/resources/user/notificacoesResources.md#notificacoes) | Contém todos os endpoints/métodos para as notificações do seu usuário
 [**webhooks**](docs/resources/user/webhooksResources.md#webhooks) | Contém todos os endpoints/métodos para os webhooks do usuário
-[**acoes**](docs/resources/acoesResources.md#acoes) | Contém todos os endpoints/métodos para ações que podem ser realizadas no `Intima.ai`
+[**acoes**](docs/resources/acoesResources.md#acoes) | Contém todos os endpoints/métodos para ações realizadas no `Intima.ai`
 [**copiasProcessuais**](docs/resources/copiasProcessuaisResources.md#copiasProcessuais) | Contém todos os endpoints/métodos para as cópias processuais
 [**escutasProcessuais**](docs/resources/escutasProcessuaisResources.md#escutasProcessuais) | Contém todos os endpoints/métodos para as escutas processuais
 [**protocolosDeHabilitacao**](docs/resources/protocolosDeHabilitacaoResources.md#protocolosDeHabilitacao) | Contém todos os endpoints/métodos para os protocolos de habilitação

@@ -53,8 +53,8 @@ class ProcessInfo extends Resource
             'path' => $this->action->getResourceEndpoint() . '/' . $this->getResourceEndpoint(),
             'method' => API::POST,
             'body' => [
-                'process_number' => $informacaoProcessual->getProcessNumber(),
-                'auth_id' => $informacaoProcessual->getAuthId()
+                'numero_processo' => $informacaoProcessual->getNumeroProcesso(),
+                'autenticacao_id' => $informacaoProcessual->getAutenticacaoId()
             ]
         ];
         return $this->getAPI()->request($options, true);

@@ -4,53 +4,53 @@ namespace Intimaai\Models;
 
 class Webhook
 {
-    private $actionType;
-    private $httpVerb;
+    private $tipoAcao;
+    private $verboHttp;
     private $url;
 
     /**
      * Webhook constructor.
-     * @param int $actionType
-     * @param string $httpVerb
+     * @param int $tipoAcao
+     * @param string $verboHttp
      * @param string $url
      */
-    public function __construct($actionType, $httpVerb, $url)
+    public function __construct($tipoAcao, $verboHttp, $url)
     {
-        $this->actionType = $actionType;
-        $this->httpVerb = $httpVerb;
+        $this->tipoAcao = $tipoAcao;
+        $this->verboHttp = $verboHttp;
         $this->url = $url;
     }
 
     /**
      * @return int
      */
-    public function getActionType()
+    public function getTipoAcao()
     {
-        return $this->actionType;
+        return $this->tipoAcao;
     }
 
     /**
-     * @param int $actionType
+     * @param int $tipoAcao
      */
-    public function setActionType($actionType)
+    public function setTipoAcao($tipoAcao)
     {
-        $this->actionType = $actionType;
+        $this->tipoAcao = $tipoAcao;
     }
 
     /**
      * @return string
      */
-    public function getHttpVerb()
+    public function getVerboHttp()
     {
-        return $this->httpVerb;
+        return $this->verboHttp;
     }
 
     /**
-     * @param string $httpVerb
+     * @param string $verboHttp
      */
-    public function setHttpVerb($httpVerb)
+    public function setVerboHttp($verboHttp)
     {
-        $this->httpVerb = $httpVerb;
+        $this->verboHttp = $verboHttp;
     }
 
     /**

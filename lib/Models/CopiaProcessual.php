@@ -4,50 +4,49 @@ namespace Intimaai\Models;
 
 class CopiaProcessual
 {
-    private $processNumber;
-
-    private $authId;
+    private $numeroProcesso;
+    private $autenticacaoId;
 
     /**
      * CopiaProcessual constructor.
-     * @param string $processNumber
-     * @param int $authId
+     * @param string $numeroProcesso
+     * @param int $autenticacaoId
      */
-    public function __construct($processNumber, $authId)
+    public function __construct($numeroProcesso, $autenticacaoId)
     {
-        $this->processNumber = $processNumber;
-        $this->authId = $authId;
+        $this->numeroProcesso = $numeroProcesso;
+        $this->autenticacaoId = $autenticacaoId;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getProcessNumber()
+    public function getNumeroProcesso()
     {
-        return $this->processNumber;
+        return $this->numeroProcesso;
     }
 
     /**
-     * @param mixed $processNumber
+     * @param string $numeroProcesso
      */
-    public function setProcessNumber($processNumber)
+    public function setNumeroProcesso($numeroProcesso)
     {
-        $this->processNumber = $processNumber;
+        $this->numeroProcesso = $numeroProcesso;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getAuthId()
+    public function getAutenticacaoId()
     {
-        return $this->authId;
+        return $this->autenticacaoId;
     }
 
     /**
-     * @param mixed $authId
+     * @param int $autenticacaoId
      */
-    public function setAuthId($authId)
+    public function setAutenticacaoId($autenticacaoId)
     {
-        $this->authId = $authId;
+        $this->autenticacaoId = $autenticacaoId;
     }
 }

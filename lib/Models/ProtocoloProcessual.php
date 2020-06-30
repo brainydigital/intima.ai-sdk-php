@@ -4,31 +4,31 @@ namespace Intimaai\Models;
 
 class ProtocoloProcessual
 {
-    private $processNumber;
-    private $authId;
+    private $numeroProcesso;
+    private $autenticacaoId;
     private $tipoDocumentoMensagemGeral;
     private $descricao;
-    private $mensagem_geral;
+    private $mensagemGeral;
     private $peticao;
     private $documentos;
 
     /**
      * ProtocoloProcessual constructor.
-     * @param string $processNumber
-     * @param int $authId
+     * @param string $numeroProcesso
+     * @param int $autenticacaoId
      * @param int $tipoDocumentoMensagemGeral
      * @param string|null $descricao
-     * @param string|null $mensagem_geral
+     * @param string|null $mensagemGeral
      * @param Peticao|null $peticao
      * @param Documento[]|null $documentos
      */
-    public function __construct($processNumber, $authId, $tipoDocumentoMensagemGeral, $descricao = null, $mensagem_geral = null, $peticao = null, $documentos = null)
+    public function __construct($numeroProcesso, $autenticacaoId, $tipoDocumentoMensagemGeral, $descricao = null, $mensagemGeral = null, $peticao = null, $documentos = null)
     {
-        $this->processNumber = $processNumber;
-        $this->authId = $authId;
+        $this->numeroProcesso = $numeroProcesso;
+        $this->autenticacaoId = $autenticacaoId;
         $this->tipoDocumentoMensagemGeral = $tipoDocumentoMensagemGeral;
         $this->descricao = $descricao;
-        $this->mensagem_geral = $mensagem_geral;
+        $this->mensagemGeral = $mensagemGeral;
         $this->peticao = $peticao;
         $this->documentos = $documentos;
     }
@@ -36,33 +36,33 @@ class ProtocoloProcessual
     /**
      * @return string
      */
-    public function getProcessNumber()
+    public function getNumeroProcesso()
     {
-        return $this->processNumber;
+        return $this->numeroProcesso;
     }
 
     /**
-     * @param string $processNumber
+     * @param string $numeroProcesso
      */
-    public function setProcessNumber($processNumber)
+    public function setNumeroProcesso($numeroProcesso)
     {
-        $this->processNumber = $processNumber;
+        $this->numeroProcesso = $numeroProcesso;
     }
 
     /**
      * @return int
      */
-    public function getAuthId()
+    public function getAutenticacaoId()
     {
-        return $this->authId;
+        return $this->autenticacaoId;
     }
 
     /**
-     * @param int $authId
+     * @param int $autenticacaoId
      */
-    public function setAuthId($authId)
+    public function setAutenticacaoId($autenticacaoId)
     {
-        $this->authId = $authId;
+        $this->autenticacaoId = $autenticacaoId;
     }
 
     /**
@@ -102,15 +102,15 @@ class ProtocoloProcessual
      */
     public function getMensagemGeral()
     {
-        return $this->mensagem_geral;
+        return $this->mensagemGeral;
     }
 
     /**
-     * @param string|null $mensagem_geral
+     * @param string|null $mensagemGeral
      */
-    public function setMensagemGeral($mensagem_geral)
+    public function setMensagemGeral($mensagemGeral)
     {
-        $this->mensagem_geral = $mensagem_geral;
+        $this->mensagemGeral = $mensagemGeral;
     }
 
     /**

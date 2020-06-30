@@ -5,7 +5,7 @@ Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
 [**consultarPorId**](protocolosProcessuaisResources.md#consultarPorId) | **GET** /protocolos-processuais/{protocolo_id} | Visualiza um protocolo
-[**cadastrarNovoProtocolo**](protocolosProcessuaisResources.md#cadastrarNovoProtocolo) | **POST** /acoes/protocolos-processuais | Cadastra um novo protocolo
+[**cadastrarNovoProtocolo**](protocolosProcessuaisResources.md#cadastrarNovoProtocolo) | **POST** /acoes/protocolos-processuais | Cadastra um novo protocolo no PJE
 [**cadastrarPrimeiraEtapaParaNovoProtocoloEsaj**](protocolosProcessuaisResources.md#cadastrarPrimeiraEtapaParaNovoProtocoloEsaj) | **POST** /acoes/esaj/protocolos-processuais | Cadastra um novo protocolo, e coleta as informações iniciais para a primeira etapa no ESAJ
 [**cadastrarSegundaEtapaParaNovoProtocoloEsaj**](protocolosProcessuaisResources.md#cadastrarSegundaEtapaParaNovoProtocoloEsaj) | **POST** /acoes/esaj/protocolos-processuais/{protocolo_id} | Finaliza o protoco. Está é a segunda e ultima etapa do protocolo no ESAJ
 

@@ -77,8 +77,8 @@ class ProcessProtocol extends Resource
         if (!$documents && !$peticao)
         {
             return [
-                'process_number' => $protocol->getProcessNumber(),
-                'auth_id' => $protocol->getAuthId(),
+                'numero_processo' => $protocol->getNumeroProcesso(),
+                'autenticacao_id' => $protocol->getAutenticacaoId(),
                 'tipo_documento_mensagem_geral' => $protocol->getTipoDocumentoMensagemGeral(),
                 'descricao' => $protocol->getDescricao(),
                 'mensagem_geral' => $protocol->getMensagemGeral()
@@ -87,12 +87,12 @@ class ProcessProtocol extends Resource
 
         $body = [
             [
-                'name' => 'process_number',
-                'contents' => $protocol->getProcessNumber()
+                'name' => 'numero_processo',
+                'contents' => $protocol->getNumeroProcesso()
             ],
             [
-                'name' => 'auth_id',
-                'contents' => $protocol->getAuthId()
+                'name' => 'autenticacao_id',
+                'contents' => $protocol->getAutenticacaoId()
             ],
             [
                 'name' => 'tipo_documento_mensagem_geral',
@@ -141,8 +141,8 @@ class ProcessProtocol extends Resource
                     'contents' => $doc->getDescricaoDocumento()
                 ];
                 $body[] = [
-                    'name' => "documentos[$index][order]",
-                    'contents' => $doc->getOrder()
+                    'name' => "documentos[$index][ordem]",
+                    'contents' => $doc->getOrdem()
                 ];
             }
         }
@@ -163,8 +163,8 @@ class ProcessProtocol extends Resource
             'path' => $this->action->getResourceEndpoint() . '/esaj/' . $this->getResourceEndpoint(),
             'method' => API::POST,
             'body' => [
-                'process_number' => $primeiraEtapaParaProtocoloProcessualEsaj->getProcessNumber(),
-                'auth_id' => $primeiraEtapaParaProtocoloProcessualEsaj->getAuthId()
+                'numero_processo' => $primeiraEtapaParaProtocoloProcessualEsaj->getNumeroProcesso(),
+                'autenticacao_id' => $primeiraEtapaParaProtocoloProcessualEsaj->getAutenticacaoId()
             ]
         ];
 
@@ -261,8 +261,8 @@ class ProcessProtocol extends Resource
                     'contents' => $doc->getTipoDocumento()
                 ];
                 $body[] = [
-                    'name' => "documentos[$index][order]",
-                    'contents' => $doc->getOrder()
+                    'name' => "documentos[$index][ordem]",
+                    'contents' => $doc->getOrdem()
                 ];
             }
         }

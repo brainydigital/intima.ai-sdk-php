@@ -57,8 +57,8 @@ class Certificate extends Resource
                     'contents' => fopen($certificado->getPfx(), 'r')
                 ],
                 [
-                    'name'     => 'password',
-                    'contents' => $certificado->getPassword()
+                    'name'     => 'senha',
+                    'contents' => $certificado->getSenha()
                 ]
             ]
         ];
@@ -87,8 +87,8 @@ class Certificate extends Resource
                     'contents' => fopen($certificado->getPfx(), 'r')
                 ],
                 [
-                    'name'     => 'password',
-                    'contents' => $certificado->getPassword()
+                    'name'     => 'senha',
+                    'contents' => $certificado->getSenha()
                 ]
             ]
         ];

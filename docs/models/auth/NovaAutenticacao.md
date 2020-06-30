@@ -3,8 +3,8 @@
 ## Propriedades
 Nome | Tipo | Descrição | Notas
 ------------ | ------------- | ------------- | -------------
-**tribunal_id** | **int** | é o id referente ao tribunal cadastrado em "Tribunais ativos" no Intima.ai | [obrigatório] 
-**user_certificate_id** | **int** | é o id do certificado cadastrado no Intima.ai | [opcional] 
+**tribunalId** | **int** | é o id referente ao tribunal cadastrado em "Tribunais ativos" no Intima.ai | [obrigatório] 
+**certificadoId** | **int** | é o id do certificado cadastrado no Intima.ai | [opcional] 
 **login** | **string** | login do seu usuário | [opcional] 
 **password** | **string** | senha do seu usuário | [opcional] 
 

@@ -51,9 +51,9 @@ class Auth extends Resource
             'method' => API::POST,
             'body' => [
                 'tribunal_id' => $autenticacao->getTribunalId(),
-                'user_certificate_id' => $autenticacao->getCertificadoId(),
+                'certificado_id' => $autenticacao->getCertificadoId(),
                 'login' => $autenticacao->getLogin(),
-                'password' => $autenticacao->getPassword()
+                'senha' => $autenticacao->getSenha()
             ]
         ];
         return $this->getAPI()->request($options, true);
@@ -73,9 +73,9 @@ class Auth extends Resource
             'path' => $this->getResourceEndpoint() . '/' . $autenticacaoId . '/intimacoes/ativar',
             'method' => API::PUT,
             'body' => [
-                'tabs' => $ativarAutenticacao->getTabs(),
-                'week_days' => $ativarAutenticacao->getWeekDays(),
-                'day_hour' => $ativarAutenticacao->getDayHour()
+                'abas' => $ativarAutenticacao->getAbas(),
+                'dias_da_semana' => $ativarAutenticacao->getDiasDaSemana(),
+                'horas_do_dia' => $ativarAutenticacao->getHorasDoDia()
             ]
         ];
         return $this->getAPI()->request($options, true);

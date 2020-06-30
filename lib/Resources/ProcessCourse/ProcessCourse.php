@@ -55,8 +55,8 @@ class ProcessCourse extends Resource
             'path' => $this->action->getResourceEndpoint(),
             'method' => API::POST,
             'body' => [
-                'process_number' => $andamentoProcessual->getProcessNumber(),
-                'auth_id' => $andamentoProcessual->getAuthId(),
+                'numero_processo' => $andamentoProcessual->getNumeroProcesso(),
+                'autenticacao_id' => $andamentoProcessual->getAutenticacaoId(),
             ]
         ];
         return $this->getAPI()->request($options, true);
@@ -79,7 +79,7 @@ class ProcessCourse extends Resource
     }
 
     /**
-     * Castrada e captura os andamentos de um andamento processual pré-cadastrado no Intima.ai
+     * Castrada e captura os andamentos de um andamento processual
      * @param AndamentoProcessual $andamentoProcessual
      * @return mixed
      * @throws APIRequestException
@@ -91,8 +91,8 @@ class ProcessCourse extends Resource
             'path' => $this->action->getResourceEndpoint() . '/' . $this->getResourceEndpoint() . '/criar-e-capturar',
             'method' => API::POST,
             'body' => [
-                'process_number' => $andamentoProcessual->getProcessNumber(),
-                'auth_id' => $andamentoProcessual->getAuthId(),
+                'numero_processo' => $andamentoProcessual->getNumeroProcesso(),
+                'autenticacao_id' => $andamentoProcessual->getAutenticacaoId(),
             ]
         ];
         return $this->getAPI()->request($options, true);

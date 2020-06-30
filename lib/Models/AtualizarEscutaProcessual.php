@@ -4,30 +4,30 @@ namespace Intimaai\Models;
 
 class AtualizarEscutaProcessual
 {
-    private $scheduleTimes;
+    private $horariosDeCaptura;
 
     /**
      * AtualizarEscutaProcessual constructor.
-     * @param array $scheduleTimes
+     * @param array $horariosDeCaptura
      */
-    public function __construct($scheduleTimes)
+    public function __construct($horariosDeCaptura)
     {
-        $this->scheduleTimes = $scheduleTimes;
+        $this->horariosDeCaptura = $horariosDeCaptura;
     }
 
     /**
      * @return array
      */
-    public function getScheduleTimes()
+    public function getHorariosDeCaptura()
     {
-        return $this->scheduleTimes;
+        return $this->horariosDeCaptura;
     }
 
     /**
-     * @param array $scheduleTimes
+     * @param array $horariosDeCaptura
      */
-    public function setScheduleTimes($scheduleTimes)
+    public function setHorariosDeCaptura($horariosDeCaptura)
     {
-        $this->scheduleTimes = $scheduleTimes;
+        $this->horariosDeCaptura = $horariosDeCaptura;
     }
 }

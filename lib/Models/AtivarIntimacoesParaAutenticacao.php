@@ -4,68 +4,68 @@ namespace Intimaai\Models;
 
 class AtivarIntimacoesParaAutenticacao
 {
-    private $tabs;
-    private $weekDays;
-    private $dayHour;
+    private $abas;
+    private $diasDaSemana;
+    private $horasDoDia;
 
     /**
      * AtivarIntimacoesParaAutenticacao constructor.
-     * @param array $tabs
-     * @param array $weekDays
-     * @param array $dayHour
+     * @param array $abas
+     * @param array $diasDaSemana
+     * @param array $horasDoDia
      */
-    public function __construct($tabs, $weekDays, $dayHour)
+    public function __construct($abas, $diasDaSemana, $horasDoDia)
     {
-        $this->tabs = $tabs;
-        $this->weekDays = $weekDays;
-        $this->dayHour = $dayHour;
+        $this->abas = $abas;
+        $this->diasDaSemana = $diasDaSemana;
+        $this->horasDoDia = $horasDoDia;
     }
 
     /**
      * @return array
      */
-    public function getTabs()
+    public function getAbas()
     {
-        return $this->tabs;
+        return $this->abas;
     }
 
     /**
-     * @param array $tabs
+     * @param array $abas
      */
-    public function setTabs($tabs)
+    public function setAbas($abas)
     {
-        $this->tabs = $tabs;
-    }
-
-    /**
-     * @return array
-     */
-    public function getWeekDays()
-    {
-        return $this->weekDays;
-    }
-
-    /**
-     * @param array $weekDays
-     */
-    public function setWeekDays($weekDays)
-    {
-        $this->weekDays = $weekDays;
+        $this->abas = $abas;
     }
 
     /**
      * @return array
      */
-    public function getDayHour()
+    public function getDiasDaSemana()
     {
-        return $this->dayHour;
+        return $this->diasDaSemana;
     }
 
     /**
-     * @param array $dayHour
+     * @param array $diasDaSemana
      */
-    public function setDayHour($dayHour)
+    public function setDiasDaSemana($diasDaSemana)
     {
-        $this->dayHour = $dayHour;
+        $this->diasDaSemana = $diasDaSemana;
+    }
+
+    /**
+     * @return array
+     */
+    public function getHorasDoDia()
+    {
+        return $this->horasDoDia;
+    }
+
+    /**
+     * @param array $horasDoDia
+     */
+    public function setHorasDoDia($horasDoDia)
+    {
+        $this->horasDoDia = $horasDoDia;
     }
 }

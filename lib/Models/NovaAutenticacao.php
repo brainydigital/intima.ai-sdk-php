@@ -7,21 +7,21 @@ class NovaAutenticacao
     private $tribunalId;
     private $certificadoId;
     private $login;
-    private $password;
+    private $senha;
 
     /**
      * NovaAutenticacao constructor.
      * @param int $tribunalId
      * @param int|null $certificadoId
      * @param string|null $login
-     * @param string|null $password
+     * @param string|null $senha
      */
-    public function __construct($tribunalId, $certificadoId = null, $login = null, $password = null)
+    public function __construct($tribunalId, $certificadoId = null, $login = null, $senha = null)
     {
         $this->tribunalId = $tribunalId;
         $this->certificadoId = $certificadoId;
         $this->login = $login;
-        $this->password = $password;
+        $this->senha = $senha;
     }
 
     /**
@@ -75,16 +75,16 @@ class NovaAutenticacao
     /**
      * @return string|null
      */
-    public function getPassword()
+    public function getSenha()
     {
-        return $this->password;
+        return $this->senha;
     }
 
     /**
-     * @param string|null $password
+     * @param string|null $senha
      */
-    public function setPassword($password)
+    public function setSenha($senha)
     {
-        $this->password = $password;
+        $this->senha = $senha;
     }
 }

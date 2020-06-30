@@ -4,22 +4,22 @@ namespace Intimaai\Models;
 
 class PreAnaliseDeConsultaProcessual
 {
-    private $authId;
-    private $processNumber;
+    private $autenticacaoId;
+    private $numeroProcesso;
     private $nomeParte;
     private $nomeRepresentante;
 
     /**
      * PreAnaliseDeConsultaProcessual constructor.
-     * @param int $authId
-     * @param string|null $processNumber
+     * @param int $autenticacaoId
+     * @param string|null $numeroProcesso
      * @param string|null $nomeParte
      * @param string|null $nomeRepresentante
      */
-    public function __construct($authId, $processNumber = null, $nomeParte = null, $nomeRepresentante = null)
+    public function __construct($autenticacaoId, $numeroProcesso = null, $nomeParte = null, $nomeRepresentante = null)
     {
-        $this->authId = $authId;
-        $this->processNumber = $processNumber;
+        $this->autenticacaoId = $autenticacaoId;
+        $this->numeroProcesso = $numeroProcesso;
         $this->nomeParte = $nomeParte;
         $this->nomeRepresentante = $nomeRepresentante;
     }
@@ -27,33 +27,33 @@ class PreAnaliseDeConsultaProcessual
     /**
      * @return int
      */
-    public function getAuthId()
+    public function getAutenticacaoId()
     {
-        return $this->authId;
+        return $this->autenticacaoId;
     }
 
     /**
-     * @param int $authId
+     * @param int $autenticacaoId
      */
-    public function setAuthId($authId)
+    public function setAutenticacaoId($autenticacaoId)
     {
-        $this->authId = $authId;
+        $this->autenticacaoId = $autenticacaoId;
     }
 
     /**
      * @return string|null
      */
-    public function getProcessNumber()
+    public function getNumeroProcesso()
     {
-        return $this->processNumber;
+        return $this->numeroProcesso;
     }
 
     /**
-     * @param string|null $processNumber
+     * @param string|null $numeroProcesso
      */
-    public function setProcessNumber($processNumber)
+    public function setNumeroProcesso($numeroProcesso)
     {
-        $this->processNumber = $processNumber;
+        $this->numeroProcesso = $numeroProcesso;
     }
 
     /**
@@ -86,21 +86,5 @@ class PreAnaliseDeConsultaProcessual
     public function setNomeRepresentante($nomeRepresentante)
     {
         $this->nomeRepresentante = $nomeRepresentante;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getToken()
-    {
-        return $this->token;
-    }
-
-    /**
-     * @param string|null $token
-     */
-    public function setToken($token)
-    {
-        $this->token = $token;
     }
 }
