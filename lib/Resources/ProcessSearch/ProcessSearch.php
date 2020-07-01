@@ -87,7 +87,7 @@ class ProcessSearch extends Resource
     }
 
     /**
-     * Obtem todas as pré-analises de consultas processuais (paginadas)
+     * Obtem um Paginator com as pré-analises de consultas processuais
      * @return Paginator
      */
     public function listarPreAnalisesDeConsultas()

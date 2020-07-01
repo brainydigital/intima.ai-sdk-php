@@ -31,7 +31,7 @@ class Action extends Resource
     }
 
     /**
-     * Get a action by id
+     * Obtem uma ação pelo id
      * @param int $id
      * @return mixed
      * @throws APIRequestException
@@ -47,7 +47,7 @@ class Action extends Resource
     }
 
     /**
-     * Get action results
+     * Obtem os resultados de uma ação pelo id
      * @param int $acaoId
      * @return Paginator
      * @throws Exception

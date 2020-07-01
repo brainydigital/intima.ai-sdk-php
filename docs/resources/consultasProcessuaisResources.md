@@ -14,7 +14,7 @@
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 
-Metodo | Requisição HTTP | Descrição
+Método | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
 [**consultarPorId**](consultasProcessuaisResources.md#consultarPorId) | **GET** /consultas-processuais/{id} | Visualiza uma consulta processual
 [**cadastrarNovaConsulta**](consultasProcessuaisResources.md#cadastrarNovaConsulta) | **POST** /acoes/consultas-processuais | Cadastra uma nova consulta processual

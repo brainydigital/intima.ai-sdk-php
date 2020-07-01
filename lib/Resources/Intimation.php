@@ -21,7 +21,7 @@ class Intimation extends Resource
     }
 
     /**
-     * Obtem uma intimações pelo id
+     * Obtem uma intimação pelo id
      * @param int $id
      * @return mixed
      * @throws APIRequestException
