@@ -16,7 +16,7 @@ Este repositório é a implementação da API do [Intima.ai](https://app.intima.
 
 - Versão da API: 2.0.0
 
-- Referência da API: [Referência completa da API](https://documenter.getpostman.com/view/2116715/SzmmVuso?version=latest)
+- Referência da API: [Referência completa da API](https://documenter.getpostman.com/view/11707205/T17GgoJW?version=latest)
 
 ## Requerimentos
 
