@@ -2,6 +2,7 @@
 
 namespace Intimaai\API;
 
+use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 
@@ -57,7 +58,7 @@ class API
      * @param bool $getDataOnly Get response body "data" param only
      * @return mixed
      * @throws APIRequestException
-     * @throws \Exception
+     * @throws Exception
      */
     public function request($requestOptions, $getDataOnly = false)
     {
@@ -67,7 +68,7 @@ class API
 
         if (empty($path))
         {
-            throw new \Exception('A URL informada é inválida!');
+            throw new Exception('A URL informada é inválida!');
         }
 
         $body = (array_key_exists('body', $requestOptions)) ? $requestOptions['body'] : null;
@@ -93,7 +94,7 @@ class API
                     $data = json_decode($this->delete($path, $options), true);
                     break;
                 default:
-                    throw new \Exception('Método HTTP inválido!');
+                    throw new Exception('Método HTTP inválido!');
             }
         }
         catch (ClientException $exception)
@@ -102,7 +103,7 @@ class API
             throw new APIRequestException($msg, $exception->getCode());
         }
 
-        return ($getDataOnly && array_key_exists('data', $data)) ? $data['data'] : $data;
+        return ($getDataOnly && !empty($data['data'])) ? $data['data'] : $data;
     }
 
     /**
