@@ -32,7 +32,7 @@ class UserNotification extends Resource
             'path' => $this->getResourceEndpoint() . '/' . $id,
             'method' => API::GET
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 
     /**
@@ -51,7 +51,7 @@ class UserNotification extends Resource
                 'email' => $email
             ]
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 
     /**
@@ -71,7 +71,7 @@ class UserNotification extends Resource
                 'email' => $email
             ]
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 
     /**
@@ -87,6 +87,6 @@ class UserNotification extends Resource
             'path' => $this->getResourceEndpoint() . '/' . $emailNotificaoId,
             'method' => API::DELETE
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 }

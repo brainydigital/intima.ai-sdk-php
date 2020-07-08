@@ -32,6 +32,6 @@ class Tribunal extends Resource
             'path' => $this->getResourceEndpoint() . '/' . $id,
             'method' => API::GET
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 }

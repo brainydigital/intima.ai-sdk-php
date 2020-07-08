@@ -40,7 +40,7 @@ class ProcessProtocol extends Resource
             'path' => $this->getResourceEndpoint() . '/' . $id,
             'method' => API::GET
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 
     /**
@@ -63,7 +63,7 @@ class ProcessProtocol extends Resource
             'body' => $body
         ];
 
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 
     /**
@@ -170,7 +170,7 @@ class ProcessProtocol extends Resource
             ]
         ];
 
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 
     /**
@@ -194,7 +194,7 @@ class ProcessProtocol extends Resource
             'body' => $body
         ];
 
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 
     /**

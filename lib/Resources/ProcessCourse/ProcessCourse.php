@@ -39,7 +39,7 @@ class ProcessCourse extends Resource
             'path' => $this->getResourceEndpoint() . '/' . $id,
             'method' => API::GET
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 
     /**
@@ -59,7 +59,7 @@ class ProcessCourse extends Resource
                 'autenticacao_id' => $andamentoProcessual->getAutenticacaoId(),
             ]
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 
     /**
@@ -75,7 +75,7 @@ class ProcessCourse extends Resource
             'path' => $this->action->getResourceEndpoint() . '/' . $this->getResourceEndpoint() . '/' . $andamentoProcessualId . '/capturar',
             'method' => API::GET
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 
     /**
@@ -95,7 +95,7 @@ class ProcessCourse extends Resource
                 'autenticacao_id' => $andamentoProcessual->getAutenticacaoId(),
             ]
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 
     /**
@@ -123,6 +123,6 @@ class ProcessCourse extends Resource
             'path' => $this->getResourceEndpoint() . '/' . $andamentoProcessualId,
             'method' => API::DELETE
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 }

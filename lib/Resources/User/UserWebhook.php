@@ -33,7 +33,7 @@ class UserWebhook extends Resource
             'path' => $this->getResourceEndpoint() . '/' . $id,
             'method' => API::GET
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 
     /**
@@ -54,7 +54,7 @@ class UserWebhook extends Resource
                 'url' => $webhook->getUrl()
             ]
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 
     /**
@@ -76,7 +76,7 @@ class UserWebhook extends Resource
                 'url' => $webhook->getUrl()
             ]
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 
     /**
@@ -92,6 +92,6 @@ class UserWebhook extends Resource
             'path' => $this->getResourceEndpoint() . '/' . $webhookId,
             'method' => API::DELETE
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 }

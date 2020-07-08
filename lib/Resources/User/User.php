@@ -31,6 +31,6 @@ class User extends Resource
             'path' => $this->getResourceEndpoint(),
             'method' => API::GET
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 }

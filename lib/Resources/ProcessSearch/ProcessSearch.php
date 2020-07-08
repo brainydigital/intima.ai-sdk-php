@@ -43,7 +43,7 @@ class ProcessSearch extends Resource
             'path' => $this->getResourceEndpoint() . '/' . $id,
             'method' => API::GET
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 
     /**
@@ -72,7 +72,7 @@ class ProcessSearch extends Resource
                 'token' => $consultaProcessual->getToken()
             ]
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 
     /**
@@ -108,7 +108,7 @@ class ProcessSearch extends Resource
             'path' => $this->searchAnalyse->getResourceEndpoint() . '/' . $id,
             'method' => API::GET
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 
     /**
@@ -136,6 +136,6 @@ class ProcessSearch extends Resource
                 'nome_representante' => $preAnaliseDeConsultaProcessual->getNomeRepresentante()
             ]
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 }

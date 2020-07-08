@@ -34,7 +34,7 @@ class Auth extends Resource
             'path' => $this->getResourceEndpoint() . '/' . $id,
             'method' => API::GET
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 
     /**
@@ -56,7 +56,7 @@ class Auth extends Resource
                 'senha' => $autenticacao->getSenha()
             ]
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 
     /**
@@ -78,7 +78,7 @@ class Auth extends Resource
                 'horas_do_dia' => $ativarAutenticacao->getHorasDoDia()
             ]
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 
     /**
@@ -94,6 +94,6 @@ class Auth extends Resource
             'path' => $this->getResourceEndpoint() . '/' . $autenticacaoId . '/intimacoes/desativar',
             'method' => API::PUT
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 }

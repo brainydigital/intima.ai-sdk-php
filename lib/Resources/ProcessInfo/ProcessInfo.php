@@ -37,7 +37,7 @@ class ProcessInfo extends Resource
             'path' => $this->getResourceEndpoint() . '/' . $id,
             'method' => API::GET
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 
     /**
@@ -57,6 +57,6 @@ class ProcessInfo extends Resource
                 'autenticacao_id' => $informacaoProcessual->getAutenticacaoId()
             ]
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 }

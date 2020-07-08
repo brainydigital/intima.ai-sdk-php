@@ -40,7 +40,7 @@ class ProcessListener extends Resource
             'path' => $this->getResourceEndpoint() . '/' . $id,
             'method' => API::GET
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 
     /**
@@ -61,7 +61,7 @@ class ProcessListener extends Resource
                 'horarios_de_captura' => $escutaProcessual->getHorariosDeCaptura()
             ]
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 
     /**
@@ -77,7 +77,7 @@ class ProcessListener extends Resource
             'path' => $this->action->getResourceEndpoint() . '/' . $this->getResourceEndpoint() . '/' . $escutaProcessualId . '/capturar',
             'method' => API::GET
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 
     /**
@@ -98,7 +98,7 @@ class ProcessListener extends Resource
                 'horarios_de_captura' => $escutaProcessual->getHorariosDeCaptura()
             ]
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 
     /**
@@ -130,7 +130,7 @@ class ProcessListener extends Resource
                 'horarios_de_captura' => $escutaProcessual->getHorariosDeCaptura()
             ]
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 
     /**
@@ -146,6 +146,6 @@ class ProcessListener extends Resource
             'path' => $this->getResourceEndpoint() . '/' . $escutaProcessualId,
             'method' => API::DELETE
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 }

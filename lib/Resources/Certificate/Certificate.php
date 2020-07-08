@@ -34,7 +34,7 @@ class Certificate extends Resource
             'path' => $this->getResourceEndpoint() . '/' . $id,
             'method' => API::GET
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 
     /**
@@ -63,7 +63,7 @@ class Certificate extends Resource
                 ]
             ]
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 
     /**
@@ -93,7 +93,7 @@ class Certificate extends Resource
                 ]
             ]
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 
     /**
@@ -109,6 +109,6 @@ class Certificate extends Resource
             'path' => $this->getResourceEndpoint() . '/' . $certificadoId,
             'method' => API::DELETE
         ];
-        return $this->getAPI()->request($options, true);
+        return $this->getAPI()->request($options);
     }
 }
