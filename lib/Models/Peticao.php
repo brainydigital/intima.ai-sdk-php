@@ -19,16 +19,6 @@ class Peticao
         $this->arquivo = $arquivo;
         $this->tipoDocumento = $tipoDocumento;
         $this->descricaoDocumento = $descricaoDocumento;
-
-        $this->validate($arquivo);
-    }
-
-    private function validate($filePath)
-    {
-        if (!file_exists($filePath))
-        {
-            throw new \Exception('O caminho do arquivo informado é inválido!');
-        }
     }
 
     /**

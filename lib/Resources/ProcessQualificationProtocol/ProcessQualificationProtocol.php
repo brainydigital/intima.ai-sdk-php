@@ -9,6 +9,7 @@ use Intimaai\API\Resource;
 use Intimaai\Models\PrimeiraEtapaParaProtocoloDeHabilitacao;
 use Intimaai\Models\SegundaEtapaParaProtocoloDeHabilitacao;
 use Intimaai\Resources\Action;
+use Intimaai\Utils\Utils;
 
 class ProcessQualificationProtocol extends Resource
 {
@@ -88,6 +89,7 @@ class ProcessQualificationProtocol extends Resource
     /**
      * @param SegundaEtapaParaProtocoloDeHabilitacao $qualificationProtocol
      * @return array
+     * @throws Exception
      */
     private function serialize($qualificationProtocol)
     {
@@ -145,7 +147,7 @@ class ProcessQualificationProtocol extends Resource
         {
             $body[] = [
                 'name' => "documentos[$index][arquivo]",
-                'contents' => fopen($doc->getArquivo(), 'r')
+                'contents' => Utils::validateFile($doc->getArquivo())
             ];
             $body[] = [
                 'name' => "documentos[$index][tipo_documento]",

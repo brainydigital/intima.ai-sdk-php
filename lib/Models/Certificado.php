@@ -13,22 +13,11 @@ class Certificado
      * Certificado constructor.
      * @param string $pfx
      * @param string $senha
-     * @throws Exception
      */
     public function __construct($pfx, $senha)
     {
         $this->pfx = $pfx;
         $this->senha = $senha;
-
-        $this->validate();
-    }
-
-    private function validate()
-    {
-        if (!file_exists($this->pfx))
-        {
-            throw new Exception('O caminho do arquivo informado é inválido!');
-        }
     }
 
     /**

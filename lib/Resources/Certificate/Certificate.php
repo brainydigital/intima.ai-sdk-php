@@ -7,6 +7,7 @@ use Intimaai\API\API;
 use Intimaai\API\APIRequestException;
 use Intimaai\API\Resource;
 use Intimaai\Models\Certificado;
+use Intimaai\Utils\Utils;
 
 class Certificate extends Resource
 {
@@ -54,7 +55,7 @@ class Certificate extends Resource
             'body' => [
                 [
                     'name'     => 'pfx',
-                    'contents' => fopen($certificado->getPfx(), 'r')
+                    'contents' => Utils::validateFile($certificado->getPfx())
                 ],
                 [
                     'name'     => 'senha',
@@ -84,7 +85,7 @@ class Certificate extends Resource
             'body' => [
                 [
                     'name'     => 'pfx',
-                    'contents' => fopen($certificado->getPfx(), 'r')
+                    'contents' => Utils::validateFile($certificado->getPfx())
                 ],
                 [
                     'name'     => 'senha',

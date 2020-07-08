@@ -10,6 +10,7 @@ use Intimaai\Models\PrimeiraEtapaParaProtocoloProcessualEsaj;
 use Intimaai\Models\ProtocoloProcessual;
 use Intimaai\Models\SegundaEtapaParaProtocoloProcessualEsaj;
 use Intimaai\Resources\Action;
+use Intimaai\Utils\Utils;
 
 class ProcessProtocol extends Resource
 {
@@ -68,6 +69,7 @@ class ProcessProtocol extends Resource
     /**
      * @param ProtocoloProcessual $protocol
      * @return array
+     * @throws Exception
      */
     private function serializeForPJE(ProtocoloProcessual $protocol)
     {
@@ -112,7 +114,7 @@ class ProcessProtocol extends Resource
         {
             $body[] = [
                 'name' => 'peticao[arquivo]',
-                'contents' => fopen($peticao->getArquivo(), 'r')
+                'contents' => Utils::validateFile($peticao->getArquivo())
             ];
             $body[] = [
                 'name' => 'peticao[tipo_documento]',
@@ -130,7 +132,7 @@ class ProcessProtocol extends Resource
             {
                 $body[] = [
                     'name' => "documentos[$index][arquivo]",
-                    'contents' => fopen($doc->getArquivo(), 'r')
+                    'contents' => Utils::validateFile($doc->getArquivo())
                 ];
                 $body[] = [
                     'name' => "documentos[$index][tipo_documento]",
@@ -198,6 +200,7 @@ class ProcessProtocol extends Resource
     /**
      * @param SegundaEtapaParaProtocoloProcessualEsaj $protocol
      * @return array
+     * @throws Exception
      */
     private function serializeForESAJ(SegundaEtapaParaProtocoloProcessualEsaj $protocol)
     {
@@ -240,7 +243,7 @@ class ProcessProtocol extends Resource
         {
             $body[] = [
                 'name' => 'peticao[arquivo]',
-                'contents' => fopen($peticao->getArquivo(), 'r')
+                'contents' => Utils::validateFile($peticao->getArquivo())
             ];
             $body[] = [
                 'name' => 'peticao[tipo_documento]',
@@ -254,7 +257,7 @@ class ProcessProtocol extends Resource
             {
                 $body[] = [
                     'name' => "documentos[$index][arquivo]",
-                    'contents' => fopen($doc->getArquivo(), 'r')
+                    'contents' => Utils::validateFile($doc->getArquivo())
                 ];
                 $body[] = [
                     'name' => "documentos[$index][tipo_documento]",

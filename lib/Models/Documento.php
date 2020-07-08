@@ -17,7 +17,6 @@ class Documento
      * @param int $tipoDocumento
      * @param string $descricaoDocumento
      * @param int $ordem
-     * @throws Exception
      */
     public function __construct($arquivo, $tipoDocumento, $descricaoDocumento, $ordem)
     {
@@ -25,16 +24,6 @@ class Documento
         $this->tipoDocumento = $tipoDocumento;
         $this->descricaoDocumento = $descricaoDocumento;
         $this->ordem = $ordem;
-
-        $this->validate();
-    }
-
-    private function validate()
-    {
-        if (!file_exists($this->arquivo))
-        {
-            throw new Exception('O caminho do arquivo informado é inválido!');
-        }
     }
 
     /**
