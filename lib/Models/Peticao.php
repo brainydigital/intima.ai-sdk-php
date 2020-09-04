@@ -11,10 +11,10 @@ class Peticao
     /**
      * Peticao constructor.
      * @param string $arquivo
-     * @param int $tipoDocumento
+     * @param int|null $tipoDocumento
      * @param string|null $descricaoDocumento
      */
-    public function __construct($arquivo, $tipoDocumento, $descricaoDocumento = null)
+    public function __construct($arquivo, $tipoDocumento = null, $descricaoDocumento = null)
     {
         $this->arquivo = $arquivo;
         $this->tipoDocumento = $tipoDocumento;
