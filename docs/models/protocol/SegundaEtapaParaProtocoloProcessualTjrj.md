@@ -4,7 +4,7 @@
 Nome | Tipo | Descrição | Notas
 ------------ | ------------- | ------------- | -------------
 **classeId** | **int** | é o id referente a classe do protocolo | [obrigatório] 
-**categoriaId** | **int** | é o id referente a categoria do protocolo | [obrigatório] 
+**categoriaId** | **int** | é o id referente a categoria do protocolo | [obrigatório para ESAJ e TJRJ 2º grau] 
 **partesVinculadas** | [**ParteVinculada[]**](./ParteVinculada.md) | são as partes vinculadas ao protocolo | [obrigatório] 
 **peticao** | [**Peticao**](../protocol/Peticao.md) | é a petição que se deseja anexar | [obrigatório] 
 **documentos** | [**Documento[]**](../Documento.md) | são os documentos anexados | [opcional]  
