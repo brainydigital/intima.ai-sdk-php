@@ -4,7 +4,7 @@
 Nome | Tipo | Descrição | Notas
 ------------ | ------------- | ------------- | -------------
 **arquivo** | **string** | é o caminho do arquivo do documento | [obrigatório] 
-**tipoDocumento** | **int** | é o tipo do documento | [obrigatório para PJE] 
+**tipoDocumento** | **int** | é o tipo do documento | [obrigatório para PJE e ESAJ] 
 **descricaoDocumento** | **string** | é a descrição do documento | [opcional] 
 
 [[Voltar a lista da API]](../../../README.md#Documentação-para-os-Endpoints-da-API)    
