@@ -58,6 +58,7 @@ class ProcessListener extends Resource
             'body' => [
                 'numero_processo' => $escutaProcessual->getNumeroProcesso(),
                 'autenticacao_id' => $escutaProcessual->getAutenticacaoId(),
+                'dias_de_captura' => $escutaProcessual->getDiasDeCaptura(),
                 'horarios_de_captura' => $escutaProcessual->getHorariosDeCaptura()
             ]
         ];
@@ -95,6 +96,7 @@ class ProcessListener extends Resource
             'body' => [
                 'numero_processo' => $escutaProcessual->getNumeroProcesso(),
                 'autenticacao_id' => $escutaProcessual->getAutenticacaoId(),
+                'dias_de_captura' => $escutaProcessual->getDiasDeCaptura(),
                 'horarios_de_captura' => $escutaProcessual->getHorariosDeCaptura()
             ]
         ];
@@ -127,6 +129,7 @@ class ProcessListener extends Resource
             'path' => $this->getResourceEndpoint() . '/' . $escutaProcessualId,
             'method' => API::PUT,
             'body' => [
+                'dias_de_captura' => $escutaProcessual->getDiasDeCaptura(),
                 'horarios_de_captura' => $escutaProcessual->getHorariosDeCaptura()
             ]
         ];

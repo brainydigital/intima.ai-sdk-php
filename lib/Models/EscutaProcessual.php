@@ -8,6 +8,8 @@ class EscutaProcessual
 
     private $autenticacaoId;
 
+    private $diasDeCaptura;
+
     private $horariosDeCaptura;
 
     /**
@@ -16,10 +18,11 @@ class EscutaProcessual
      * @param int $autenticacaoId
      * @param array $horariosDeCaptura
      */
-    public function __construct($numeroProcesso, $autenticacaoId, $horariosDeCaptura)
+    public function __construct($numeroProcesso, $autenticacaoId, $diasDeCaptura, $horariosDeCaptura)
     {
         $this->numeroProcesso = $numeroProcesso;
         $this->autenticacaoId = $autenticacaoId;
+        $this->diasDeCaptura = $diasDeCaptura;
         $this->horariosDeCaptura = $horariosDeCaptura;
     }
 
@@ -53,6 +56,22 @@ class EscutaProcessual
     public function setAutenticacaoId($autenticacaoId)
     {
         $this->autenticacaoId = $autenticacaoId;
+    }
+
+    /**
+     * @return array
+     */
+    public function getDiasDeCaptura()
+    {
+        return $this->diasDeCaptura;
+    }
+
+    /**
+     * @param array $diasDeCaptura
+     */
+    public function setDiasDeCaptura($diasDeCaptura)
+    {
+        $this->diasDeCaptura = $diasDeCaptura;
     }
 
     /**

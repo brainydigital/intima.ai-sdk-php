@@ -75,7 +75,7 @@ try
 {
     $intimaai = new Intimaai('api_token');
 
-    $escuta = new EscutaProcessual('0000000-00.0000.0.00.0000', 1, ['07:00']);
+    $escuta = new EscutaProcessual('0000000-00.0000.0.00.0000', 1, [1, 2], ['07:00']);
     $resultado = $intimaai->escutasProcessuais->cadastrarNovaEscuta($escuta);
     dump($resultado);
 }
@@ -147,7 +147,7 @@ try
 {
     $intimaai = new Intimaai('api_token');
 
-    $escuta = new EscutaProcessual('0000000-00.0000.0.00.0000', 1, ['07:00']);
+    $escuta = new EscutaProcessual('0000000-00.0000.0.00.0000', 1, [1, 2], ['07:00']);
     $resultados = $intimaai->escutasProcessuais->cadastrarNovaEscutaECapturar($escuta);
     dump($resultados);
 }
@@ -221,7 +221,7 @@ try
 {
     $intimaai = new Intimaai('api_token');
     
-    $escuta = new AtualizarEscutaProcessual(['07:00']);
+    $escuta = new AtualizarEscutaProcessual([1, 2], ['07:00']);
     $resultado = $intimaai->escutasProcessuais->atualizarEscuta(31, $escuta);
     dump($resultado);
 }
