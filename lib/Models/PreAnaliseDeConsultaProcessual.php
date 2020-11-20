@@ -8,6 +8,9 @@ class PreAnaliseDeConsultaProcessual
     private $numeroProcesso;
     private $nomeParte;
     private $nomeRepresentante;
+    private $oabNumero;
+    private $oabLetra;
+    private $oabUf;
 
     /**
      * PreAnaliseDeConsultaProcessual constructor.
@@ -15,13 +18,19 @@ class PreAnaliseDeConsultaProcessual
      * @param string|null $numeroProcesso
      * @param string|null $nomeParte
      * @param string|null $nomeRepresentante
+     * @param string|null $oabNumero
+     * @param string|null $oabLetra
+     * @param string|null $oabUf
      */
-    public function __construct($autenticacaoId, $numeroProcesso = null, $nomeParte = null, $nomeRepresentante = null)
+    public function __construct($autenticacaoId, $numeroProcesso = null, $nomeParte = null, $nomeRepresentante = null, $oabNumero = null, $oabLetra = null, $oabUf = null)
     {
         $this->autenticacaoId = $autenticacaoId;
         $this->numeroProcesso = $numeroProcesso;
         $this->nomeParte = $nomeParte;
         $this->nomeRepresentante = $nomeRepresentante;
+        $this->oabNumero = $oabNumero;
+        $this->oabLetra = $oabLetra;
+        $this->oabUf = $oabUf;
     }
 
     /**
@@ -86,5 +95,53 @@ class PreAnaliseDeConsultaProcessual
     public function setNomeRepresentante($nomeRepresentante)
     {
         $this->nomeRepresentante = $nomeRepresentante;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getOabNumero()
+    {
+        return $this->oabNumero;
+    }
+
+    /**
+     * @param string|null $oabNumero
+     */
+    public function setOabNumero($oabNumero)
+    {
+        $this->oabNumero = $oabNumero;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getOabLetra()
+    {
+        return $this->oabLetra;
+    }
+
+    /**
+     * @param string|null $oabLetra
+     */
+    public function setOabLetra($oabLetra)
+    {
+        $this->oabLetra = $oabLetra;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getOabUf()
+    {
+        return $this->oabUf;
+    }
+
+    /**
+     * @param string|null $oabUf
+     */
+    public function setOabUf($oabUf)
+    {
+        $this->oabUf = $oabUf;
     }
 }

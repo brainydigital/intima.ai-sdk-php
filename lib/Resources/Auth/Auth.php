@@ -7,6 +7,7 @@ use Intimaai\API\API;
 use Intimaai\API\APIRequestException;
 use Intimaai\API\Resource;
 use Intimaai\Models\AtivarIntimacoesParaAutenticacao;
+use Intimaai\Models\AtualizarAutenticacao;
 use Intimaai\Models\NovaAutenticacao;
 
 class Auth extends Resource
@@ -53,7 +54,32 @@ class Auth extends Resource
                 'tribunal_id' => $autenticacao->getTribunalId(),
                 'certificado_id' => $autenticacao->getCertificadoId(),
                 'login' => $autenticacao->getLogin(),
-                'senha' => $autenticacao->getSenha()
+                'senha' => $autenticacao->getSenha(),
+                'oab_numero' => $autenticacao->getOabNumero(),
+                'oab_letra' => $autenticacao->getOabLetra(),
+                'oab_uf' => $autenticacao->getOabUf()
+            ]
+        ];
+        return $this->getAPI()->request($options);
+    }
+
+    /**
+     * Atualiza uma autenticação
+     * @param int $autenticacaoId
+     * @param AtualizarAutenticacao $atualizarAutenticacao
+     * @return mixed
+     * @throws APIRequestException
+     * @throws Exception
+     */
+    public function atualizarAutenticacao($autenticacaoId, AtualizarAutenticacao $atualizarAutenticacao)
+    {
+        $options = [
+            'path' => $this->getResourceEndpoint() . '/' . $autenticacaoId . '/atualizar',
+            'method' => API::PUT,
+            'body' => [
+                'oab_numero' => $atualizarAutenticacao->getOabNumero(),
+                'oab_letra' => $atualizarAutenticacao->getOabLetra(),
+                'oab_uf' => $atualizarAutenticacao->getOabUf()
             ]
         ];
         return $this->getAPI()->request($options);

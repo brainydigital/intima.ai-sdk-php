@@ -69,6 +69,9 @@ class ProcessSearch extends Resource
                 'autenticacao_id' => $consultaProcessual->getAutenticacaoId(),
                 'nome_parte' => $consultaProcessual->getNomeParte(),
                 'nome_representante' => $consultaProcessual->getNomeRepresentante(),
+                'oab_numero' => $consultaProcessual->getOabNumero(),
+                'oab_letra' => $consultaProcessual->getOabLetra(),
+                'oab_uf' => $consultaProcessual->getOabUf(),
                 'token' => $consultaProcessual->getToken()
             ]
         ];
@@ -133,7 +136,10 @@ class ProcessSearch extends Resource
                 'numero_processo' => $preAnaliseDeConsultaProcessual->getNumeroProcesso(),
                 'autenticacao_id' => $preAnaliseDeConsultaProcessual->getAutenticacaoId(),
                 'nome_parte' => $preAnaliseDeConsultaProcessual->getNomeParte(),
-                'nome_representante' => $preAnaliseDeConsultaProcessual->getNomeRepresentante()
+                'nome_representante' => $preAnaliseDeConsultaProcessual->getNomeRepresentante(),
+                'oab_numero' => $preAnaliseDeConsultaProcessual->getOabNumero(),
+                'oab_letra' => $preAnaliseDeConsultaProcessual->getOabLetra(),
+                'oab_uf' => $preAnaliseDeConsultaProcessual->getOabUf()
             ]
         ];
         return $this->getAPI()->request($options);

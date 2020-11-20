@@ -10,6 +10,7 @@ Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
 [**consultarPorId**](autenticacoesResources.md#consultarPorId) | **GET** /autenticacoes/{id} | Visualiza uma autenticação
 [**cadastrarNovaAutenticacao**](autenticacoesResources.md#cadastrarNovaAutenticacao) | **POST** /autenticacoes | Cadastra uma nova autenticação
+[**atualizarAutenticacao**](autenticacoesResources.md#atualizarAutenticacao) | **PUT** /autenticacoes/{autenticacao_id}/atualizar | Atualiza uma autenticação
 [**ativarCapturaDeIntimacoesParaAutenticacao**](autenticacoesResources.md#ativarCapturaDeIntimacoesParaAutenticacao) | **PUT** /autenticacoes/{autenticacao_id}/intimacoes/ativar | Ativa a captura de intimações para uma autenticação
 [**desativarCapturaDeIntimacoesParaAutenticacao**](autenticacoesResources.md#desativarCapturaDeIntimacoesParaAutenticacao) | **PUT** /autenticacoes/{autenticacao_id}/intimacoes/desativar | Desativa a captura de intimações para uma autenticação
 
@@ -72,6 +73,44 @@ try
 
     $autenticacao = new NovaAutenticacao(1, 1);
     $resultado = $intimaai->autenticacoes->cadastrarNovaAutenticacao($autenticacao);
+    dump($resultado);
+}
+catch (APIRequestException $exception)
+{
+    dump($exception->toJson());
+}
+catch (\Exception $exception)
+{
+    dump($exception->getMessage());
+}
+?>
+```
+
+# **atualizarAutenticacao**
+
+### Parametros
+
+Nome | Tipo | Descrição | Notas
+------------- | ------------- | ------------- | -------------
+**autenticacaoId** | **int**| é o id referente ao tribunal cadastrado em "Tribunais ativos" no Intima.ai | [obrigatório]
+**atualizarAutenticacao** | [**AtualizarAutenticacao**](../models/auth/AtualizarAutenticacao.md)| parametros necessários para a atualizar uma autenticação | [obrigatório]
+
+### Exemplos
+```php
+<?php
+
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use Intimaai\Intimaai;
+use Intimaai\API\APIRequestException;
+use Intimaai\Models\AtualizarAutenticacao;
+
+try 
+{
+    $intimaai = new Intimaai('api_token');
+
+    $atualizarAutenticacao = new AtualizarAutenticacao('190792', 'A', 'PB');
+    $resultado = $intimaai->autenticacoes->atualizarAutenticacao(1, $atualizarAutenticacao);
     dump($resultado);
 }
 catch (APIRequestException $exception)
