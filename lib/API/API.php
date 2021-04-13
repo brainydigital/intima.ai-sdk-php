@@ -20,6 +20,8 @@ class API
 
     protected static $debug = false;
 
+    protected static $options = [];
+
     const GET = 'GET';
     const POST = 'POST';
     const PUT = 'PUT';
@@ -32,8 +34,9 @@ class API
      * @param string|null $proxy set a proxy
      * @param int|null $timeout in seconds
      * @param bool $debug enable debug mode
+     * @param array $options others http options
      */
-    public function __construct($apiKey, $proxy = null, $timeout = null, $debug = false)
+    public function __construct($apiKey, $proxy = null, $timeout = null, $debug = false, $options = [])
     {
         self::$apiKey = $apiKey;
         self::$proxy = $proxy;
@@ -45,6 +48,10 @@ class API
         }
 
         self::$debug = $debug;
+
+        if (isset($options)) {
+            self::$options = $options;
+        }
 
         $this->client = new Client([
             'base_uri' => $this->getBaseUri(),
@@ -112,14 +119,14 @@ class API
      */
     private function getRequestDefaultOptions()
     {
-        return [
+        return array_merge([
             'headers' => [
                 'Accept' => 'application/json',
                 'User-Agent' => 'Intimaai_SDK/2.0.0'
             ],
             'proxy' => self::$proxy,
             'timeout' => self::$timeout
-        ];
+        ], self::$options);
     }
 
     /**

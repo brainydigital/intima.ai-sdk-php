@@ -59,10 +59,11 @@ class Intimaai
      * @param string|null $proxy set a proxy
      * @param int|null $timeout in seconds
      * @param bool $debug enable debug mode
+     * @param array $options others http options
      */
-    public function __construct($apiKey, $proxy = null, $timeout = null, $debug = false)
+    public function __construct($apiKey, $proxy = null, $timeout = null, $debug = false, $options = [])
     {
-        $this->API = new API($apiKey, $proxy, $timeout, $debug);
+        $this->API = new API($apiKey, $proxy, $timeout, $debug, $options);
         $this->autenticacoes = new Auth($this->API);
         $this->tribunais = new Tribunal($this->API);
         $this->certificados = new Certificate($this->API);
