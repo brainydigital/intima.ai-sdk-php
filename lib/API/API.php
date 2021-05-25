@@ -4,6 +4,7 @@ namespace Intimaai\API;
 
 use Exception;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Exception\ClientException;
 
 class API
@@ -104,10 +105,10 @@ class API
                     throw new Exception('Método HTTP inválido!');
             }
         }
-        catch (ClientException $exception)
+        catch (BadResponseException $exception)
         {
             $msg = ($exception->hasResponse()) ? $exception->getResponse()->getBody()->getContents() : $exception->getMessage();
-            throw new APIRequestException($msg, $exception->getCode());
+            throw new APIRequestException($msg, $exception->getCode(), $exception);
         }
 
         return ($getDataOnly && !empty($data['data'])) ? $data['data'] : $data;
