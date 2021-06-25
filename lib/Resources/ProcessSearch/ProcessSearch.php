@@ -139,9 +139,11 @@ class ProcessSearch extends Resource
                 'autenticacao_id' => $preAnaliseDeConsultaProcessual->getAutenticacaoId(),
                 'nome_parte' => $preAnaliseDeConsultaProcessual->getNomeParte(),
                 'nome_representante' => $preAnaliseDeConsultaProcessual->getNomeRepresentante(),
-                'oab_numero' => $preAnaliseDeConsultaProcessual->getOabNumero(),
-                'oab_letra' => $preAnaliseDeConsultaProcessual->getOabLetra(),
-                'oab_uf' => $preAnaliseDeConsultaProcessual->getOabUf()
+                'oab' => [
+                    'numero' => $preAnaliseDeConsultaProcessual->getOabNumero(),
+                    'letra' => $preAnaliseDeConsultaProcessual->getOabLetra(),
+                    'uf' => $preAnaliseDeConsultaProcessual->getOabUf()
+                ]
             ]
         ];
         return $this->getAPI()->request($options);
