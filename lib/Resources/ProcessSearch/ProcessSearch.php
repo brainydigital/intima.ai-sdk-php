@@ -123,7 +123,7 @@ class ProcessSearch extends Resource
      */
     public function cadastrarPreAnaliseDeConsulta(PreAnaliseDeConsultaProcessual $preAnaliseDeConsultaProcessual)
     {
-        if (empty($preAnaliseDeConsultaProcessual->getProcessNumber()) &&
+        if (empty($preAnaliseDeConsultaProcessual->getNumeroProcesso()) &&
             empty($preAnaliseDeConsultaProcessual->getNomeParte()) &&
             empty($preAnaliseDeConsultaProcessual->getNomeRepresentante())) {
             throw new Exception('Você precisa fornecer ao menos um parametro para a busca.');
