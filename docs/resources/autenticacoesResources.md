@@ -126,7 +126,7 @@ catch (\Exception $exception)
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **autenticacaoId** | **int**| é o id referente ao tribunal cadastrado em "Tribunais ativos" no Intima.ai | [obrigatório]
-**atualizarAutenticacao** | [**AtualizarAutenticacao**](../models/auth/AtualizarAutenticacao.md)| parametros necessários para a atualizar uma autenticação | [obrigatório]
+**atualizarAutenticacao** | [**AtualizarAutenticacao**](../models/auth/AtualizarAutenticacao.md)| parametros necessários para atualizar uma autenticação | [obrigatório]
 
 ### Exemplos
 ```php
