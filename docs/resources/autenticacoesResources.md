@@ -58,6 +58,7 @@ Nome | Tipo | Descrição | Notas
 **autenticacao** | [**NovaAutenticacao**](../models/auth/NovaAutenticacao.md)| parametros necessários para a criação de um novo registro | [obrigatório]
 
 ### Exemplos
+#### Cadastro de autenticacao com certifiado A1
 ```php
 <?php
 
@@ -70,8 +71,40 @@ use Intimaai\Models\NovaAutenticacao;
 try 
 {
     $intimaai = new Intimaai('api_token');
+    
+    // Instânciar um novo objeto NovaAutenticacao com os seguintes parametros:
+    // id do tribunal, id do certificado, null, null, numero da OAB, letra da OAB(opcional), UF da OAB 
+    $autenticacao = new NovaAutenticacao(1, 1, null, null, 'numero OAB', 'letra OAB', 'UF OAB');
+    $resultado = $intimaai->autenticacoes->cadastrarNovaAutenticacao($autenticacao);
+    dump($resultado);
+}
+catch (APIRequestException $exception)
+{
+    dump($exception->toJson());
+}
+catch (\Exception $exception)
+{
+    dump($exception->getMessage());
+}
+?>
+```
+#### Cadastro de autenticacao com login e senha
+```php
+<?php
 
-    $autenticacao = new NovaAutenticacao(1, 1);
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use Intimaai\Intimaai;
+use Intimaai\API\APIRequestException;
+use Intimaai\Models\NovaAutenticacao;
+
+try 
+{
+    $intimaai = new Intimaai('api_token');
+    
+    // Instânciar um novo objeto NovaAutenticacao com os seguintes parametros:
+    // id do tribunal, null, login, senha, numero da OAB, letra da OAB(opcional), UF da OAB 
+    $autenticacao = new NovaAutenticacao(1, null, 'login', 'senha', 'numero OAB', 'letra OAB', 'UF OAB');
     $resultado = $intimaai->autenticacoes->cadastrarNovaAutenticacao($autenticacao);
     dump($resultado);
 }
@@ -109,7 +142,7 @@ try
 {
     $intimaai = new Intimaai('api_token');
 
-    $atualizarAutenticacao = new AtualizarAutenticacao('190792', 'A', 'PB');
+    $atualizarAutenticacao = new AtualizarAutenticacao('numero da OAB', 'letra da OAB', 'UF da OAB');
     $resultado = $intimaai->autenticacoes->atualizarAutenticacao(1, $atualizarAutenticacao);
     dump($resultado);
 }
