@@ -68,7 +68,7 @@ try
 {
     $intimaai = new Intimaai('api_token');
 
-    $processoInfo = new InformacaoProcessual('00000000000000000000', 120);
+    $processoInfo = new InformacaoProcessual('0000000-00.0000.0.00.0000', 120);
     $resultado = $intimaai->informacoesProcessuais->capturarNovaInformacaoProcessual($processoInfo);
     dump($resultado);
 }
