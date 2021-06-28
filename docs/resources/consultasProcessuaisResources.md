@@ -67,6 +67,7 @@ Nome | Tipo | Descrição | Notas
 **consultaProcessual** | [**ConsultaProcessual**](../models/process_search/ConsultaProcessual.md) | parametros necessários para a criação de um novo registro | [obrigatório]
 
 ### Exemplos
+#### Cadastrar Nova Consulta Com Número do Processo
 ```php
 <?php
 
@@ -94,7 +95,62 @@ catch (\Exception $exception)
 }
 ?>
 ```
+#### Cadastrar Nova Consulta Com Número do Processo e Nome da Parte
+```php
+<?php
 
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use Intimaai\Intimaai;
+use Intimaai\API\APIRequestException;
+use Intimaai\Models\ConsultaProcessual;
+
+try 
+{
+    $intimaai = new Intimaai('api_token');
+
+    $consulta = new ConsultaProcessual(1, '0000000-00.0000.0.00.0000', 'Nome da Parte');
+    $resultado = $intimaai->consultasProcessuais->cadastrarNovaConsulta($consulta);
+    dump($resultado);
+}
+catch (APIRequestException $exception)
+{
+    dump($exception->toJson());
+}
+catch (\Exception $exception)
+{
+    dump($exception->getMessage());
+}
+?>
+```
+#### Cadastrar Nova Consulta Com Número do Processo, Nome da Parte, Nome do representante e numero da OAB
+```php
+<?php
+
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use Intimaai\Intimaai;
+use Intimaai\API\APIRequestException;
+use Intimaai\Models\ConsultaProcessual;
+
+try 
+{
+    $intimaai = new Intimaai('api_token');
+
+    $consulta = new ConsultaProcessual(1, '0000000-00.0000.0.00.0000', 'Nome da Parte', 'Nome do Representante', 'Numero OAB');
+    $resultado = $intimaai->consultasProcessuais->cadastrarNovaConsulta($consulta);
+    dump($resultado);
+}
+catch (APIRequestException $exception)
+{
+    dump($exception->toJson());
+}
+catch (\Exception $exception)
+{
+    dump($exception->getMessage());
+}
+?>
+```
 # **consultarResultadosDaConsulta**
 
 ### Parametros
@@ -209,6 +265,7 @@ Nome | Tipo | Descrição | Notas
 **preAnaliseDeConsultaProcessual** | [**PreAnaliseDeConsultaProcessual**](../models/process_search/PreAnaliseDeConsultaProcessual.md) | parametros necessários para a criação de um novo registro | [obrigatório]
 
 ### Exemplos
+#### Pré Análise Com Número de Processo
 ```php
 <?php
 
@@ -223,6 +280,62 @@ try
     $intimaai = new Intimaai('api_token');
 
     $consultaAnalise = new PreAnaliseDeConsultaProcessual(1, '0000000-00.0000.0.00.0000');
+    $resultado = $intimaai->consultasProcessuais->cadastrarPreAnaliseDeConsulta($consultaAnalise);
+    dump($resultado);
+}
+catch (APIRequestException $exception)
+{
+    dump($exception->toJson());
+}
+catch (\Exception $exception)
+{
+    dump($exception->getMessage());
+}
+?>
+```
+#### Pré Análise Com Número de Processo e Nome da Parte
+```php
+<?php
+
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use Intimaai\Intimaai;
+use Intimaai\API\APIRequestException;
+use Intimaai\Models\PreAnaliseDeConsultaProcessual;
+
+try 
+{
+    $intimaai = new Intimaai('api_token');
+
+    $consultaAnalise = new PreAnaliseDeConsultaProcessual(1, '0000000-00.0000.0.00.0000', 'Nome da Parte');
+    $resultado = $intimaai->consultasProcessuais->cadastrarPreAnaliseDeConsulta($consultaAnalise);
+    dump($resultado);
+}
+catch (APIRequestException $exception)
+{
+    dump($exception->toJson());
+}
+catch (\Exception $exception)
+{
+    dump($exception->getMessage());
+}
+?>
+```
+#### Pré Análise Com Número de Processo, Nome da Parte e Nome do Representante
+```php
+<?php
+
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use Intimaai\Intimaai;
+use Intimaai\API\APIRequestException;
+use Intimaai\Models\PreAnaliseDeConsultaProcessual;
+
+try 
+{
+    $intimaai = new Intimaai('api_token');
+
+    $consultaAnalise = new PreAnaliseDeConsultaProcessual(1, '0000000-00.0000.0.00.0000', 'Nome da Parte', 'Nome do Representante');
     $resultado = $intimaai->consultasProcessuais->cadastrarPreAnaliseDeConsulta($consultaAnalise);
     dump($resultado);
 }
