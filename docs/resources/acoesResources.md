@@ -10,7 +10,7 @@ Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 Método | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
 [**consultarPorId**](acoesResources.md#consultarPorId) | **GET** /acoes/{id} | Visualiza uma ação pelo id
-[**consultarResultadosDaAcao**](acoesResources.md#consultarResultadosDaAcao) | **GET** /acoes/{acao_id}/resultados | Retorna um [**Paginator**](../models/api/Paginator.md) com o resultados de uma ação
+[**consultarResultadosDaAcao**](acoesResources.md#consultarResultadosDaAcao) | **GET** /acoes/{acao_id}/resultados | Retorna um [**Paginator**](../models/api/Paginator.md) com os resultados de uma ação
 
 # **consultarPorId**
 
