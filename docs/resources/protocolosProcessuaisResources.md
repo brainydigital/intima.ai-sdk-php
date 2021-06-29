@@ -97,7 +97,7 @@ try
     
     $peticao = new Peticao('/path/to/doc.pdf', 0, 'doc');
     $doc = new Documento('/path/to/anexo.pdf', 0, 'anexo', 1);
-    $protocolo = new ProtocoloProcessual('0000000-00.0000.0.00.0000', 1, 0, 'descricao', 'mensagem geral' $peticao, [$doc]);
+    $protocolo = new ProtocoloProcessual('0000000-00.0000.0.00.0000', 1, 0, 'descricao', 'mensagem geral', $peticao, [$doc]);
 
     $resultado = $intimaai->protocolosProcessuais->cadastrarNovoProtocolo($protocolo);
     dump($resultado);

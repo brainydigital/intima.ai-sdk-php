@@ -53,7 +53,7 @@ class ProcessListener extends Resource
     public function cadastrarNovaEscuta(EscutaProcessual $escutaProcessual)
     {
         $options = [
-            'path' => $this->action->getResourceEndpoint(),
+            'path' => $this->getResourceEndpoint(),
             'method' => API::POST,
             'body' => [
                 'numero_processo' => $escutaProcessual->getNumeroProcesso(),

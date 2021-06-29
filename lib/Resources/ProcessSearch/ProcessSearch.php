@@ -55,7 +55,7 @@ class ProcessSearch extends Resource
      */
     public function cadastrarNovaConsulta(ConsultaProcessual $consultaProcessual)
     {
-        if (empty($consultaProcessual->getProcessNumber()) &&
+        if (empty($consultaProcessual->getNumeroProcesso()) &&
             empty($consultaProcessual->getNomeParte()) &&
             empty($consultaProcessual->getNomeRepresentante())) {
             throw new Exception('Você precisa fornecer ao menos um parametro para a busca.');
@@ -69,9 +69,11 @@ class ProcessSearch extends Resource
                 'autenticacao_id' => $consultaProcessual->getAutenticacaoId(),
                 'nome_parte' => $consultaProcessual->getNomeParte(),
                 'nome_representante' => $consultaProcessual->getNomeRepresentante(),
-                'oab_numero' => $consultaProcessual->getOabNumero(),
-                'oab_letra' => $consultaProcessual->getOabLetra(),
-                'oab_uf' => $consultaProcessual->getOabUf(),
+                'oab' => [
+                    'numero' => $consultaProcessual->getOabNumero(),
+                    'letra' => $consultaProcessual->getOabLetra(),
+                    'uf' => $consultaProcessual->getOabUf()
+                ],
                 'token' => $consultaProcessual->getToken()
             ]
         ];
@@ -123,7 +125,7 @@ class ProcessSearch extends Resource
      */
     public function cadastrarPreAnaliseDeConsulta(PreAnaliseDeConsultaProcessual $preAnaliseDeConsultaProcessual)
     {
-        if (empty($preAnaliseDeConsultaProcessual->getProcessNumber()) &&
+        if (empty($preAnaliseDeConsultaProcessual->getNumeroProcesso()) &&
             empty($preAnaliseDeConsultaProcessual->getNomeParte()) &&
             empty($preAnaliseDeConsultaProcessual->getNomeRepresentante())) {
             throw new Exception('Você precisa fornecer ao menos um parametro para a busca.');
@@ -137,9 +139,11 @@ class ProcessSearch extends Resource
                 'autenticacao_id' => $preAnaliseDeConsultaProcessual->getAutenticacaoId(),
                 'nome_parte' => $preAnaliseDeConsultaProcessual->getNomeParte(),
                 'nome_representante' => $preAnaliseDeConsultaProcessual->getNomeRepresentante(),
-                'oab_numero' => $preAnaliseDeConsultaProcessual->getOabNumero(),
-                'oab_letra' => $preAnaliseDeConsultaProcessual->getOabLetra(),
-                'oab_uf' => $preAnaliseDeConsultaProcessual->getOabUf()
+                'oab' => [
+                    'numero' => $preAnaliseDeConsultaProcessual->getOabNumero(),
+                    'letra' => $preAnaliseDeConsultaProcessual->getOabLetra(),
+                    'uf' => $preAnaliseDeConsultaProcessual->getOabUf()
+                ]
             ]
         ];
         return $this->getAPI()->request($options);
