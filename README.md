@@ -84,9 +84,9 @@ catch (\Exception $exception)
 
 ## Paginando recursos
 
-A maioria dos recursos do SDK possuem paginação, que pode ser acessada atravez da classe 
+Para obter todos os dados de um recurso, pode ser utilizado o sistema de paginação. A maioria dos recursos do SDK possuem paginação, que pode ser acessada atravez da classe 
 [**Paginator**](./docs/models/api/Paginator.md). A utilização da paginação de um recurso é bem simples:
-
+###### Exemplo para obter as copias processuais e manipular o resultado com o recurso de paginação
 ```php
 <?php
 
@@ -99,8 +99,10 @@ try
 {
     $intimaai = new Intimaai('api_token');
 
+    // Acessando todas as copias processuas do usuário
     $paginacao = $intimaai->copiasProcessuais->paginar();
 
+    // Manipulando o objeto Paginator retornado
     $paginacao->obterPagina(1);
     $paginacao->proximaPagina();
     $paginacao->paginaAnterior();

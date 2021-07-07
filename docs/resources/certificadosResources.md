@@ -73,7 +73,7 @@ try
 {
     $intimaai = new Intimaai('api_token');
 
-    $certificado = new Certificado('/path/to/file.pfx', '12345678');
+    $certificado = new Certificado('/path/to/file.pfx', 'senha');
     $resultado = $intimaai->certificados->cadastrarNovoCertificado($certificado);
 
     dump($resultado);
@@ -112,7 +112,7 @@ try
 {
     $intimaai = new Intimaai('api_token');
     
-    $certificado = new Certificado('/path/to/file.pfx', '12345678');
+    $certificado = new Certificado('/path/to/file.pfx', 'senha');
     $resultado = $intimaai->certificados->atualizarCertificado(1, $certificado);
     dump($resultado);
 }
