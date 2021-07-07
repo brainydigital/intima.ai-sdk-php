@@ -155,5 +155,5 @@ catch (\Exception $exception)
 ```
 
 [[Voltar ao topo]](#)        
-[[Voltar a lista da API]](../../README.md#Documentação-para-os-Endpoints-da-API)    
-[[Voltar para o README]](../../README.md#Intima.ai---SDK-PHP)
+[[Voltar a lista da API]](../../../README.md#Documentação-para-os-Endpoints-da-API)    
+[[Voltar para o README]](../../../README.md#Intima.ai---SDK-PHP)

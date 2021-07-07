@@ -52,7 +52,7 @@ class ProcessCourse extends Resource
     public function cadastrarNovoAndamento(AndamentoProcessual $andamentoProcessual)
     {
         $options = [
-            'path' => $this->action->getResourceEndpoint(),
+            'path' => $this->getResourceEndpoint(),
             'method' => API::POST,
             'body' => [
                 'numero_processo' => $andamentoProcessual->getNumeroProcesso(),
