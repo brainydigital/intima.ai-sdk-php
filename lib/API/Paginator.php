@@ -195,4 +195,35 @@ class Paginator
         return $this;
     }
 
+    /**
+     * @return int
+     */
+    public function getCurrentPage()
+    {
+        return $this->currentPage;
+    }
+
+    /**
+     * @return int
+     */
+    public function getLastPage()
+    {
+        return $this->lastPage;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPerPage()
+    {
+        return $this->perPage;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTotal()
+    {
+        return $this->total;
+    }
 }
