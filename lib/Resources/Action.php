@@ -57,4 +57,20 @@ class Action extends Resource
         $resource = new ResourceResult($this->getAPI(), $this, $acaoId);
         return $resource->paginar();
     }
+
+    /**
+     * Tenta executar novamente uma ação pelo id
+     * @param int $acaoId
+     * @return mixed
+     * @throws APIRequestException
+     * @throws Exception
+     */
+    public function tentarNovamente($acaoId)
+    {
+        $options = [
+            'path' => $this->getResourceEndpoint() . '/' . $acaoId . '/tentar-novamente',
+            'method' => API::GET
+        ];
+        return $this->getAPI()->request($options);
+    }
 }

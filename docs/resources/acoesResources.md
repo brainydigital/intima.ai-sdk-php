@@ -11,6 +11,7 @@ Método | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
 [**consultarPorId**](acoesResources.md#consultarPorId) | **GET** /acoes/{id} | Visualiza uma ação pelo id
 [**consultarResultadosDaAcao**](acoesResources.md#consultarResultadosDaAcao) | **GET** /acoes/{acao_id}/resultados | Retorna um [**Paginator**](../models/api/Paginator.md) com o resultados de uma ação
+[**tentarNovamente**](acoesResources.md#tentarNovamente) | **GET** /acoes/{acao_id}/tentar-novamente | Tenta executar novamente uma ação pelo id
 
 # **consultarPorId**
 
@@ -72,6 +73,41 @@ try
     $resultados->obterPagina(1);
 
     dump($resultados->obterColecao());
+}
+catch (APIRequestException $exception)
+{
+    dump($exception->toJson());
+}
+catch (\Exception $exception)
+{
+    dump($exception->getMessage());
+}
+?>
+```
+
+# **tentarNovamente**
+
+### Parametros
+
+Nome | Tipo | Descrição | Notas
+------------- | ------------- | ------------- | -------------
+**acaoId** | **int**| é o id referente a ação no Intima.ai | [obrigatório]
+
+### Exemplos
+```php
+<?php
+
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use Intimaai\Intimaai;
+use Intimaai\API\APIRequestException;
+
+try 
+{
+    $intimaai = new Intimaai('api_token');
+
+    $resultados = $intimaai->acoes->tentarNovamente(45217);
+    dump($resultados);
 }
 catch (APIRequestException $exception)
 {
