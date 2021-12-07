@@ -56,29 +56,34 @@ class Paginator
     /**
      * Obtem uma página do recurso
      * @param int $pagina Número da página do recurso
+     * @param array $params Parametros de query opcionais
      * @return Paginator
      * @throws APIRequestException
      */
-    public function obterPagina($pagina)
+    public function obterPagina($pagina, $params = [])
     {
-        return $this->getPage($pagina);
+        return $this->getPage($pagina, $params);
     }
 
     /**
-     * Get an specific page
+     * Get a specific page
      * @param int $page Page number
+     * @param array $params Optional parameters
      * @return Paginator
      * @throws APIRequestException
      */
-    private function getPage($page)
+    private function getPage($page, $params)
     {
         $options = [
             'path' => $this->resourceClass->getResourceEndpoint(),
             'method' => API::GET,
             'options' => [
-                'query' => [
-                    'page' => $page
-                ]
+                'query' => array_merge(
+                    $params,
+                    [
+                        'page' => $page
+                    ]
+                )
             ]
         ];
         $this->paginationData = $this->resourceClass->getAPI()->request($options);
