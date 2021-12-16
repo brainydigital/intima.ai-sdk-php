@@ -6,9 +6,11 @@ use Exception;
 use Intimaai\API\API;
 use Intimaai\API\APIRequestException;
 use Intimaai\API\Resource;
+use Intimaai\Models\PrimeiraEtapaParaProtocoloProcessualEproc;
 use Intimaai\Models\PrimeiraEtapaParaProtocoloProcessualEsaj;
 use Intimaai\Models\PrimeiraEtapaParaProtocoloProcessualTjrj;
 use Intimaai\Models\ProtocoloProcessual;
+use Intimaai\Models\SegundaEtapaParaProtocoloProcessualEproc;
 use Intimaai\Models\SegundaEtapaParaProtocoloProcessualEsaj;
 use Intimaai\Models\SegundaEtapaParaProtocoloProcessualTjrj;
 use Intimaai\Resources\Action;
@@ -242,6 +244,115 @@ class ProcessProtocol extends Resource
         ];
 
         return $this->getAPI()->request($options);
+    }
+
+    /**
+     * Cadastra um novo protocolo para o EPROC, está é a primeira etapa (de duas etapas) para cadastrar um novo protocolo no Intima.ai
+     * @param PrimeiraEtapaParaProtocoloProcessualEproc $primeiraEtapaParaProtocoloProcessualEproc
+     * @return mixed
+     * @throws APIRequestException
+     * @throws Exception
+     */
+    public function cadastrarPrimeiraEtapaParaNovoProtocolEproc(PrimeiraEtapaParaProtocoloProcessualEproc $primeiraEtapaParaProtocoloProcessualEproc)
+    {
+        $options = [
+            'path' => $this->action->getResourceEndpoint() . '/eproc/' . $this->getResourceEndpoint(),
+            'method' => API::POST,
+            'body' => [
+                'numero_processo' => $primeiraEtapaParaProtocoloProcessualEproc->getNumeroProcesso(),
+                'autenticacao_id' => $primeiraEtapaParaProtocoloProcessualEproc->getAutenticacaoId()
+            ]
+        ];
+
+        return $this->getAPI()->request($options);
+    }
+
+    /**
+     * Cadastra um novo protocolo para o EPROC, está é a segunda e ultima etapa para cadastrar um novo protocolo no Intima.ai
+     * @param int $protocoloProcessualId
+     * @param SegundaEtapaParaProtocoloProcessualEproc $segundaEtapaParaProtocoloProcessualEproc
+     * @return mixed
+     * @throws APIRequestException
+     */
+    public function cadastrarSegundaEtapaParaNovoProtocoloEproc($protocoloProcessualId, SegundaEtapaParaProtocoloProcessualEproc $segundaEtapaParaProtocoloProcessualEproc)
+    {
+        $body = $this->serializeForEPROC($segundaEtapaParaProtocoloProcessualEproc);
+
+        $options = [
+            'path' => $this->action->getResourceEndpoint() . '/eproc/' . $this->getResourceEndpoint() . '/' . $protocoloProcessualId,
+            'method' => API::POST,
+            'options' => [
+                'is_multipart' => true
+            ],
+            'body' => $body
+        ];
+
+        return $this->getAPI()->request($options);
+    }
+
+    /**
+     * @param SegundaEtapaParaProtocoloProcessualEproc $protocol
+     * @return array
+     * @throws Exception
+     */
+    private function serializeForEPROC(SegundaEtapaParaProtocoloProcessualEproc $protocol)
+    {
+        $documents = $protocol->getDocumentos();
+
+        $body = [
+            [
+                'name' => 'tipo_documento_mensagem_geral',
+                'contents' => $protocol->getTipoDocumentoMensagemGeral()
+            ]
+        ];
+
+        $partes = $protocol->getPartesVinculadas();
+
+        if (empty($partes))
+        {
+            $partes = [];
+        }
+
+        $index = 0;
+        foreach ($partes as $parte)
+        {
+            $body[] = [
+                'name' => "partes_vinculadas[$index][nome]",
+                'contents' => $parte->getNome()
+            ];
+            if (!empty($parte->getParticipacao())) {
+                $body[] = [
+                    'name' => "partes_vinculadas[$index][participacao]",
+                    'contents' => $parte->getParticipacao()
+                ];
+            }
+            $index++;
+        }
+
+        if ($documents)
+        {
+            foreach ($documents as $index => $doc)
+            {
+                $body[] = [
+                    'name' => "documentos[$index][arquivo]",
+                    'contents' => Utils::validateFile($doc->getArquivo())
+                ];
+                $body[] = [
+                    'name' => "documentos[$index][tipo_documento]",
+                    'contents' => $doc->getTipoDocumento()
+                ];
+                $body[] = [
+                    'name' => "documentos[$index][descricao_documento]",
+                    'contents' => $doc->getDescricaoDocumento()
+                ];
+                $body[] = [
+                    'name' => "documentos[$index][ordem]",
+                    'contents' => $doc->getOrdem()
+                ];
+            }
+        }
+
+        return $body;
     }
 
     /**

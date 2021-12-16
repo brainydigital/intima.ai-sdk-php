@@ -36,6 +36,8 @@ Metodo | Requisição HTTP | Descrição
 [**cadastrarSegundaEtapaParaNovoProtocoloEsaj**](protocolosProcessuaisResources.md#cadastrarSegundaEtapaParaNovoProtocoloEsaj) | **POST** /acoes/esaj/protocolos-processuais/{protocolo_id} | Finaliza o protoco. Está é a segunda e ultima etapa do protocolo no ESAJ
 [**cadastrarPrimeiraEtapaParaNovoProtocoloTjrj**](protocolosProcessuaisResources.md#cadastrarPrimeiraEtapaParaNovoProtocoloTjrj) | **POST** /acoes/tjrj/protocolos-processuais | Cadastra um novo protocolo, e coleta as informações iniciais para a primeira etapa no TJRJ
 [**cadastrarSegundaEtapaParaNovoProtocoloTjrj**](protocolosProcessuaisResources.md#cadastrarSegundaEtapaParaNovoProtocoloTjrj) | **POST** /acoes/tjrj/protocolos-processuais/{protocolo_id} | Finaliza o protoco. Está é a segunda e ultima etapa do protocolo no TJRJ
+[**cadastrarPrimeiraEtapaParaNovoProtocoloEproc**](protocolosProcessuaisResources.md#cadastrarPrimeiraEtapaParaNovoProtocoloEproc) | **POST** /acoes/eproc/protocolos-processuais | Cadastra um novo protocolo, e coleta as informações iniciais para a primeira etapa no EPROC
+[**cadastrarSegundaEtapaParaNovoProtocoloEproc**](protocolosProcessuaisResources.md#cadastrarSegundaEtapaParaNovoProtocoloEproc) | **POST** /acoes/eproc/protocolos-processuais/{protocolo_id} | Finaliza o protoco. Está é a segunda e ultima etapa do protocolo no EPROC
 
 # **consultarPorId**
 
@@ -270,6 +272,89 @@ try
     $protocoloSegundaEtapa = new SegundaEtapaParaProtocoloProcessualTjrj(1, null, $partes, $peticao, [$doc]);
 
     $resultado = $intimaai->protocolosProcessuais->cadastrarSegundaEtapaParaNovoProtocoloTjrj(53, $protocoloSegundaEtapa);
+    dump($resultado);
+}
+catch (APIRequestException $exception)
+{
+    dump($exception->toJson());
+}
+catch (\Exception $exception)
+{
+    dump($exception->getMessage());
+}
+?>
+```
+
+# **cadastrarPrimeiraEtapaParaNovoProtocoloEproc**
+
+### Parametros
+
+Nome | Tipo | Descrição | Notas
+------------- | ------------- | ------------- | -------------
+**primeiraEtapaParaProtocoloProcessualEproc** | [**PrimeiraEtapaParaProtocoloProcessualEproc**](../models/protocol/PrimeiraEtapaParaProtocoloProcessualEproc.md) | parametros necessários para a criação de um novo registro | [obrigatório]
+
+### Exemplos
+```php
+<?php
+
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use Intimaai\Intimaai;
+use Intimaai\API\APIRequestException;
+use Intimaai\Models\PrimeiraEtapaParaProtocoloProcessualEproc;
+
+try 
+{
+    $intimaai = new Intimaai('api_token');
+
+    $protocoloPrimeiraEtapa = new PrimeiraEtapaParaProtocoloProcessualEproc('0000000-00.0000.0.00.0000', 1);
+
+    $resultado = $intimaai->protocolosProcessuais->cadastrarPrimeiraEtapaParaNovoProtocolEproc($protocoloPrimeiraEtapa);
+    dump($resultado);
+}
+catch (APIRequestException $exception)
+{
+    dump($exception->toJson());
+}
+catch (\Exception $exception)
+{
+    dump($exception->getMessage());
+}
+?>
+```
+
+# **cadastrarSegundaEtapaParaNovoProtocoloEproc**
+
+### Parametros
+
+Nome | Tipo | Descrição | Notas
+------------- | ------------- | ------------- | -------------
+**protocoloProcessualId** | **int**| é o id referente ao protocolo cadastrado no Intima.ai, fornecido na primeira etapa | [obrigatório]
+**segundaEtapaParaProtocoloProcessualEproc** | [**SegundaEtapaParaProtocoloProcessualEproc**](../models/protocol/SegundaEtapaParaProtocoloProcessualEproc.md) | parametros necessários para a segunda e ultima etapa do protocolo no EPROC | [obrigatório]
+
+### Exemplos
+```php
+<?php
+
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use Intimaai\Intimaai;
+use Intimaai\API\APIRequestException;
+use Intimaai\Models\ParteVinculada;
+use Intimaai\Models\Documento;
+use Intimaai\Models\SegundaEtapaParaProtocoloProcessualEproc;
+
+try 
+{
+    $intimaai = new Intimaai('api_token');
+
+    $doc = new Documento('/path/to/anexo.pdf', 0, 'anexo', 1);
+    $partes = [
+        new ParteVinculada('BANCO FULANO')
+    ];
+    $protocoloSegundaEtapa = new SegundaEtapaParaProtocoloProcessualEproc(1, $partes, [$doc]);
+
+    $resultado = $intimaai->protocolosProcessuais->cadastrarSegundaEtapaParaNovoProtocoloEproc(53, $protocoloSegundaEtapa);
     dump($resultado);
 }
 catch (APIRequestException $exception)
