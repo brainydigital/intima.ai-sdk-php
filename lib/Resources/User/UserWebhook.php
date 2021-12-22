@@ -94,4 +94,20 @@ class UserWebhook extends Resource
         ];
         return $this->getAPI()->request($options);
     }
+
+    /**
+     * Reenvia um webhook de usuário pelo id
+     * @param int $webhookId
+     * @return mixed
+     * @throws APIRequestException
+     * @throws Exception
+     */
+    public function reenviarWebhook($webhookId)
+    {
+        $options = [
+            'path' => $this->getResourceEndpoint() . '/' . $webhookId . '/retry',
+            'method' => API::GET
+        ];
+        return $this->getAPI()->request($options);
+    }
 }

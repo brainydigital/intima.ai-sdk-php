@@ -12,6 +12,7 @@ Metodo | Requisição HTTP | Descrição
 [**cadastrarNovoWebhook**](webhooksResources.md#cadastrarNovoWebhook) | **POST** /usuarios-webhooks | Cadastra um novo webhook do usuário
 [**atualizarWebhook**](webhooksResources.md#atualizarWebhook) | **PUT** /usuarios-webhooks/{webhook_id} | Atualiza um webhook do usuário
 [**excluirWebhook**](webhooksResources.md#excluirWebhook) | **DELETE** /usuarios-webhooks/{webhook_id} | Exclui um webhook do usuário
+[**reenviarWebhook**](webhooksResources.md#reenviarWebhook) | **GET** /usuarios-webhooks/{webhook_id}/retry | Reenvia um webhook do usuário
 
 # **consultarPorId**
 
@@ -145,6 +146,41 @@ try
     $intimaai = new Intimaai('api_token');
 
     $resultado = $intimaai->webhooks->excluirWebhook(2);
+    dump($resultado);
+}
+catch (APIRequestException $exception)
+{
+    dump($exception->toJson());
+}
+catch (\Exception $exception)
+{
+    dump($exception->getMessage());
+}
+?>
+```
+
+# **reenviarWebhook**
+
+### Parametros
+
+Nome | Tipo | Descrição | Notas
+------------- | ------------- | ------------- | -------------
+**webhookId** | **int**| é o id referente ao webhook do usuário no Intima.ai | [obrigatório]
+
+### Exemplos
+```php
+<?php
+
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use Intimaai\Intimaai;
+use Intimaai\API\APIRequestException;
+
+try 
+{
+    $intimaai = new Intimaai('api_token');
+
+    $resultado = $intimaai->webhooks->reenviarWebhook(2);
     dump($resultado);
 }
 catch (APIRequestException $exception)
