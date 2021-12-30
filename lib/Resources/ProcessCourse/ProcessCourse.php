@@ -111,6 +111,22 @@ class ProcessCourse extends Resource
     }
 
     /**
+     * Obtem um item dos resultados por ID da captura do andamento processual pré-cadastrado no Intima.ai
+     * @param int $andamentoProcessualId
+     * @param int $processoId
+     * @return mixed
+     * @throws Exception
+     */
+    public function consultarResultadoDoAndamentoPorId($andamentoProcessualId, $processoId)
+    {
+        $options = [
+            'path' => $this->getResourceEndpoint() . '/' . $andamentoProcessualId . '/resultados' . '/' . $processoId,
+            'method' => API::GET
+        ];
+        return $this->getAPI()->request($options);
+    }
+
+    /**
      * Deleta um andamento processual pelo id
      * @param int $andamentoProcessualId
      * @return mixed

@@ -13,6 +13,7 @@ Metodo | Requisição HTTP | Descrição
 [**capturarAndamentos**](andamentosProcessuaisResources.md#capturarAndamentos) | **GET** /acoes/andamentos-processuais/{andamento_id}/capturar | Captura os andamentos processuais de um andamento processual previamente cadastrado no Intima.ai
 [**cadastrarNovoAndamentoECapturarAndamentos**](andamentosProcessuaisResources.md#cadastrarNovoAndamentoECapturarAndamentos) | **POST** /acoes/andamentos-processuais/criar-e-capturar | Cadastra e captura os andamento processuais no Intima.ai
 [**consultarResultadosDoAndamento**](andamentosProcessuaisResources.md#consultarResultadosDoAndamento) | **GET** /andamentos-processuais/{andamento_id}/resultados | Retorna um *Paginator* com os andamento processuais capturados
+[**consultarResultadoDoAndamentoPorId**](andamentosProcessuaisResources.md#consultarResultadoDoAndamentoPorId) | **GET** /andamentos-processuais/{andamento_id}/resultados/{processo_id} | Obtem um item dos resultados por ID da captura do andamento processual pré-cadastrado no Intima.ai
 [**excluirAndamento**](andamentosProcessuaisResources.md#excluirAndamento) | **DELETE** /andamentos-processuais/{andamento_id} | Exclui um andamento processual
 
 # **consultarPorId**
@@ -184,6 +185,42 @@ try
     $resultados->obterPagina(1);
 
     dump($resultados->obterColecao());
+}
+catch (APIRequestException $exception)
+{
+    dump($exception->toJson());
+}
+catch (\Exception $exception)
+{
+    dump($exception->getMessage());
+}
+?>
+```
+
+# **consultarResultadoDoAndamentoPorId**
+
+### Parametros
+
+Nome | Tipo | Descrição | Notas
+------------- | ------------- | ------------- | -------------
+**andamentoProcessualId** | **int**| é o id referente ao andamento processual no Intima.ai | [obrigatório]
+**$processoId** | **int**| é o id referente ao processo do andamento processual no Intima.ai | [obrigatório]
+
+### Exemplos
+```php
+<?php
+
+require_once(__DIR__ . '/vendor/autoload.php');
+
+use Intimaai\Intimaai;
+use Intimaai\API\APIRequestException;
+
+try 
+{
+    $intimaai = new Intimaai('api_token');
+
+    $resultado = $intimaai->andamentosProcessuais->consultarResultadoDoAndamentoPorId(45217, 11005);
+    dump($resultado);
 }
 catch (APIRequestException $exception)
 {
