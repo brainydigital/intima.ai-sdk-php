@@ -141,7 +141,7 @@ Recurso | Descrição
 [**andamentosProcessuais**](docs/resources/andamentosProcessuaisResources.md#andamentosProcessuais) | Contém todos os endpoints/métodos para os andamentos processuais
 [**protocolosProcessuais**](docs/resources/protocolosProcessuaisResources.md#protocolosProcessuais) | Contém todos os endpoints/métodos para os protocolos
 [**consultasProcessuais**](docs/resources/consultasProcessuaisResources.md#consultasProcessuais) | Contém todos os endpoints/métodos para consultas processuais e pré-análises
-
+[**creditos**](docs/resources/creditosResources.md#creditos) | Contém todos os endpoints/métodos para os recurso de créditos no INTIMA.AI
 
 ## Documentação para Autenticação
 

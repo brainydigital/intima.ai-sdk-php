@@ -6,6 +6,7 @@ use Intimaai\API\API;
 use Intimaai\Resources\Action;
 use Intimaai\Resources\Auth\Auth;
 use Intimaai\Resources\Certificate\Certificate;
+use Intimaai\Resources\Credit\Credit;
 use Intimaai\Resources\Intimation;
 use Intimaai\Resources\ProcessCopy\ProcessCopy;
 use Intimaai\Resources\ProcessCourse\ProcessCourse;
@@ -36,6 +37,8 @@ class Intimaai
     public $notificacoes;
 
     public $webhooks;
+
+    public $creditos;
 
     public $acoes;
 
@@ -71,6 +74,7 @@ class Intimaai
         $this->usuarios = new User($this->API);
         $this->notificacoes = new UserNotification($this->API);
         $this->webhooks = new UserWebhook($this->API);
+        $this->creditos = new Credit($this->API);
 
         $this->acoes = new Action($this->API);
         $this->copiasProcessuais = new ProcessCopy($this->API, $this->acoes);
